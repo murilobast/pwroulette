@@ -1,0 +1,24 @@
+template(name="forge")
+	.forge-window
+		.forge-window__icon
+			img(src="/icons/26055.png").forge-window__icon__img
+		.forge-window__desc
+			h3.forge-window__desc__name ☆☆Estaca de Inferno de Hades
+			//- p.forge-window__desc__bound Bound upon equip
+			p.forge-window__desc__type Adagas
+			p.forge-window__desc__rate Frequência de ataque (vezes/s) 1.25
+			p.forge-window__desc__range Alcance 2.5
+			p.forge-window__desc__atq Ataque físico 685-1028
+			p.forge-window__desc__dur Durabilidade 320/320
+			p.forge-window__desc__req Restrição de classe Merce.
+			p.forge-window__desc__req Nv. necessário 100
+			p.forge-window__desc__req For necessária 54
+			p.forge-window__desc__req Des necessária 302
+			each getAttrs
+				p.forge-window__desc__attr {{{this}}}
+
+		+forgeForm
+
+template(name="forgeForm")
+	form#roulette
+		input(type="submit" value="Roletar")#roulette__submit
