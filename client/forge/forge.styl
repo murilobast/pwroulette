@@ -1,46 +1,66 @@
+.window
+	font-size 0
+	.forge, .info
+		display inline-block
+		width 50%
+		vertical-align top
+		position relative
 .forge-window
-	width 260px 
-	margin auto
-	// margin-top 40px
-	&__icon, &__desc
-		font-size 14px
-	&__icon
-		padding-bottom 20px
-		&__img
-			margin auto
-			display block
-	&__desc
-		background-color rgba(51, 51, 51, .8)
-		border-radius 3px
-		padding 10px
-		box-sizing border-box
-		border 1px solid red
-		p
-			padding 2px 0 
-			font-weight bold
-			color #FFF 
-		&__name
-			font-size 14px
-			color #ff6000
-		&__attr
-			color #3377ff !important
-			strong
-				font-size 16px 
-			
-#roulette
-	padding 20px 0 0
-	display block
-	&__submit
-		text-align center
-		display block
-		margin auto
-		color #FFF
-		background #036 
-		border-radius 3px
-		border 1px solid #333
-		font-size 14px
-		padding 4px 8px
-		transition all 0.4s ease-in-out
-		cursor pointer
+	background-image url('/assets/forge_window.png')
+	background-repeat no-repeat 
+	width 340px 
+	height 520px
+	position absolute
+	right 0
+	top 0
+	&__start
+		position absolute
+		bottom 16px
+		left 97px
+		width 64px
+		height 21px   
+		border 0  
+		border none
+		padding 0
+		text-indent -9999px  
+		overflow hidden
+		background-color transparent 
+		background-image url('/assets/button/normal.png')
+		background-repeat no-repeat
+		outline 0
+		transition all 0.2s easi-in-out
 		&:hover
-			background #666 
+			background-image url('/assets/button/hover.png')
+		&:active
+			background-image url('/assets/button/pressed.png')
+		&.disabled
+			background-image initial
+	&__items
+		position absolute
+		top 98px
+		right 22px
+		width 296px
+		height 148px
+		padding 2px 0
+		box-sizing border-box
+		&__item
+			width 32px
+			height 32px
+			margin 0 3px 5px 2px
+			float left
+			box-sizing border-box
+			position relative
+			&.active
+				&:after
+					content ''
+					width 32px
+					height 32px
+					display block
+					box-sizing border-box
+					border 2px solid rgba(255, 205, 77, .6)			   
+	&__selected
+		position absolute
+		width 32px
+		height 32px
+		bottom 49px
+		left 96px
