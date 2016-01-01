@@ -11,10 +11,10 @@ template(name="chest")
 					each getResult
 						if notNull
 							#chest__result__item
-								img(src="/icons/chest01/#{id}.png" title="#{name}")
+								img(src="/icons/chest01/#{id}.png")
 								span #{amount}
 								#chest__result__item__floating #{name} (#{amount})
 		.bagArea__chat
 			.chat#chat
 				each chatMsg
-					.chat__msg Recebeu #{amount} #{name}
+					.chat__msg #{this}

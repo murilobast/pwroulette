@@ -120,22 +120,31 @@ Template.chest.events({
 		var curChat = Session.get('chat');
 		var chat = t.find('.chat');
 		var item = OpenChest(chest);
-		if (curItems[item.id] === undefined) {
+		var msg = 'Recebeu ' + item.amount + ' ' +  item.name;;
+		if (curItems[item.id] === undefined || curItems[item.id] === null) {
 			curItems[item.id] = item;
-			curChat.push(item);
+			curChat.push(msg);
 		} else if (curItems[item.id] !== null) {
 			curItems[item.id].amount += item.amount;
-			curChat.push(item);
-		} else {
-			curItems[item.id] = item;
-			curChat.push(item);
+			curChat.push(msg);
 		}
+
 		Session.set('bag', curItems);
 		Session.set('chat', curChat);
 
 		setTimeout(function () {
 			chat.scrollTop = chat.scrollHeight;
 		}, 100);
+	},
+
+	'mouseover #chest__result__item': function (e, t) {
+		var $target = $(e.currentTarget);
+		$target.find('#chest__result__item__floating').addClass('show');
+	},
+
+	'mouseout #chest__result__item': function (e, t) {
+		var $target = $(e.currentTarget);
+		$target.find('#chest__result__item__floating').removeClass('show');
 	}
 });
 
