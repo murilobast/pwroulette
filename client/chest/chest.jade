@@ -1,0 +1,20 @@
+template(name="chest")
+	.bagArea
+		.bagArea__chest
+			form#chest
+				#chest__container
+					#chest__container__icon
+						img(src="/icons/chest01.png")
+					#chest__container__name Baú Lendario
+					input(name="openChest" value="Abrir" type="submit")#chest__container__submit
+				#chest__result
+					each getResult
+						if notNull
+							#chest__result__item
+								img(src="/icons/chest01/#{id}.png" title="#{name}")
+								span #{amount}
+								#chest__result__item__floating #{name} (#{amount})
+		.bagArea__chat
+			.chat#chat
+				each chatMsg
+					.chat__msg Recebeu #{amount} #{name}

@@ -20,3 +20,5 @@ mquandalle:jade
 stylus
 insecure
 autopublish
+iron:router
+okgrow:analytics

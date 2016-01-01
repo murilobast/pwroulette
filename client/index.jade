@@ -1,8 +1,13 @@
 head
-	title Forge
+	title PW Roulette
 body
-	h1.title Reforge Simulator
-	+forge
+	h1.title PW Roulette
+	+Router
 
 	footer
-		span © COPYRIGHT 2015 - Murilo Bastos (iam@murilobast.com)
+		span © COPYRIGHT 2015 - Murilo Bastos
+			a(href="http://murilobast.com" target="_blank") murilobast.com
+
+template(name="index")
+	+chest
+	+forge
