@@ -1,0 +1,31 @@
+.forge-window__tabs
+	position absolute
+	top 65px
+	left 13px
+	height 40px
+	width 196px
+	text-align center
+	font-size 11px
+	color rgba(255, 255, 255, .8)
+	line-height 23px 
+	&__first, &__second, &__third, &__fourth, &__fifth
+		position absolute
+		top 0
+		height 23px
+		width 40px
+		cursor pointer
+		transition all 0.1s ease-in-out
+		&:hover
+			background-image url('/assets/tabs/1_hover.png')
+		&.active, &:active
+			background-image url('/assets/tabs/1_active.png')
+	&__first
+		left 0
+	&__second
+		left 39px
+	&__third
+		left 78px
+	&__fourth
+		left 117px
+	&__fifth
+		left 156px
