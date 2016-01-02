@@ -13,14 +13,14 @@ Template.mainItem.helpers({
 	},
 
 	desc: function () {
-		return Weapons.findOne({id: Session.get('id')});
+		return Items.findOne({id: Session.get('id')});
 	}
 });
 
 Template.forge.helpers({
 	items: function () {
 		var tab = Session.get('tab');
-		return Weapons.find({tab: tab}, {sort: {id: 1}});
+		return Items.find({tab: tab}, {sort: {id: 1}});
 	},
 	selected: function () {
 		return Session.get('id');

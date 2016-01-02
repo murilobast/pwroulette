@@ -22,3 +22,6 @@ insecure
 autopublish
 iron:router
 okgrow:analytics
+aldeed:autoform
+aldeed:simple-schema
+aldeed:collection2

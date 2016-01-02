@@ -24,17 +24,20 @@ template(name="mainItem")
 		.item
 			.item__desc
 				h3.item__desc__name #{desc.name}
-				//- p.item__desc__bound Bound upon equip
+				//- p.item__desc__bound Adere a alma.
 				p.item__desc__type #{desc.type}
 				p.item__desc__grade Nv. #{desc.grade}
 				p.item__desc__rate Frequência de ataque (vezes/s) #{desc.freq}
 				p.item__desc__range Alcance #{desc.alcan}
 				p.item__desc__atq Ataque físico #{desc.pAtq}
-				p.item__desc__atq AtqM #{desc.mAtq}
+				if desc.mAtq
+					p.item__desc__atq AtqM #{desc.mAtq}
 				p.item__desc__dur Durabilidade #{desc.dur}
 				p.item__desc__req Restrição de classe #{desc.rest}
 				each desc.req
 					p.item__desc__req #{this}
 				each getAttrs
 					p.item__desc__attr {{{this}}}
+				else
+					p.item__desc__adic Atributo adicional.					
 				p.item__desc__byme Feito por >Magaiver
