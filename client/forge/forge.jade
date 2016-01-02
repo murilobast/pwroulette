@@ -3,35 +3,38 @@ template(name="forge")
 		.forge
 			.forge-window
 				.forge-window__tabs
-					.forge-window__tabs__first(value="0") III
-					.forge-window__tabs__second(value="1") V
-					.forge-window__tabs__third(value="2") Clã
-					.forge-window__tabs__fourth(value="3") I
-					.forge-window__tabs__fifth(value="4") V
+					.forge-window__tabs__first(value="0").tab III
+					.forge-window__tabs__second(value="1").tab V
+					.forge-window__tabs__third(value="2").tab Clã
+					.forge-window__tabs__fourth(value="3").tab I
+					.forge-window__tabs__fifth(value="4").tab V
 				form#roulette
 					input(type="submit" value="Iniciar").forge-window__start
 				.forge-window__items
 					each items
-						.forge-window__items__item#item(style="background-image: url('/icons/#{this.id}.png');") #{this.id}
+						.forge-window__items__item#item(style="background-image: url('/icons/#{this.id}.png');").floating #{this.id}
+							.floating__text #{this.name}
 				.forge-window__selected(style="background-image: url('/icons/#{selected}.png');")
 
 		.info
 			+mainItem
 
 template(name="mainItem")
-	.item
-		.item__desc
-			h3.item__desc__name #{desc.name}
-			//- p.item__desc__bound Bound upon equip
-			p.item__desc__type #{desc.type}
-			p.item__desc__grade Nv. #{desc.grade}
-			p.item__desc__rate Frequência de ataque (vezes/s) #{desc.freq}
-			p.item__desc__range Alcance #{desc.alcan}
-			p.item__desc__atq Ataque físico #{desc.pAtq}
-			p.item__desc__dur Durabilidade #{desc.dur}
-			p.item__desc__req Restrição de classe #{desc.rest}
-			each desc.req
-				p.item__desc__req #{this}
-			each getAttrs
-				p.item__desc__attr {{{this}}}
-			p.item__desc__byme Feito por >Magaiver
+	if desc
+		.item
+			.item__desc
+				h3.item__desc__name #{desc.name}
+				//- p.item__desc__bound Bound upon equip
+				p.item__desc__type #{desc.type}
+				p.item__desc__grade Nv. #{desc.grade}
+				p.item__desc__rate Frequência de ataque (vezes/s) #{desc.freq}
+				p.item__desc__range Alcance #{desc.alcan}
+				p.item__desc__atq Ataque físico #{desc.pAtq}
+				p.item__desc__atq AtqM #{desc.mAtq}
+				p.item__desc__dur Durabilidade #{desc.dur}
+				p.item__desc__req Restrição de classe #{desc.rest}
+				each desc.req
+					p.item__desc__req #{this}
+				each getAttrs
+					p.item__desc__attr {{{this}}}
+				p.item__desc__byme Feito por >Magaiver
