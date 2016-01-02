@@ -5,7 +5,7 @@ template(name="chest")
 				#chest__container
 					#chest__container__icon
 						img(src="/icons/chest01.png")
-					#chest__container__name Baú Lendario
+					#chest__container__name Baú Lendario (#{opened} abertos)
 					input(name="openChest" value="Abrir" type="submit")#chest__container__submit
 				#chest__result
 					each getResult

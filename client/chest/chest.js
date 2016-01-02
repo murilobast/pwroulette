@@ -1,5 +1,6 @@
 Session.setDefault('bag', []);
 Session.setDefault('chat', []);
+Session.setDefault('opened', 0);
 
 chest = {
 	names: [
@@ -109,6 +110,10 @@ Template.chest.helpers({
 
 	chatMsg: function () {
 		return Session.get('chat');
+	},
+
+	opened: function () {
+		return Session.get('opened');
 	}
 });
 
@@ -120,17 +125,21 @@ Template.chest.events({
 		var curChat = Session.get('chat');
 		var chat = t.find('.chat');
 		var item = OpenChest(chest);
+		var opened = Session.get('opened');
 		var msg = 'Recebeu ' + item.amount + ' ' +  item.name;;
 		if (curItems[item.id] === undefined || curItems[item.id] === null) {
 			curItems[item.id] = item;
 			curChat.push(msg);
+			opened++;
 		} else if (curItems[item.id] !== null) {
 			curItems[item.id].amount += item.amount;
 			curChat.push(msg);
+			opened++;
 		}
 
 		Session.set('bag', curItems);
 		Session.set('chat', curChat);
+		Session.set('opened', opened);
 
 		setTimeout(function () {
 			chat.scrollTop = chat.scrollHeight;
