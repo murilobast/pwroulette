@@ -1,12 +1,15 @@
 head
 	title PW Roulette
 body
-	h1.title PW Roulette
-	+Router
+	+header
+	
+	main.content
+		+Router
 
 	footer
-		span © COPYRIGHT 2015 - Murilo Bastos
-			a(href="http://murilobast.com" target="_blank") murilobast.com
+		span ©2016 - Murilobast
+			a(href="http://murilobast.com" target="_blank") murilobastos.com
+		//- +contact
 
 template(name="index")
 	+chest

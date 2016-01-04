@@ -1,4 +1,6 @@
 template(name="forge")
+	.title 
+		h1 Roletar Adds
 	.window
 		.forge
 			.forge-window
@@ -12,11 +14,19 @@ template(name="forge")
 					input(type="submit" value="Iniciar").forge-window__start
 				.forge-window__items
 					each items
-						.forge-window__items__item#item(style="background-image: url('/icons/#{this.id}.png');").floating #{this.id}
-							.floating__text #{this.name}
-				.forge-window__selected(style="background-image: url('/icons/#{selected}.png');")
-
+						.forge-window__items__item#item(style="background-image: url('/icons/#{id}.png');").floating #{id}
+							.floating__text #{name}
+				.forge-window__require
+					each selected.require
+						.forge-window__require__item
+							.forge-window__require__item__icon.floating
+								img(src="/icons/items/#{id}.png")
+								.floating__text #{name} (#{amount})
+							.forge-window__require__item__amount #{amount}
+				.forge-window__selected(style="background-image: url('/icons/#{selected.id}.png');")
+		
 		.info
+			+itemCost selected
 			+mainItem
 
 template(name="mainItem")
@@ -41,3 +51,15 @@ template(name="mainItem")
 				else
 					p.item__desc__adic Atributo adicional.					
 				p.item__desc__byme Feito por >Magaiver
+
+template(name="itemCost")
+	.itemCost
+		.itemCost__items
+			each require
+				.itemCost__items__item
+					.itemCost__items__item__icon.floating
+								img(src="/icons/items/#{id}.png")
+								.floating__text #{name}
+							.itemCost__items__item__amount #{total}
+		.itemCost__total
+			span 2 dilmas e meia

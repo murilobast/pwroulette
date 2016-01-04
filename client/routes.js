@@ -6,7 +6,20 @@ Router.route('/', {
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render('index');
+			this.render('forge');
+		}
+	}
+});
+
+Router.route('/chest', {
+	name: 'chest',
+	onBeforeAction: function () {
+		Visitors.insert({timestamp: new Date()});
+		this.next();
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render('chest');
 		}
 	}
 });

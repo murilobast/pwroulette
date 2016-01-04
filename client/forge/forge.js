@@ -1,5 +1,8 @@
+Session.setDefault('adds', []);
+Session.setDefault('count', 0);
 Session.setDefault('addType', 0);
 Session.setDefault('tab', 0);
+
 
 Template.mainItem.helpers({
 	getAttrs: function () {
@@ -14,13 +17,24 @@ Template.mainItem.helpers({
 	}
 });
 
+Template.itemCost.helpers({
+	total: function () {
+		var count = Session.get('count');
+		if (count === 0) {
+			return count;
+		} else {
+			return this.amount * count;
+		}
+	}
+});
+
 Template.forge.helpers({
 	items: function () {
 		var tab = Session.get('tab');
 		return Items.find({tab: tab}, {sort: {id: 1}});
 	},
 	selected: function () {
-		return Session.get('id');
+		return Items.findOne({id: Session.get('id')});
 	}
 });
 
@@ -32,6 +46,8 @@ Template.forge.events({
 		Session.set('id', id);
 		console.log(this);
 		Session.set('addType', this.addType);
+		Session.set('adds', []);
+		Session.set('count', 0);
 	},
 
 	'submit #roulette': function (e, t) {
@@ -39,6 +55,11 @@ Template.forge.events({
 		var adds = Addons.findOne({id: Session.get('addType')});
 		var addons = new Rouletter(adds);
 		Session.set('adds', addons);
+
+		var count = Session.get('count');
+		count++;
+		Session.set('count', count);
+		console.log(count);
 	},
 
 	'click .tab': function (e, t) {

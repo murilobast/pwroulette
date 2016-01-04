@@ -1,29 +1,61 @@
 body, html
 	background-color #666
+	background-image url('/bg/01.jpg')
+	background-repeat no-repeat
 	font-family 'Arial'
-	padding 20px
-	
+	padding 0
+	margin 0
+	min-width 720px
+	 
 p, h3
 	margin 0
 	padding 0
-
-.title
-	color #FFF
-	font-size 24px
-	text-align center
 	
+.content
+	max-width 960px 
+	margin 20px auto
+	
+.title
+	background rgba(0, 0, 0, .6)  
+	display block
+	width 260px
+	margin auto
+	padding 4px
+	border-radius 3px
+	margin-bottom 10px 
+	position relative
+	&:before
+		content ''
+		border-radius 3px
+		position absolute
+		top 1px
+		bottom 1px
+		right 1px
+		left 1px
+		border 1px solid #76644a
+	h1
+		color #FFF
+		font-size 24px
+		text-align center
+		font-weight normal
+		margin 0 
+		
 footer
 	position fixed
-	bottom 6px
+	bottom 0
 	left 0
 	right 0
+	height 32px
 	width 100%
 	color #FFF
 	text-align center
-	font-size 14px 
+	font-size 14px
+	background #333
+	margin 0
+	a, span
+		line-height 32px
 	a
-		color #FFF
-		font-weight bold
+		color #e2e2e2
 		
 .floating
 	position relative
