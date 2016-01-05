@@ -5,17 +5,17 @@ template(name="chest")
 		.bagArea__chest
 			form#chest
 				#chest__container
-					#chest__container__icon
-						img(src="/icons/chest01.png")
-					#chest__container__name Baú Lendario (#{opened} abertos)
+					//- #chest__container__icon
+					//- 	img(src="/icons/chest01.png")
+					//- #chest__container__name Baú Lendario (#{opened} abertos)
 					input(name="openChest" value="Abrir" type="submit")#chest__container__submit
-				#chest__result
-					each getResult
-						if notNull
-							#chest__result__item.floating
-								img(src="/icons/chest01/#{id}.png")
-								span #{amount}
-								.floating__text #{name} (#{amount})
+					#chest__container__result
+						each getResult
+							if notNull
+								#chest__container__result__item.floating
+									img(src="/icons/chest01/#{id}.png")
+									span #{amount}
+									.floating__text #{name} (#{amount})
 		.bagArea__chat
 			.chat#chat
 				each chatMsg
