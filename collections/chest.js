@@ -1,6 +1,11 @@
-Chest = new Mongo.Collection('chest');
+Chests = new Mongo.Collection('chests');
 
-Chest.attachSchema(new SimpleSchema({
+Chests.attachSchema(new SimpleSchema({
+	active: {
+		type: Boolean,
+		label: "Active",
+		defaultValue: 1
+	},
 	id: {
 		type: Number,
 		label: "ID",

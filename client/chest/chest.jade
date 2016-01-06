@@ -3,17 +3,21 @@ template(name="chest")
 		h1 Abrir baús
 	.bagArea
 		.bagArea__chest
-			form#chest
-				#chest__container
-					//- #chest__container__icon
-					//- 	img(src="/icons/chest01.png")
-					//- #chest__container__name Baú Lendario (#{opened} abertos)
-					input(name="openChest" value="Abrir" type="submit")#chest__container__submit
-					#chest__container__result
+			form#bag
+				#bag__container
+					#bag__container__chests
+						each getChests
+							#bag__container__chests__chest.chest.floating
+								img(src="/icons/items/#{id}.png")
+								#bag__container__chests__chest__name.floating__text #{name}
+								span #{opened}
+					if selected
+						input(name="openChest" value="Abrir" type="submit")#bag__container__submit
+					#bag__container__result
 						each getResult
 							if notNull
-								#chest__container__result__item.floating
-									img(src="/icons/chest01/#{id}.png")
+								#bag__container__result__item.floating
+									img(src="/icons/items/#{id}.png")
 									span #{amount}
 									.floating__text #{name} (#{amount})
 		.bagArea__chat

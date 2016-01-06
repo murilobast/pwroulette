@@ -1,6 +1,6 @@
 .header
 	height 78px
-	background-color #333
+	background-color rgba(38,50,56,0.45)
 	&__content
 		max-width 960px
 		margin auto
@@ -18,6 +18,18 @@
 			margin 0 20px 
 			&__link
 				display inline-block
+				&:after
+					transition all 0.2s ease-in-out
+					content ''
+					width 80% 
+					margin auto
+					background #FFF
+					display block
+					height 2px
+					opacity 0
+				&:hover
+					&:after
+						opacity 1
 				a
 					padding 4px 12px
 					color #FFF

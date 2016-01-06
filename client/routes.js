@@ -1,7 +1,7 @@
 Router.route('/', {
 	name: 'home',
 	onBeforeAction: function () {
-		Visitors.insert({timestamp: new Date()});
+		Visitors.insert({timestamp: new Date(), page: 'forge'});
 		this.next();
 	},
 	action: function () {
@@ -14,7 +14,7 @@ Router.route('/', {
 Router.route('/chest', {
 	name: 'chest',
 	onBeforeAction: function () {
-		Visitors.insert({timestamp: new Date()});
+		Visitors.insert({timestamp: new Date(), page: 'chest'});
 		this.next();
 	},
 	action: function () {
