@@ -12,11 +12,6 @@ Template.chest.helpers({
 		return Session.get('bag');
 	},
 
-	notNull: function () {
-		if (typeof this.name !== 'undefined') 
-			return this;
-	},
-
 	chatMsg: function () {
 		return Session.get('chat');
 	},
@@ -56,11 +51,14 @@ Template.chest.events({
 					return curItems[i].amount += item.amount;
 				}
 			});
-			if (find === undefined) curItems.push(item);
+			if (find === undefined) {
+				curItems.push(item);
+			}
 		} else {
 			curItems.push(item);
 		}
 
+		curChat.push(msg);
 		Session.set('bag', curItems);
 		Session.set('chat', curChat);
 		Session.set('opened', opened + 1);

@@ -1,0 +1,1 @@
+Roles.addUsersToRoles('Hg98oRrMuAMKwdhX2', ['admin']);

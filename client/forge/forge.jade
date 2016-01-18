@@ -5,17 +5,18 @@ template(name="forge")
 		.forge
 			.forge-window
 				.forge-window__tabs
-					.forge-window__tabs__first(value="0").tab III
-					.forge-window__tabs__second(value="1").tab V
-					.forge-window__tabs__third(value="2").tab Clã
-					.forge-window__tabs__fourth(value="3").tab I
-					.forge-window__tabs__fifth(value="4").tab V
+					.forge-window__tabs__first(value="0").tab Nirv. I
+					.forge-window__tabs__second(value="1").tab Nirv. II
+					.forge-window__tabs__third(value="2").tab R8 I
+					.forge-window__tabs__fourth(value="3").tab R8 II
+					.forge-window__tabs__fifth(value="4").tab R8 III
 				form#roulette
 					input(type="submit" value="Iniciar").forge-window__start
 				.forge-window__items
 					each items
 						.forge-window__items__item#item(style="background-image: url('/icons/#{id}.png');").floating #{id}
 							.floating__text #{name}
+							span #{count}
 				.forge-window__require
 					each selected.require
 						.forge-window__require__item

@@ -32,3 +32,12 @@ Router.route('/add', {
 		}
 	}
 });
+
+Router.route('/user', {
+	name: 'user',
+	action: function () {
+		if (this.ready()) {
+			this.render('user');
+		}
+	}
+});

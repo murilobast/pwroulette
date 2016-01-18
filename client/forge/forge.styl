@@ -29,11 +29,13 @@
 		background-image url('/assets/button/normal.png')
 		background-repeat no-repeat
 		outline 0
-		transition all 0.2s easi-in-out
+		transition all 0.1s ease-in-out
+		cursor pointer
 		&:hover
 			background-image url('/assets/button/hover.png')
 		&:active
 			background-image url('/assets/button/pressed.png')
+
 		&.disabled
 			background-image initial
 	&__items
@@ -51,7 +53,17 @@
 			float left
 			box-sizing border-box
 			position relative
+			cursor pointer
 			&.active
+				span
+					font-size 13px 
+					padding 1px
+					border-radius 3px
+					background-color rgba(51,51,51,0.8)
+					color #FFF
+					position absolute
+					right 1px
+					bottom 1px
 				&:after
 					content ''
 					width 32px

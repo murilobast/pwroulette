@@ -14,7 +14,7 @@ Template.mainItem.helpers({
 
 	desc: function () {
 		return Items.findOne({id: Session.get('id')});
-	}
+	},
 });
 
 Template.itemCost.helpers({
@@ -35,6 +35,10 @@ Template.forge.helpers({
 	},
 	selected: function () {
 		return Items.findOne({id: Session.get('id')});
+	},
+
+	count: function () {
+		return Session.get('count');
 	}
 });
 

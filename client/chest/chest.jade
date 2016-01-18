@@ -15,11 +15,10 @@ template(name="chest")
 						input(name="openChest" value="Abrir" type="submit")#bag__container__submit
 					#bag__container__result
 						each getResult
-							if notNull
-								#bag__container__result__item.floating
-									img(src="/icons/items/#{id}.png")
-									span #{amount}
-									.floating__text #{name} (#{amount})
+							#bag__container__result__item.floating
+								img(src="/icons/items/#{id}.png")
+								span #{amount}
+								.floating__text #{name} (#{amount})
 		.bagArea__chat
 			.chat#chat
 				each chatMsg
