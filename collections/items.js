@@ -116,5 +116,11 @@ Items.attachSchema(new SimpleSchema({
 		type: Number,
 		label: 'Amount',
 		min: 0
-	}
+	},
+	cost: {
+		type: Number,
+		label: "Cost",
+		min: 0,
+		defaultValue: 0
+	},
 }));

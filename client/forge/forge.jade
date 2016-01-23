@@ -2,7 +2,7 @@ template(name="forge")
 	.title 
 		h1 Roletar Adds
 	.window
-		.forge
+		.forge(class='{{centered}}')
 			.forge-window
 				.forge-window__tabs
 					.forge-window__tabs__first(value="0").tab Nirv. I
@@ -26,9 +26,15 @@ template(name="forge")
 							.forge-window__require__item__amount #{amount}
 				.forge-window__selected(style="background-image: url('/icons/#{selected.id}.png');")
 		
-		.info
-			+itemCost selected
-			+mainItem
+		if selected
+			.info
+				if isDesk
+					+itemCost selected
+					+mainItem
+				else
+					+mainItem
+					+itemCost selected
+
 
 template(name="mainItem")
 	if desc
@@ -62,5 +68,7 @@ template(name="itemCost")
 								img(src="/icons/items/#{id}.png")
 								.floating__text #{name}
 							.itemCost__items__item__amount #{total}
+		form#roulette
+			input(type="submit" value="Roletar").itemCost__roulette
 		.itemCost__total
-			span 2 dilmas e meia
+			span #{cost}

@@ -1,9 +1,5 @@
 Router.route('/', {
-	name: 'home',
-	onBeforeAction: function () {
-		Visitors.insert({timestamp: new Date(), page: 'forge'});
-		this.next();
-	},
+	name: 'forge',
 	action: function () {
 		if (this.ready()) {
 			this.render('forge');
@@ -13,10 +9,6 @@ Router.route('/', {
 
 Router.route('/chest', {
 	name: 'chest',
-	onBeforeAction: function () {
-		Visitors.insert({timestamp: new Date(), page: 'chest'});
-		this.next();
-	},
 	action: function () {
 		if (this.ready()) {
 			this.render('chest');

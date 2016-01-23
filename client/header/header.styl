@@ -1,37 +1,104 @@
 .header
-	height 78px
-	background-color rgba(38,50,56,0.45)
+	height 56px
+	background-color rgba(0, 0, 0, .6)
+	position fixed
+	top 0
+	left 0
+	right 0
+	z-index 10
+	box-shadow 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24)
 	&__content
-		max-width 960px
 		margin auto
-		line-height 78px 
-		&__brand, &__links
+		line-height 56px 
+		&__brand, &__links, &__menu
 			display inline-block
-			line-height 78px
+			vertical-align middle
+			line-height 56px
+		&__menu
+			height 42px
+			width 42px
+			margin 8px
+			outline 0
+			background-image url("/assets/button/menu.svg")
+			background-repeat no-repeat
+			background-size contain
+			border 1px solid rgba(50, 50, 50, .3)
+			border-radius 4px
+			box-sizing border-box
 		&__brand
 			&__title
 				margin 0
 				color #FFF
 				font-weight normal
 		&__links
-			height 24px 
-			line-height 24px  
-			margin 0 20px 
+			margin-left -280px
+			position fixed
+			left 0
+			bottom 32px
+			top 56px
+			width 280px
+			display block 
+			background-color rgba(0, 0, 0, .6)
+			font-size 16px
+			box-shadow 1px 0 3px rgba(0, 0, 0, .12), 1px 0 2px rgba(0, 0, 0, .24)
+			transition margin 0.2s ease-in-out
+			z-index 10
+			&__mask
+				position fixed
+				top 56px
+				bottom 32px
+				left 0
+				width 100vw 
+				margin-left 100vw 
+				background-color rgba(0, 0, 0, .3)
+				z-index -1
+				opacity 0 
+				transition opacity 0.2s ease-in-out
+			&.isOpen
+				margin-left 0
+				#mask
+					margin-left 0
+					opacity 1
 			&__link
-				display inline-block
-				&:after
+				display block
+				line-height 48px
+				position relative
+				transition all 0.1s ease-in-out
+				&:before
 					transition all 0.2s ease-in-out
 					content ''
-					width 80% 
-					margin auto
+					position absolute
+					left 0
+					top 0
+					height 100%
+					width 4px
 					background #FFF
-					display block
-					height 2px
 					opacity 0
-				&:hover
-					&:after
+				&.active
+					&:before
 						opacity 1
 				a
 					padding 4px 12px
 					color #FFF
 					text-decoration none
+					display block
+					
+@media (min-width: 720px)
+	.header
+		height 78px
+		position relative //se flalhar o initial
+		position initial 
+		&__content
+			line-height 78px
+			&__menu
+				// display none
+			&__brand, &__links
+				line-height 78px
+			&__links
+				top 78px
+				&__mask
+					top 78px
+				&__link:hover
+					background-color rgba(255, 255, 255, .3)
+					padding-left 10px 
+					

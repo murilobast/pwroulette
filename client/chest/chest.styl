@@ -1,14 +1,15 @@
 .bagArea
 	overflow hidden
+	font-size 0
+	text-align center
 	&__chest, &__chat
-		width 50% 
-		float left
+		width 100% 
+		display inline-block
 		position relative
-	#bag, .bag
-		display block
+	#bag, .chat
+		display inline-block
 	#bag
 		width 334px
-		float right
 		position relative
 		&__container
 			background-image url('/assets/chest_window.png')
@@ -49,7 +50,7 @@
 						background-color rgba(51,51,51,0.8)
 			&__submit
 				position absolute
-				right 29px
+				right 20px
 				top 47px
 			&__result
 				position absolute
@@ -76,15 +77,26 @@
 	.chat
 		font-size 13px
 		background-color rgba(0,0,0,0.7)
-		width 334px
-		height 241px
+		width 326px
+		height 180px
 		box-sizing border-box
 		border-radius 4px
 		color #bed293
 		font-weight bold
 		overflow auto
-		margin 11px 4px
+		//margin 11px 4px
+		margin 0 4px
 		padding 4px 8px
+		text-align left
 		&__msg
-			padding 2px 0 
-		
+			padding 2px 0
+			
+@media (min-width: 720px)
+	.bagArea
+		&__chest, &__chat
+			width 50%
+			text-align right
+		&__chat
+			text-align left
+		.chat
+			height 241px

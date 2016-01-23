@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700')
 
 body, html
-	background-color #666
+	background-color #1B1D26
 	background-image url('/bg/01.jpg')
 	background-repeat no-repeat
 	// font-family 'Arial'
 	font-family: 'Roboto', sans-serif
 	padding 0
 	margin 0
-	min-width 720px
+	// min-width 720px
 	 
 p, h3
 	margin 0
@@ -16,7 +16,10 @@ p, h3
 	
 .content
 	max-width 960px 
-	margin 42px auto
+	margin 0 auto
+	padding 88px 0 24px
+	@media (min-width: 720px)
+		padding 24px 0 24px
 	
 .title
 	background rgba(0, 0, 0, .6)  
@@ -53,7 +56,7 @@ footer
 	color #FFF
 	text-align center
 	font-size 14px
-	background rgba(38,50,56,0.45)
+	background rgba(0, 0, 0, .6)
 	margin 0
 	a, span
 		line-height 32px
@@ -86,3 +89,24 @@ footer
 			right 1px
 			left 1px
 			border 1px solid #76644a
+
+.button
+	width 64px
+	height 21px   
+	border 0  
+	border none
+	padding 0
+	color #FFF 
+	overflow hidden
+	background-color transparent 
+	background-image url('/assets/button/_normal.png')
+	background-repeat no-repeat
+	outline 0
+	cursor pointer
+	font-size 12px 
+	&:hover
+		background-image url('/assets/button/_hover.png')
+	&:active
+		background-image url('/assets/button/_pressed.png')
+	&.disabled
+		background-image initial

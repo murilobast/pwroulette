@@ -1,46 +1,47 @@
 .window
-	height 520px
+	min-height 394px
 	font-size 0
+	text-align center
 	.forge, .info
 		display inline-block
-		width 50%
+		vertical-align top
+		width 100% 
 		vertical-align top
 		position relative
 .forge-window
-	background-image url('/assets/forge_window.png')
+	background-image url('/assets/new_forge.png')
 	background-repeat no-repeat 
 	width 340px 
-	height 520px
-	position absolute
-	right 0
-	top 0
+	height 394px
+	display inline-block
+	position relative
+	text-align left
 	&__start
 		position absolute
-		bottom 16px
+		bottom 21px
 		left 97px
 		width 64px
 		height 21px   
 		border 0  
 		border none
 		padding 0
-		text-indent -9999px  
+		color #FFF 
 		overflow hidden
 		background-color transparent 
-		background-image url('/assets/button/normal.png')
+		background-image url('/assets/button/_normal.png')
 		background-repeat no-repeat
 		outline 0
-		transition all 0.1s ease-in-out
 		cursor pointer
+		font-size 12px 
 		&:hover
-			background-image url('/assets/button/hover.png')
+			background-image url('/assets/button/_hover.png')
 		&:active
-			background-image url('/assets/button/pressed.png')
-
+			background-image url('/assets/button/_pressed.png')
 		&.disabled
 			background-image initial
 	&__items
 		position absolute
-		top 98px
+		top 81px
 		right 22px
 		width 296px
 		height 148px
@@ -73,19 +74,31 @@
 					border 2px solid rgba(255, 205, 77, .6)
 	&__require
 		position absolute
-		top 284px
-		left 21px
+		top 243px
+		left 19px
 		&__item
 			height 61px
 			width 76px 
 			float left 
 			font-size 12px
+			img
+				margin 0 2px
 			&__amount
 				color #FFF
-				padding 4px 
+				padding 6px 
 	&__selected
 		position absolute
 		width 32px
 		height 32px
-		bottom 49px
+		bottom 54px
 		left 96px
+		
+@media (min-width: 720px)
+	.window
+		.forge, .info
+			width 50%
+			text-align right
+			&.centered
+				text-align center
+		.info
+			text-align left

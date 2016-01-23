@@ -2,9 +2,10 @@
 	background-image url('/assets/cost_window.png')
 	width 340px
 	height 155px
-	clear both
-	margin-bottom 6px
 	position relative
+	display inline-block
+	text-align left
+	margin-bottom 20px 
 	&__items
 		position absolute
 		top 45px
@@ -16,10 +17,38 @@
 			font-size 12px
 			&__amount
 				color #FFF
-				padding 4px
+				padding 6px
 	&__total
 		position absolute
 		bottom 30px
 		left 234px
 		font-size 12px
-		color #FFF  
+		color #FFF
+	#roulette
+		position absolute
+		bottom 19px
+		left 20px
+		padding 0
+		input
+			font-size 13px
+			color #FFF 
+			background-image url('/assets/button/_normal.png')
+			background-size contain
+			background-repeat no-repeat
+			background-position center
+			background-color transparent
+			border 0
+			border none
+			width 80px
+			height 36px
+			outline 0
+			cursor pointer
+			&:active
+				background-image url('/assets/button/_pressed.png')
+				
+@media (min-width: 720px)
+	.itemCost
+		margin-bottom 0 
+		#roulette
+			display none
+		

@@ -1,10 +1,12 @@
 template(name="header")
 	header.header
 		.header__content
+			a(href="#!").header__content__menu#menu
 			.header__content__brand
 				h3.header__content__brand__title PW Roulette
-			.header__content__links
-				.header__content__links__link
+			.header__content__links#side
+				.header__content__links__mask#mask
+				.header__content__links__link(class="{{isActive 'forge'}}")
 					a(href="/") Roletar Adds
-				.header__content__links__link
+				.header__content__links__link(class="{{isActive 'chest'}}")
 					a(href="/chest") Abrir baús
