@@ -32,3 +32,5 @@ accounts-ui
 alanning:roles
 check
 meteorhacks:kadira@2.20.1
+devian:detectlanguage
+tap:i18n

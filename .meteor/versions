@@ -11,6 +11,7 @@ aldeed:schema-index@1.0.1
 aldeed:simple-schema@1.5.3
 aldeed:tabular@1.4.2
 aldeed:template-extension@3.4.3
+amplify@1.0.0
 autopublish@1.0.4
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
@@ -32,6 +33,7 @@ ddp-common@1.2.2
 ddp-rate-limiter@1.0.0
 ddp-server@1.2.2
 deps@1.0.9
+devian:detectlanguage@0.0.4
 diff-sequence@1.0.1
 ecmascript@0.1.6
 ecmascript-runtime@0.2.6
@@ -102,6 +104,8 @@ spacebars-compiler@1.0.7
 srp@1.0.4
 standard-minifiers@1.0.2
 stylus@2.511.1
+tap:http-methods@0.0.23
+tap:i18n@1.0.7
 templating@1.1.5
 templating-tools@1.0.0
 tracker@1.0.9
