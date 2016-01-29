@@ -104,9 +104,11 @@ Template.forge.events({
 toTop = function () {
 	var $body = $('html, body');
 	if ($body.width() < 720) {
-		var offset = $('.itemCost').offset().top - 56;
-		$body.animate({
-			scrollTop: offset
-		}, 1000);
+		setTimeout(function () {
+			var offset = $('.itemCost').offset().top - 56;
+			$body.animate({
+				scrollTop: offset
+			}, 1000);
+		}, 200);
 	}
 }

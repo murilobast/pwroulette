@@ -1,7 +1,8 @@
 .window
-	min-height 394px
+	min-height 312px
 	font-size 0
 	text-align center
+	margin-top 16px
 	.forge, .info
 		display inline-block
 		vertical-align top
@@ -9,17 +10,17 @@
 		vertical-align top
 		position relative
 .forge-window
-	background-image url('/assets/new_forge.png')
+	background-image url('/assets/forge.png')
 	background-repeat no-repeat 
-	width 340px 
-	height 394px
+	width 320px 
+	height 312px
 	display inline-block
 	position relative
 	text-align left
 	&__start
 		position absolute
-		bottom 21px
-		left 97px
+		bottom 15px
+		right 23px
 		width 64px
 		height 21px   
 		border 0  
@@ -41,8 +42,8 @@
 			background-image initial
 	&__items
 		position absolute
-		top 81px
-		right 22px
+		top 42px
+		right 11px
 		width 296px
 		height 148px
 		padding 2px 0
@@ -74,8 +75,8 @@
 					border 2px solid rgba(255, 205, 77, .6)
 	&__require
 		position absolute
-		top 243px
-		left 19px
+		top 205px
+		left 10px
 		&__item
 			height 61px
 			width 76px 
@@ -90,11 +91,12 @@
 		position absolute
 		width 32px
 		height 32px
-		bottom 54px
-		left 96px
+		bottom 10px
+		left 87px
 		
 @media (min-width: 720px)
 	.window
+		margin-top 0
 		.forge, .info
 			width 50%
 			text-align right

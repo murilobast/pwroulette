@@ -4,7 +4,7 @@ Template.header.events({
 		$sideBar.toggleClass('isOpen');
 	},
 
-	'click .header__content__links': function (e, t) {
+	'click .header__menu': function (e, t) {
 		var target = e.target;
 		if (target.id === 'mask' || target.tagName === 'A') {
 			$('#side').removeClass('isOpen');
