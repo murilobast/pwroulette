@@ -8,13 +8,14 @@
 	font-size 11px
 	color rgba(255, 255, 255, .8)
 	line-height 23px 
-	&__first, &__second, &__third, &__fourth, &__fifth
+	.tab
 		position absolute
 		top 0
 		height 23px
 		width 40px
 		cursor pointer
 		transition all 0.1s ease-in-out
+		-webkit-user-select none
 		&:hover
 			background-image url('/assets/tabs/1_hover.png')
 		&.active, &:active

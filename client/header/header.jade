@@ -3,10 +3,10 @@ template(name="header")
 		.header__content
 			a(href="#!").header__content__menu#menu
 			.header__content__brand
-				h3.header__content__brand__title PW Roulette
+				h3.header__content__brand__title PW Simulator
 		.header__menu#side
 			.header__menu__mask#mask
 			.header__menu__link(class="{{isActive 'forge'}}")
-				a(href="/") Roletar Adds
+				a(href="/") {{_ "reroll"}}
 			.header__menu__link(class="{{isActive 'chest'}}")
-				a(href="/chest") Abrir baús
+				a(href="/chest") {{_ "open_chest"}}

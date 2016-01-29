@@ -4,7 +4,6 @@ Session.setDefault('addType', 0);
 Session.setDefault('tab', 0);
 Session.setDefault('cost', 0);
 Session.setDefault('centered', 'centered');
-selected = false;
 
 Template.mainItem.helpers({
 	getAttrs: function () {
@@ -17,6 +16,10 @@ Template.mainItem.helpers({
 	desc: function () {
 		return Items.findOne({id: Session.get('id')});
 	},
+
+	isWeapon: function (itemType) {
+		return itemType === 0;
+	}
 });
 
 Template.itemCost.helpers({
@@ -48,7 +51,6 @@ Template.forge.helpers({
 
 	selected: function () {
 		var item = Items.findOne({id: Session.get('id')});
-		selected = true;
 		if (typeof item != 'undefined') {
 			Session.set('cost', item.cost);
 		}
@@ -65,6 +67,11 @@ Template.forge.helpers({
 
 	centered: function () {
 		return Session.get('centered');
+	},
+
+	curTab: function (tab) {
+		var status = (Session.get('tab') === tab) ? 'active' : '';
+		return status;
 	}
 });
 
@@ -85,8 +92,15 @@ Template.forge.events({
 	'submit #roulette': function (e, t) {
 		e.preventDefault();
 		var adds = Addons.findOne({id: Session.get('addType')});
-		var addons = new Rouletter(adds);
 		var count = Session.get('count');
+		var addons = [];
+		if (Session.get('tab') < 3) {
+			console.log(1);
+			addons = new Rouletter(adds, 1);
+		} else {
+			console.log(0);
+			addons = new Rouletter(adds, 0);
+		}
 		count++;
 		Session.set('adds', addons);
 		Session.set('count', count);
@@ -95,8 +109,6 @@ Template.forge.events({
 	'click .tab': function (e, t) {
 		var $target = $(e.target);
 		var tab = e.target.getAttribute('value');
-		$('.tab').removeClass('active');
-		$target.addClass('active');
 		Session.set('tab', parseInt(tab));
 	}
 });

@@ -40,17 +40,17 @@ Items.attachSchema(new SimpleSchema({
 	freq: {
 		type: String,
 		label: "Atq speed",
-		defaultValue: '1.25'
+		optional: true
 	},
 	alcan: {
 		type: String,
 		label: "Range",
-		defaultValue: '3.0'
+		optional: true
 	},
 	pAtq: {
 		type: String,
 		label: "Physical Atq",
-		defaultValue: '1-1'
+		optional: true
 	},
 	mAtq: {
 		type: String,

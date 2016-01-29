@@ -5,11 +5,11 @@ template(name="forge")
 		.forge(class='{{centered}}')
 			.forge-window
 				.forge-window__tabs
-					.forge-window__tabs__first(value="0").tab Nirv. I
-					.forge-window__tabs__second(value="1").tab Nirv. II
-					.forge-window__tabs__third(value="2").tab R8 I
-					.forge-window__tabs__fourth(value="3").tab R8 II
-					.forge-window__tabs__fifth(value="4").tab R8 III
+					.forge-window__tabs__first(value="0" class="{{curTab 0}}").tab Nirv. I
+					.forge-window__tabs__second(value="1" class="{{curTab 1}}").tab Nirv. II
+					.forge-window__tabs__third(value="2" class="{{curTab 2}}").tab R8 I
+					.forge-window__tabs__fourth(value="3" class="{{curTab 3}}").tab R8 II
+					.forge-window__tabs__fifth(value="4" class="{{curTab 4}}").tab R8 III
 				form#roulette
 					button(type="submit").forge-window__start {{_ "start"}}
 				.forge-window__items
@@ -44,11 +44,19 @@ template(name="mainItem")
 				//- p.item__desc__bound Adere a alma.
 				p.item__desc__type #{desc.type}
 				p.item__desc__grade Nv. #{desc.grade}
-				p.item__desc__rate Frequência de ataque (vezes/s) #{desc.freq}
-				p.item__desc__range Alcance #{desc.alcan}
-				p.item__desc__atq Ataque físico #{desc.pAtq}
-				if desc.mAtq
-					p.item__desc__atq AtqM #{desc.mAtq}
+				if isWeapon desc.itemType
+					p.item__desc__rate Frequência de ataque (vezes/s) #{desc.freq}
+					p.item__desc__range Alcance #{desc.alcan}
+					p.item__desc__atq Ataque físico #{desc.pAtq}
+					if desc.mAtq
+						p.item__desc__atq AtqM #{desc.mAtq}
+				else
+					p.item__desc__def Def #{desc.pAtq}
+					p.item__desc__mdef Def Metal #{desc.mAtq}
+					p.item__desc__mdef Def Madeira #{desc.mAtq}
+					p.item__desc__mdef Def Água #{desc.mAtq}
+					p.item__desc__mdef Def Fogo #{desc.mAtq}
+					p.item__desc__mdef Def Terra #{desc.mAtq}
 				p.item__desc__dur Durabilidade #{desc.dur}
 				p.item__desc__req Restrição de classe #{desc.rest}
 				each desc.req
