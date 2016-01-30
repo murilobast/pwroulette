@@ -1,0 +1,1 @@
+DiceRoll = new Mongo.Collection('diceroll');

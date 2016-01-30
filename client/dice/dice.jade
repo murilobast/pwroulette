@@ -1,0 +1,29 @@
+template(name="dice")
+	.title 
+		h1 {{_ "roll_a_dice"}}
+	.diceroll
+		form.diceroll__form#dice
+			.diceroll__form__info
+				label {{_ "name"}}
+				input(type="text" name="name")
+			.diceroll__form__buttons
+				.diceroll__form__buttons__left
+					button(type="submit") {{_ "dice_roll"}}
+				if hasPower
+					.diceroll__form__buttons__right
+						button#reset {{_ "reset"}}
+		if hasResult
+			.diceroll__result
+				each results
+					+diceResult
+		else
+			.diceroll__none
+				p Nenhum dado foi rolado ainda.
+
+
+template(name="diceResult")
+	.diceResult
+		.diceResult__name #{name}
+		.diceResult__value #{value}
+		if hasPower
+			button.diceResult__remove {{_ "remove"}}

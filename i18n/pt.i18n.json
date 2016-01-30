@@ -2,5 +2,10 @@
 	"open_chest": "Abrir baús",
 	"open": "Abrir",
 	"reroll": "Roletar Adds",
-	"start": "Iniciar"
+	"start": "Iniciar",
+	"roll_a_dice": "Rolar o Dado",
+	"dice_roll": "Rolar",
+	"reset": "Resetar",
+	"name": "Nome",
+	"remove": "Deletar"
 }

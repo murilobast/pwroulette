@@ -33,3 +33,12 @@ Router.route('/user', {
 		}
 	}
 });
+
+Router.route('/diceroll', {
+	name: 'dice',
+	action: function () {
+		if (this.ready()) {
+			this.render('dice');
+		}
+	}
+});
