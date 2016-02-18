@@ -25,16 +25,28 @@ Template.diceResult.helpers({
 Template.dice.events({
 	'submit #dice': function (e, t) {
 		e.preventDefault();
-		var name = e.target.name;
-		var roll = Math.floor(Math.random() * 20 + 1);
-
-		var dice = {
-			name: name.value,
-			value: roll
+		var limit = false;
+		if (Session.get('limit')) {
+			limit = ((new Date() - Session.get('limit')) < 60000) ? Session.get('limit') : false;
+			alert('Você so poderá rolar um dado a cada 60 segundos.');
+			console.log(new Date() - Session.get('limit'));
 		}
+		if (!limit) {
+			var name = e.target.name;
+			var roll = Math.floor(Math.random() * 20 + 1);
 
-		if (DiceRoll.find({name: name.value}).count() === 0 && name.value !== '') {
-			DiceRoll.insert(dice);
+			var dice = {
+				name: name.value,
+				value: roll
+			}
+
+			if (DiceRoll.find({name: name.value}).count() === 0 && name.value !== '') {
+				DiceRoll.insert(dice, function (err, data) {
+					if (!err) {
+						Session.set('limit', new Date());
+					}
+				});
+			}
 		}
 	},
 
@@ -45,3 +57,10 @@ Template.dice.events({
 		}
 	}
 });
+
+Template.diceResult.events({
+	'click #remove': function (e, t) {
+		console.log(this._id);
+		DiceRoll.remove(this._id);
+	}
+})
