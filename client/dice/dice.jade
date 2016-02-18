@@ -14,9 +14,9 @@ template(name="dice")
 						button#reset {{_ "reset"}}
 			.diceroll__form__text
 				if lastDice
-					p O resultado do ultimo dado rolado foi: 
+					p O resultado do último dado rolado foi: 
 						strong #{lastDice}
-					p Você ficou em #{ranking}º lugar.
+					p Você está em #{ranking}º lugar.
 		if hasResult
 			.diceroll__result
 				each results
