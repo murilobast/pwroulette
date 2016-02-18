@@ -27,8 +27,10 @@ Template.dice.events({
 		e.preventDefault();
 		var limit = false;
 		if (Session.get('limit')) {
-			limit = ((new Date() - Session.get('limit')) < 60000) ? Session.get('limit') : false;
-			alert('Você so poderá rolar um dado a cada 60 segundos.');
+			limit = ((new Date() - Session.get('limit')) < 10000) ? Session.get('limit') : false;
+			if ((new Date() - Session.get('limit')) < 10000) {
+				alert('Você so poderá rolar um dado a cada 10 segundos.');
+			}
 			console.log(new Date() - Session.get('limit'));
 		}
 		if (!limit) {
