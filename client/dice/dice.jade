@@ -13,7 +13,7 @@ template(name="dice")
 					.diceroll__form__buttons__right
 						button#reset {{_ "reset"}}
 			.diceroll__form__text
-				if lastDice
+				if ranking
 					p O resultado do último dado rolado foi: 
 						strong #{lastDice}
 					p Você está em #{ranking}º lugar.

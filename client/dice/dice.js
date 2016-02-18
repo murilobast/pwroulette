@@ -14,7 +14,7 @@ Template.dice.helpers({
 	},
 
 	lastDice: function () {
-		return Session.get('lastDice');
+		return Session.get('lastDice') || 0;
 	},
 
 	ranking: function () {
@@ -26,7 +26,7 @@ Template.dice.helpers({
 				place = i + 1;
 			}
 		});
-		return place;
+		return place || 0;
 	}
 });
 
