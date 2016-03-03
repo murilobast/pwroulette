@@ -1,12 +1,68 @@
 template(name="chest")
 	.title 
 		h1 {{_ "open_chest"}}
+	.chests
+		form.chests__bag#bag
+			.chests__bag__top
+			.chests__bag__container
+				.chests__bag__container__header
+					if selected
+						.chests__bag__container__header__icon
+							//- mudar forma que o evento funciona depois
+							img(src="/icons/items/#{selected.id}.png")
+						.chests__bag__container__header__name
+							h3 #{selected.name}
+						span.chests__bag__container__header__amount (#{opened})
+				.chests__bag__container__inner
+					each getResult
+						.chests__bag__container__inner__item.floating
+							img(src="/icons/items/#{id}.png")
+							span #{amount}
+							.floating__text #{name} (#{amount})
+				.chests__bag__container__form
+					.chests__bag__container__form__amount
+						input(type="number" name="amount" value="1")
+						label Báu(s)
+					button(name="openChest" type="submit").chests__bag__container__form__open.button {{_ "open"}}
+			.chests__bag__bottom
+
+	.chests
+		form.chests__list#chests
+			.chests__list__top
+			.chests__list__container
+				.chests__list__container__header
+					.chests__list__container__header__name
+						h3 Báus ativos no jogo
+				.chests__list__container__inner
+					each getChests
+						.chests__bag__container__inner__item.floating.chest
+							img(src="/icons/items/#{id}.png")
+							span #{amount}
+							.floating__text #{name}
+				.chests__list__container__header
+					.chests__list__container__header__name
+						h3 Outros Baús
+				.chests__list__container__inner
+					each getOtherChests
+						.chests__bag__container__inner__item.floating.chest
+							img(src="/icons/items/#{id}.png")
+							span #{amount}
+							.floating__text #{name}
+			.chests__list__bottom
+
+
+
+template(name="chest2")
+	.title 
+		h1 {{_ "open_chest"}}
 	.bagArea
 		.bagArea__chest
 			form#bag
 				#bag__container
 					#bag__container__chests
+						
 						each getChests
+
 							#bag__container__chests__chest.chest.floating
 								img(src="/icons/items/#{id}.png")
 								#bag__container__chests__chest__name.floating__text #{name}
