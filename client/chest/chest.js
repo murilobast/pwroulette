@@ -1,18 +1,28 @@
 Session.setDefault('bag', []);
 Session.setDefault('chat', []);
-Session.setDefault('opened', 0);
 Session.setDefault('selected', 0);
+Session.setDefault('opened', 0);
 Session.setDefault('amount', 0);
+Session.setDefault('until', 0);
 
 intervalID = 0;
 
+Template.chest.rendered = function () {
+	Session.set('selected', Chests.findOne({}, {sort: {_id: 1}}));
+	
+	let $chat = $('.chat');
+	setInterval(function () {
+		chat.scrollTop = chat.scrollHeight;
+	}, 100);
+};
+
 Template.chest.helpers({
 	getChests: function () {
-		return Chests.find({active: true});
+		return Chests.find({active: true}, {sort: {_id: 1}});
 	},
 
 	getOtherChests: function () {
-		return Chests.find({active: false});
+		return Chests.find({active: false}, {sort: {_id: 1}});
 	},
 
 	getResult: function () {
@@ -32,26 +42,52 @@ Template.chest.helpers({
 	}
 });
 
+Template.macro.helpers({
+	chestItems: function () {
+		let selected = Session.get('selected');
+		if (selected) {
+			return selected.items;
+		}
+	},
+
+	untl: function () {
+		return Session.get('until');
+	}
+});
+
 Template.chest.events({
 	'click .chest': function (e, t) {
 		Session.set('bag', []);
 		Session.set('opened', 0);
+		Session.set('chat', []);
+
+		clearInterval(intervalID);
 		$('.chest').removeClass('selected');
 		$(e.currentTarget).addClass('selected');
 		Session.set('selected', this);
+	},
+
+	'click #macro': function (e, t) {
+		$(t.find('.modal-window')).addClass('show');
+		$(t.find('.modal-mask')).addClass('show');
+	},
+
+	'click #reset': function (e, t) {
 		clearInterval(intervalID);
+		Session.set('bag', []);
+		Session.set('opened', 0);
+		Session.set('chat', []);
 	},
 
 	'submit #bag': function (e, t) {
 		e.preventDefault();
-		let amount = e.target.amount.value;
-		let expected = 24725;
+		let amount = t.find('.amount').value || 1;
+		let expected = Session.get('until').id || 0;
 
 		let id = Session.get('selected').id;
 		let chest = Chests.findOne({id: id});
 		let curItems = Session.get('bag');
 		let curChat = Session.get('chat');
-		let chat = t.find('.chat');
 		let opened = Session.get('opened');
 		let item = {};
 		let msg = '';
@@ -61,6 +97,7 @@ Template.chest.events({
 		}
 
 		intervalID = setInterval(function () {
+
 			chest = Chests.findOne({id: id});
 			item = OpenChest(chest.items);
 			if (curItems.length > 0) {
@@ -84,13 +121,35 @@ Template.chest.events({
 			Session.set('chat', curChat);
 			Session.set('opened', opened);
 
-			console.log(item.id);
+			if (curChat.length > 100) {
+				curChat.splice(0, 50);
+			}
+
 			if (amount === 0 || (expected && (item.id === expected))) {
 				clearInterval(intervalID);
 			}
-		}, 10);
-		// setTimeout(function () {
-		// 	chat.scrollTop = chat.scrollHeight;
-		// }, 100);
+			
+		}, 50);
+	}
+});
+
+Template.macro.events({
+	'click #modal_submit': function (e, t) {
+		e.preventDefault();
+		$(t.find('.modal-window')).removeClass('show');
+		$(t.find('.modal-mask')).removeClass('show');
 	},
+
+	'click .macro__item': function (e, t) {
+		let $curr = $(e.currentTarget);
+
+		if ($curr.hasClass('selected')) {
+			$curr.removeClass('selected');
+			Session.set('until', false);			
+		} else {
+			Session.set('until', this);
+			$('.macro__item').removeClass('selected');
+			$curr.addClass('selected');	
+		}
+	}
 });
