@@ -68,8 +68,13 @@ Template.chest.events({
 	},
 
 	'click #macro': function (e, t) {
-		$(t.find('.modal-window')).addClass('show');
-		$(t.find('.modal-mask')).addClass('show');
+		$(t.find('.modal-window.macro')).addClass('show');
+		$(t.find('.modal-mask.macro')).addClass('show');
+	},
+
+	'click #add_chest': function (e, t) {
+		$(t.find('.modal-window.addChest')).addClass('show');
+		$(t.find('.modal-mask.addChest')).addClass('show');
 	},
 
 	'click #reset': function (e, t) {
@@ -134,10 +139,10 @@ Template.chest.events({
 });
 
 Template.macro.events({
-	'click #modal_submit': function (e, t) {
+	'click #macro_submit': function (e, t) {
 		e.preventDefault();
-		$(t.find('.modal-window')).removeClass('show');
-		$(t.find('.modal-mask')).removeClass('show');
+		$(t.find('.modal-window.macro')).removeClass('show');
+		$(t.find('.modal-mask.macro')).removeClass('show');
 	},
 
 	'click .macro__item': function (e, t) {
@@ -153,3 +158,65 @@ Template.macro.events({
 		}
 	}
 });
+
+Template.addChest.events({
+	'submit .addChest': function (e, t) {
+		e.preventDefault();
+		$(t.find('.modal-window.addChest')).removeClass('show');
+		$(t.find('.modal-mask.addChest')).removeClass('show');
+		let url = e.target.url;
+		crossGet(url.value);
+		url.value = '';
+	},
+
+	'click .cancel': function (e, t) {
+		e.preventDefault();
+		$(t.find('.modal-window.addChest')).removeClass('show');
+		$(t.find('.modal-mask.addChest')).removeClass('show');
+	}
+})
+
+function crossGet(url) {
+	let urlReg = /(?:pwdatabase\.com\/br\/quest\/)([0-9]*)$/;
+	if (urlReg.test(url)) {
+		let chest = {
+			active: false,
+			items: []
+		};
+
+		$.getJSON("http://alloworigin.com/get?url=" + encodeURIComponent(url) + "&callback=?", function (data) {
+			let $content = $(data.contents).find('tbody tr:last-of-type td:first-of-type p');
+			let $last = $(data.contents).find('tbody tr:last-of-type td:last-of-type p');
+			chest.name = $last.first().text();
+			chest.id = Number($last.first().find('a').attr('href').replace('items/', ''));;
+
+			let totalWeight = 0;
+			let reg  = /(?:\s-\s([0-9]+)\s)?\(([0-9]+\.?[0-9]*)%\)/;
+			let replace  = /(\([0-9]+\.?[0-9]*%\))/g;
+			let start = (reg.test($($content[6]).text())) ? 6 : 7;
+
+			for (let i = start; i < $content.length; i++) {
+				let text = $($content[i]).text();
+				let id = Number($($content[i]).find('a').attr('href').replace('items/', ''));
+				let weight = Number(text.match(reg)[2]);
+				totalWeight += weight;
+				console.log(totalWeight.toFixed(4));
+				let amount = text.match(reg)[1] || 1;
+
+				text = text.replace(reg, '');
+				text = text.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+				
+				let obj = {
+					id: id,
+					name: text,
+					weight: weight,
+					amount: amount
+				}
+				chest.items.push(obj);
+			}
+			Meteor.call('createChest', chest);
+		});
+	} else {
+		alert('ERRO: URL invalida.')
+	}
+}
