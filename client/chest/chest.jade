@@ -41,7 +41,6 @@ template(name="chest")
 				.chests__list__container__header
 					.chests__list__container__header__name
 						h3 Báus ativos no jogo
-					button(type="button").chests__list__container__header__add.button#add_chest Adicionar
 				.chests__list__container__inner
 					each getChests
 						.chests__bag__container__inner__item.floating.chest
@@ -50,7 +49,17 @@ template(name="chest")
 							.floating__text #{name}
 				.chests__list__container__header
 					.chests__list__container__header__name
+						h3 Avatar
+				.chests__list__container__inner
+					each getAvatarChests
+						.chests__bag__container__inner__item.floating.chest.avatar
+							img(src="{{currURL}}/#{id}.png")
+							span #{amount}
+							.floating__text #{name}
+				.chests__list__container__header
+					.chests__list__container__header__name
 						h3 Outros Baús
+					button(type="button").chests__list__container__header__add.button#add_chest Adicionar
 				.chests__list__container__inner
 					each getOtherChests
 						.chests__bag__container__inner__item.floating.chest

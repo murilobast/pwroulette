@@ -6,6 +6,12 @@ Chests.attachSchema(new SimpleSchema({
 		label: "Active",
 		defaultValue: 1
 	},
+	avatar: {
+		type: Boolean,
+		label: "Avatar",
+		defaultValue: 1,
+		optional: true
+	},
 	id: {
 		type: Number,
 		label: "ID",

@@ -181,6 +181,36 @@ Template.addChest.events({
 })
 
 function crossGet(url) {
+	url = 'http://www.pwdatabase.com/br/items/41069';
+	let totalWeight = 0;
+	let chest = {
+		active: false,
+		avatar: true,
+		items: [],
+		name: 'Fortificações: Prata',
+		id: 35643
+	}
+	$.getJSON("http://alloworigin.com/get?url=" + encodeURIComponent(url) + "&callback=?", function (data) {
+		$items = $(data.contents).find('tbody tr');
+
+		$items.each(function (i, item) {
+			let $obj = $(item).find('td');
+			let id = $obj.find('a').attr('href');
+			console.log(id, id.replace('items/', ''));
+			let name = $($obj[1]).text();
+			let weight = $obj.last().text();
+			totalWeight += weight;
+			chest.items.push({
+				id: id,
+				name: name,
+				weight: weight,
+				amount: 1
+			});
+		});
+		console.log(chest);
+	});
+}
+function crossGet2(url) {
 	let urlReg = /(?:pwdatabase\.com\/br\/quest\/)([0-9]*)$/;
 	if (urlReg.test(url)) {
 		let chest = {
