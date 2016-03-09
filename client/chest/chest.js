@@ -39,6 +39,10 @@ Template.chest.helpers({
 
 	selected: function () {
 		return Session.get('selected');
+	},
+
+	info: function () {
+		return ItemInfo.findOne({id: this.id});
 	}
 });
 
@@ -126,8 +130,8 @@ Template.chest.events({
 			Session.set('chat', curChat);
 			Session.set('opened', opened);
 
-			if (curChat.length > 100) {
-				curChat.splice(0, 50);
+			if (curChat.length > 50) {
+				curChat.splice(0, 30);
 			}
 
 			if (amount === 0 || (expected && (item.id === expected))) {

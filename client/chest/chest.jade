@@ -17,7 +17,14 @@ template(name="chest")
 						.chests__bag__container__inner__item.floating
 							img(src="{{currURL}}/#{id}.png")
 							span #{amount}
-							.floating__text #{name} (#{amount})
+							.floating__text
+								span #{name} (#{amount})
+								if info
+									p 
+										each info.infos
+											span(style="color: {{color}};") {{{text}}}
+									if image
+										img(src="{{itemImage}}")
 				.chests__bag__container__form
 					button(type="button").chests__bag__container__form__reset.button#reset Resetar
 					button(type="button").chests__bag__container__form__macro.button#macro Macro

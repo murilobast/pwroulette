@@ -18,7 +18,7 @@ Chests.attachSchema(new SimpleSchema({
 	},
 	items: {
 		type: Array,
-		label: 'Items',
+		label: 'Items'
 	},
 	'items.$': {
 		type: Object

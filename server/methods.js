@@ -31,7 +31,8 @@ Meteor.methods({
 });
 
 function getImage(id) {
-	HTTP.call( 'GET', 'http://pwsimulator.com:8080', {
+	let url = 'http://127.0.0.1:8080';
+	HTTP.call( 'GET', url, {
 		params: {
 			"id": id,
 			"url": 'http://www.pwdatabase.com/images/icons/generalm/' + id + '.png'
