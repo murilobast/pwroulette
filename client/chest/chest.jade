@@ -8,20 +8,19 @@ template(name="chest")
 				.chests__bag__container__header
 					if selected
 						.chests__bag__container__header__icon
-							//- mudar forma que o evento funciona depois
-							img(src="/icons/items/#{selected.id}.png")
+							img(src="{{currURL}}/#{selected.id}.png")
 						.chests__bag__container__header__name
 							h3 #{selected.name}
 						span.chests__bag__container__header__amount (#{opened})
 				.chests__bag__container__inner
 					each getResult
 						.chests__bag__container__inner__item.floating
-							img(src="/icons/items/#{id}.png")
+							img(src="{{currURL}}/#{id}.png")
 							span #{amount}
 							.floating__text #{name} (#{amount})
 				.chests__bag__container__form
-					button(name="openChest" type="button").chests__bag__container__form__reset.button#reset Resetar
-					button(name="openChest" type="button").chests__bag__container__form__macro.button#macro Macro
+					button(type="button").chests__bag__container__form__reset.button#reset Resetar
+					button(type="button").chests__bag__container__form__macro.button#macro Macro
 					button(name="openChest" type="submit").chests__bag__container__form__open.button {{_ "open"}}
 			.chests__bag__bottom
 		.chat#chat
@@ -35,10 +34,11 @@ template(name="chest")
 				.chests__list__container__header
 					.chests__list__container__header__name
 						h3 Báus ativos no jogo
+					button(type="button").chests__list__container__header__add.button#add_chest Adicionar
 				.chests__list__container__inner
 					each getChests
 						.chests__bag__container__inner__item.floating.chest
-							img(src="/icons/items/#{id}.png")
+							img(src="{{currURL}}/#{id}.png")
 							span #{amount}
 							.floating__text #{name}
 				.chests__list__container__header
@@ -47,16 +47,18 @@ template(name="chest")
 				.chests__list__container__inner
 					each getOtherChests
 						.chests__bag__container__inner__item.floating.chest
-							img(src="/icons/items/#{id}.png")
+							img(src="{{currURL}}/#{id}.png")
 							span #{amount}
 							.floating__text #{name}
 			.chests__list__bottom
 
 	+macro
 
+	+addChest
+
 template(name="macro")
-	.modal-mask
-	form.modal-window
+	.modal-mask.macro
+	form.modal-window.macro
 		.modal-window__top
 		.modal-window__container
 			.modal-window__container__header
@@ -73,9 +75,27 @@ template(name="macro")
 				.modal-window__container__content__inner
 					each chestItems
 						.modal-window__container__content__inner__item.floating.macro__item
-							img(src="/icons/items/#{id}.png")
+							img(src="{{currURL}}/#{id}.png")
 							span #{amount}
 							.floating__text #{name} (#{weight}%)
 			.modal-window__container__footer
-				button(name="openChest" type="submit").modal-window__container__footer__submit#modal_submit.button Ok
+				button(type="submit").modal-window__container__footer__submit#macro_submit.button Ok
+		.modal-window__bottom
+
+template(name="addChest")
+	.modal-mask.addChest
+	form.modal-window.addChest
+		.modal-window__top
+		.modal-window__container
+			.modal-window__container__header
+				h3 Adicionar Baú
+			.modal-window__container__content
+				.modal-window__container__content__url
+					label Url do pwdatabase
+					input(type="text" name="url")
+					p Enviar url da página de drops do báu.
+					p Ex: http://www.pwdatabase.com/br/quest/27109
+			.modal-window__container__footer
+				button(type="submit").modal-window__container__footer__submit#addChest_submit.button Add
+				button(type="submit").modal-window__container__footer__cancel.cancel.button Cancelar
 		.modal-window__bottom
