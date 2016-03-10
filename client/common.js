@@ -7,9 +7,20 @@ Template.registerHelper('currURL', function () {
 
 Template.body.events({
 	'mouseover .floating': function (e, t) {
-		getItemFullInfo(this.id);
+		getItemFullInfo(this.id, this.avatar);
 		let $target = $(e.currentTarget);
-		$target.find('.floating__text').addClass('show');
+		let $curTarget = $target.find('.floating__text').addClass('show');
+		let windowWidth = $(window).width();
+
+		$(document).on('mousemove', function (e) {
+			if (windowWidth > 720) {
+				$curTarget.css({
+					'position': 'fixed',
+					'top': e.pageY + 20,
+					'left': e.pageX - 20
+				});
+			}
+		});
 	},
 
 	'mouseout .floating': function (e, t) {
@@ -18,7 +29,13 @@ Template.body.events({
 	}
 });
 
-function getItemFullInfo(id) {
+function getItemFullInfo(id, avatar = false) {
+	console.log('oe');
+	let itemInfo = {
+		id: id,
+		avatar: avatar
+	};
+
 	if (getInterval)
 		clearInterval(getInterval);
 	if (ItemInfo.find({id: id}, {limit: 1}).count() === 0) {
@@ -26,15 +43,14 @@ function getItemFullInfo(id) {
 		getInterval = setInterval(function () {
 			$.getJSON("http://alloworigin.com/get?url=" + encodeURIComponent(url) + "&callback=?", function (data) {
 				let $content = $(data.contents);
-				let $infos = $content.find('.iteminfo span');
+				let $infos = $content.find('.iteminfo > span');
 				let textArray = [];
-
-				$infos.splice(10, $infos.length - 10);
 				$infos.each(function (i, info) {
 					let color = $(info).css('color');
-					if (color === 'rgb(255, 203, 74)' || color === 'rgb(0, 255, 255)' || color === 'rgb(255, 0, 238)') {
-						if (color === 'rgb(0, 255, 255)') {
-							if (textArray.length > 1) {
+					if (color === 'rgb(255, 203, 74)' || color === 'rgb(0, 255, 255)' || color === 'rgb(255, 0, 238)' || color === 'rgb(128, 128, 128)') {
+						if (color === 'rgb(0, 255, 255)' || color === 'rgb(128, 128, 128)') {
+							if (textArray.length > 0) {
+								console.log('obj');
 								$(info).text('<br>' + $(info).text() + '<br>');
 							} else {
 								$(info).text($(info).text() + '<br>');
@@ -45,20 +61,24 @@ function getItemFullInfo(id) {
 							text: $(info).text()
 						});
 					}
+					itemInfo['infos'] = textArray;
+					if (avatar) {
+						itemInfo['type'] =  $($content.find('.iteminfo a')[1]).text();
+						$addons = $content.find('#i_right p');
+						$addons.each(function (i, addon) {
+
+						});
+					}
 				});
 
 				if (ItemInfo.find({id: id}, {limit: 1}).count() === 0) {
-					let itemInfo = {
-						regular: true,
-						id: id,
-						infos: textArray
-					}
 
+					clearInterval(getInterval);
 					ItemInfo.insert(itemInfo, function (err, data) {
 						console.log(textArray, err);
-						clearInterval(getInterval);
 					});
 				}
+				console.log(itemInfo);
 			});
 		}, 1000);
 	}

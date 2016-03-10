@@ -3,13 +3,12 @@ Chests = new Mongo.Collection('chests');
 Chests.attachSchema(new SimpleSchema({
 	active: {
 		type: Boolean,
-		label: "Active",
-		defaultValue: 1
+		label: "Active"
 	},
 	avatar: {
 		type: Boolean,
 		label: "Avatar",
-		defaultValue: 1,
+		defaultValue: false,
 		optional: true
 	},
 	id: {
@@ -36,18 +35,24 @@ Chests.attachSchema(new SimpleSchema({
 	},
 	'items.$.weight': {
 		type: Number,
-		label: "weight",
+		label: "Weight",
 		decimal: true,
 		defaultValue: 0
 	},
 	'items.$.amount': {
 		type: Number,
-		label: "weight",
+		label: "Amount",
 		defaultValue: 0
 	},
 	'items.$.id': {
 		type: Number,
-		label: "weight",
+		label: "ID",
 		defaultValue: 0
-	}
+	},
+	'items.$.avatar': {
+		type: Boolean,
+		label: "Avatar",
+		defaultValue: false,
+		optional: true
+	},
 }));

@@ -66,21 +66,31 @@ footer
 		width 240px
 		font-size 12px 
 		position absolute
-		top 40px
-		left 0
 		border-radius 3px
 		padding 4px 8px
 		box-sizing border-box
 		z-index 5
 		display none
 		background-color rgba(0, 0, 0, .8)
-		span
-			color #FFF 
+		color #FFF 
+		> span
 			white-space nowrap
 			background-color rgba(0, 0, 0, 0)
 			position relative
+		p b
+			font-weight bold
+			font-size 12px
+			color #76644a 
 		p span
 			white-space normal
+			font-size 11px
+		img
+			width 100%
+			height auto
+			margin 4px auto
+			display block
+			@media (max-width: 720px)
+				width 120px
 		&.show
 			display block 
 		&:before

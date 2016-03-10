@@ -1,10 +1,11 @@
 ItemInfo = new Mongo.Collection('itemInfo');
 
 ItemInfo.attachSchema(new SimpleSchema({
-	regular: {
+	avatar: {
 		type: Boolean,
 		label: "Is regular",
-		defaultValue: 1
+		defaultValue: 0,
+		optional: true
 	},
 	id: {
 		type: Number,
@@ -25,5 +26,18 @@ ItemInfo.attachSchema(new SimpleSchema({
 	'infos.$.text': {
 		type: String,
 		label: "Text"
-	}
+	},
+	'type': {
+		type: String,
+		label: "Type",
+		optional: true
+	},
+	addons: {
+		type: Array,
+		label: "Addons",
+		optional: true
+	},
+	'addons.$': {
+		type: String
+	},
 }));

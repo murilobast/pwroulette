@@ -16,15 +16,9 @@ template(name="chest")
 					each getResult
 						.chests__bag__container__inner__item.floating
 							img(src="{{currURL}}/#{id}.png")
-							span #{amount}
+							span.chests__bag__container__inner__item__amount #{amount}
 							.floating__text
-								span #{name} (#{amount})
-								if info
-									p 
-										each info.infos
-											span(style="color: {{color}};") {{{text}}}
-									if image
-										img(src="{{itemImage}}")
+								+floating info = info name = name amount = amount id = id avatar = avatar
 				.chests__bag__container__form
 					button(type="button").chests__bag__container__form__reset.button#reset Resetar
 					button(type="button").chests__bag__container__form__macro.button#macro Macro
@@ -45,8 +39,12 @@ template(name="chest")
 					each getChests
 						.chests__bag__container__inner__item.floating.chest
 							img(src="{{currURL}}/#{id}.png")
-							span #{amount}
-							.floating__text #{name}
+							.floating__text
+								span #{name} (1)
+								if info
+									p 
+										each info.infos
+											span(style="color: {{color}};") {{{text}}}
 				.chests__list__container__header
 					.chests__list__container__header__name
 						h3 Avatar
@@ -54,8 +52,12 @@ template(name="chest")
 					each getAvatarChests
 						.chests__bag__container__inner__item.floating.chest.avatar
 							img(src="{{currURL}}/#{id}.png")
-							span #{amount}
-							.floating__text #{name}
+							.floating__text
+								span #{name} (1)
+								if info
+									p 
+										each info.infos
+											span(style="color: {{color}};") {{{text}}}
 				.chests__list__container__header
 					.chests__list__container__header__name
 						h3 Outros Baús
@@ -64,13 +66,30 @@ template(name="chest")
 					each getOtherChests
 						.chests__bag__container__inner__item.floating.chest
 							img(src="{{currURL}}/#{id}.png")
-							span #{amount}
-							.floating__text #{name}
+							.floating__text
+								span #{name} (1)
+								if info
+									p 
+										each info.infos
+											span(style="color: {{color}};") {{{text}}}
 			.chests__list__bottom
 
 	+macro
 
 	+addChest
+
+template(name="floating")
+	span #{name} (#{amount})
+	if info
+		if info.type
+			p
+				span Tipo: 
+				b #{info.type}
+		p 
+			each info.infos
+				span(style="color: {{color}};") {{{text}}}
+	if avatar
+		img(src="{{currURL}}/cards/#{id}.jpg")
 
 template(name="macro")
 	.modal-mask.macro
@@ -92,8 +111,20 @@ template(name="macro")
 					each chestItems
 						.modal-window__container__content__inner__item.floating.macro__item
 							img(src="{{currURL}}/#{id}.png")
-							span #{amount}
-							.floating__text #{name} (#{weight}%)
+							span.modal-window__container__content__inner__item__percent #{amount}
+							.floating__text
+								span  #{name} (#{weight}%)
+								if info
+									if info.type
+										p
+											span Tipo: 
+											b #{info.type}
+									p 
+										each info.infos
+											span(style="color: {{color}};") {{{text}}}
+								if avatar
+									img(src="{{currURL}}/cards/#{id}.jpg")
+											
 			.modal-window__container__footer
 				button(type="submit").modal-window__container__footer__submit#macro_submit.button Ok
 		.modal-window__bottom

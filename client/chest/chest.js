@@ -56,6 +56,10 @@ Template.macro.helpers({
 
 	untl: function () {
 		return Session.get('until');
+	},
+
+	info: function () {
+		return ItemInfo.findOne({id: this.id});
 	}
 });
 
@@ -180,44 +184,49 @@ Template.addChest.events({
 	}
 })
 
-function crossGet(url) {
-	url = 'http://www.pwdatabase.com/br/items/41069';
+insertAvatarChest = function (url) {
+	let urlReg = /(?:pwdatabase\.com\/br\/items\/)([0-9]*)$/;
 	let totalWeight = 0;
+	let weightFix = .0011;
+	let itemId = Number(url.match(urlReg)[1]);
 	let chest = {
 		active: false,
 		avatar: true,
-		items: [],
-		name: 'Fortificações: Prata',
-		id: 35643
+		id: itemId,
+		items: []
 	}
-	$.getJSON("http://alloworigin.com/get?url=" + encodeURIComponent(url) + "&callback=?", function (data) {
-		$items = $(data.contents).find('tbody tr');
 
+	$.getJSON("http://alloworigin.com/get?url=" + encodeURIComponent(url) + "&callback=?", function (data) {
+		chest.name = $(data.contents).find('.itemHeader span').text();
+		$items = $(data.contents).find('.sortable tbody tr');
 		$items.each(function (i, item) {
-			let $obj = $(item).find('td');
-			let id = $obj.find('a').attr('href');
-			console.log(id, id.replace('items/', ''));
-			let name = $($obj[1]).text();
-			let weight = $obj.last().text();
-			totalWeight += weight;
-			chest.items.push({
-				id: id,
-				name: name,
-				weight: weight,
-				amount: 1
-			});
+			let $item = $(item).find('td');
+			let anchor = $item.find('a').first().attr('href');
+			if (typeof anchor !== 'undefined') {
+				let id = Number(anchor.replace('items/', ''));
+				let name = $($item[1]).text();
+				let weight = (Number($item.last().text()) + weightFix).toFixed(3);
+				totalWeight += weight;
+				chest.items.push({
+					id: id,
+					name: name,
+					weight: weight,
+					amount: 1,
+					avatar: true
+				});
+			}
 		});
-		console.log(chest);
+		Meteor.call('createChest', chest);
 	});
 }
-function crossGet2(url) {
+
+function crossGet(url) {
 	let urlReg = /(?:pwdatabase\.com\/br\/quest\/)([0-9]*)$/;
 	if (urlReg.test(url)) {
 		let chest = {
 			active: false,
 			items: []
 		};
-
 		$.getJSON("http://alloworigin.com/get?url=" + encodeURIComponent(url) + "&callback=?", function (data) {
 			let $content = $(data.contents).find('tbody tr:last-of-type td:first-of-type p');
 			let $last = $(data.contents).find('tbody tr:last-of-type td:last-of-type p');
@@ -248,6 +257,7 @@ function crossGet2(url) {
 				}
 				chest.items.push(obj);
 			}
+			console.log(chest);
 			Meteor.call('createChest', chest);
 		});
 	} else {

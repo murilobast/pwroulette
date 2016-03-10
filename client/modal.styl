@@ -18,13 +18,15 @@
 	width 320px
 	display block 
 	position fixed
-	top 150px
+	top 50px
 	right 0
 	left 0
 	margin auto
 	margin-top -100vh
 	z-index 10
 	color #E2B443
+	@media (min-width: 720px)
+		top 150px
 	&__top
 		background-image url('/assets/top.png')
 		height 7px
@@ -68,7 +70,10 @@
 					color #FFF 
 			&__inner
 				margin 0 auto
-				width 300px 
+				width 300px
+				max-height 296px
+				overflow-x hidden
+				overflow-y auto
 				min-height 74px
 				background-image url('/assets/inner.png')
 				background-repeat no-repeat repeat
@@ -92,7 +97,7 @@
 							display block
 							box-sizing border-box
 							border 2px solid rgba(255, 205, 77, .6)
-					span
+					&__percent
 						position absolute
 						left 1px
 						bottom 2px
