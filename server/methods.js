@@ -26,7 +26,7 @@ Meteor.methods({
 			});
 			return;
 		} else {
-			Chests.remove({id: chest.id});
+			// Chests.remove({id: chest.id});
 			console.log('Chest already exist');
 		}
 	}
