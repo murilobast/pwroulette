@@ -1,4 +1,13 @@
 Router.route('/', {
+	name: 'home',
+	action: function () {
+		if (this.ready()) {
+			this.render('home');
+		}
+	}
+});
+
+Router.route('/forge', {
 	name: 'forge',
 	action: function () {
 		if (this.ready()) {
