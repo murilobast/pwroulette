@@ -68,48 +68,52 @@
 			&__until
 				.selected-item
 					color #FFF 
-			&__inner
-				margin 0 auto
-				width 300px
+			&__bag
 				max-height 296px
+				min-width 300px
+				max-width 318px
 				overflow-x hidden
 				overflow-y auto
-				min-height 74px
-				background-image url('/assets/inner.png')
-				background-repeat no-repeat repeat
-				text-align left
-				padding 2px 2px 35px 2px
-				&__item
-					margin 0 3px 5px 2px
-					display inline-block
-					vertical-align top
-					position relative
-					cursor default
-					cursor pointer
-					&.selected
-						&:after
-							content ''
+				margin 0 auto
+				padding 0 8px
+				&__inner
+					width 300px
+					min-height 74px
+					background-image url('/assets/inner.png')
+					background-repeat no-repeat repeat
+					text-align left
+					padding 2px 2px 35px 2px
+					&__item
+						margin 0 3px 5px 2px
+						display inline-block
+						vertical-align top
+						position relative
+						cursor default
+						cursor pointer
+						&.selected
+							&:after
+								content ''
+								position absolute
+								top 0
+								left 0
+								width 32px
+								height 32px
+								display block
+								box-sizing border-box
+								border 2px solid rgba(255, 205, 77, .6)
+						&__percent
 							position absolute
-							top 0
-							left 0
-							width 32px
+							left 1px
+							bottom 2px
+							margin auto
+							color #fff 
+							font-size 12px
+							padding 1px
+							border-radius 3px
+							background-color rgba(51,51,51,0.8)
+						img
 							height 32px
-							display block
-							box-sizing border-box
-							border 2px solid rgba(255, 205, 77, .6)
-					&__percent
-						position absolute
-						left 1px
-						bottom 2px
-						margin auto
-						color #fff 
-						font-size 12px
-						padding 1px
-						border-radius 3px
-						background-color rgba(51,51,51,0.8)
-					img
-						height 32px
-						width 32px
+							width 32px
 		&__footer
 			overflow hidden
 			padding 10px 14px

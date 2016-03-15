@@ -107,23 +107,24 @@ template(name="macro")
 					span Ou até vir:
 					if untl
 						span.selected-item #{untl.name} (#{untl.weight}%)
-				.modal-window__container__content__inner
-					each chestItems
-						.modal-window__container__content__inner__item.floating.macro__item
-							img(src="{{currURL}}/#{id}.png")
-							span.modal-window__container__content__inner__item__percent #{amount}
-							.floating__text
-								span  #{name} (#{weight}%)
-								if info
-									if info.type
-										p
-											span Tipo: 
-											b #{info.type}
-									p 
-										each info.infos
-											span(style="color: {{color}};") {{{text}}}
-								if avatar
-									img(src="{{currURL}}/cards/#{id}.jpg")
+				.modal-window__container__content__bag
+					.modal-window__container__content__bag__inner
+						each chestItems
+							.modal-window__container__content__bag__inner__item.floating.macro__item
+								img(src="{{currURL}}/#{id}.png")
+								span.modal-window__container__content__bag__inner__item__percent #{amount}
+								.floating__text
+									span  #{name} (#{weight}%)
+									if info
+										if info.type
+											p
+												span Tipo: 
+												b #{info.type}
+										p 
+											each info.infos
+												span(style="color: {{color}};") {{{text}}}
+									if avatar
+										img(src="{{currURL}}/cards/#{id}.jpg")
 											
 			.modal-window__container__footer
 				button(type="submit").modal-window__container__footer__submit#macro_submit.button Ok

@@ -6,20 +6,22 @@ Template.registerHelper('currURL', function () {
 });
 
 Template.body.events({
+	'click .modal-mask': function () {
+		$('.modal-window, .modal-mask').removeClass('show');
+	},
+
 	'mouseover .floating': function (e, t) {
 		getItemFullInfo(this.id, this.avatar);
 		let $target = $(e.currentTarget);
 		let $curTarget = $target.find('.floating__text').addClass('show');
-		let windowWidth = $(window).width();
-
-		$(document).on('mousemove', function (e) {
-			if (windowWidth > 720) {
-				$curTarget.css({
-					'position': 'fixed',
-					'top': e.pageY + 20,
-					'left': e.pageX - 20
-				});
-			}
+		let windowWidth = $(window).width() - 240;
+		
+		$(document).mousemove(function (e) {
+			let left = (e.pageX > windowWidth) ? windowWidth : e.pageX;
+			$curTarget.css({
+				position: 'fixed',
+				left: left
+			});
 		});
 	},
 

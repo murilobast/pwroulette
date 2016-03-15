@@ -1,5 +1,8 @@
 Template.home.helpers({
 	changelogs: function () {
-		return Changelog.find({}, {sort: {timestamp: 'desc'}})
+		let changelogs = Changelog.find({}, {sort: {timestamp: 'desc'}}) || false;
+		if (changelogs.count()) {
+			return changelogs;
+		}
 	}
 });
