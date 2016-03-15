@@ -8,12 +8,8 @@ Session.setDefault('until', 0);
 intervalID = 0;
 
 Template.chest.rendered = function () {
-	Session.set('selected', Chests.findOne({}, {sort: {_id: 1}}));
-	
-	let $chat = $('.chat');
-	setInterval(function () {
-		chat.scrollTop = chat.scrollHeight;
-	}, 100);
+	if (!Session.set('selected'))
+		Session.set('selected', Chests.findOne({}, {sort: {_id: 1}}));
 };
 
 Template.chest.helpers({
@@ -102,6 +98,7 @@ Template.chest.events({
 		let curItems = Session.get('bag');
 		let curChat = Session.get('chat');
 		let opened = Session.get('opened');
+		let $chat = $(t.find('.chat'));
 		let item = {};
 		let msg = '';
 
@@ -112,7 +109,7 @@ Template.chest.events({
 		intervalID = setInterval(function () {
 
 			chest = Chests.findOne({id: id});
-			item = OpenChest(chest.items);
+			item = new OpenChest(chest.items);
 			if (curItems.length > 0) {
 				let find = _.find(curItems, function (obj, i) {
 					if (obj.id == item.id) {
@@ -134,15 +131,18 @@ Template.chest.events({
 			Session.set('chat', curChat);
 			Session.set('opened', opened);
 
-			if (curChat.length > 50) {
-				curChat.splice(0, 30);
+			if (curChat.length > 30) {
+				curChat.splice(0, 20);
 			}
 
 			if (amount === 0 || (expected && (item.id === expected))) {
 				clearInterval(intervalID);
 			}
 			
-		}, 50);
+			setTimeout(function () {
+				chat.scrollTop = chat.scrollHeight;
+			}, 200);
+		}, 20);
 	}
 });
 
