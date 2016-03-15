@@ -20,7 +20,8 @@ Template.body.events({
 			let left = (e.pageX > windowWidth) ? windowWidth : e.pageX;
 			$curTarget.css({
 				position: 'fixed',
-				left: left
+				left: left,
+				top: (e.pageY + 32)
 			});
 		});
 	},
@@ -32,7 +33,6 @@ Template.body.events({
 });
 
 function getItemFullInfo(id, avatar = false) {
-	console.log('oe');
 	let itemInfo = {
 		id: id,
 		avatar: avatar

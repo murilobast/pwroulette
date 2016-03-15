@@ -7,18 +7,17 @@ Session.setDefault('until', 0);
 
 intervalID = 0;
 
-Template.chest.rendered = function () {
-	if (!Session.set('selected'))
-		Session.set('selected', Chests.findOne({}, {sort: {_id: 1}}));
-};
-
 Template.chest.helpers({
 	getChests: function () {
-		return Chests.find({active: true}, {sort: {_id: 1}});
+		return Chests.find({active: true, $or: [{avatar: false}, {avatar: {$exists: false}}]}, {sort: {_id: 1}});
 	},
 
 	getOtherChests: function () {
-		return Chests.find({active: false}, {sort: {_id: 1}});
+		return Chests.find({active: false, $or: [{avatar: false}, {avatar: {$exists: false}}]}, {sort: {_id: 1}});
+	},
+
+	getAvatarChests: function () {
+		return Chests.find({active: false, avatar: true}, {sort: {_id: 1}});
 	},
 
 	getResult: function () {
@@ -34,7 +33,7 @@ Template.chest.helpers({
 	},
 
 	selected: function () {
-		return Session.get('selected');
+		return Session.get('selected') || Chests.findOne({}, {sort: {_id: 1}});
 	},
 
 	info: function () {
