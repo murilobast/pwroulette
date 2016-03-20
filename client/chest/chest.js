@@ -14,7 +14,7 @@ Template.chest.rendered = function () {
 				clearInterval(intervalTimer);
 			});
 		}
-	}, 100);
+	}, 1000);
 };
 
 Template.chest.helpers({
@@ -79,7 +79,6 @@ Template.chest.events({
 		clearInterval(intervalID);
 		$('.chest').removeClass('selected');
 		$(e.currentTarget).addClass('selected');
-		console.log(this);
 		Session.set('selected', this);
 	},
 
