@@ -11,7 +11,6 @@ Template.chest.rendered = function () {
 	let intervalTimer = setInterval(function () {
 		if ($('img[data-src]').length > 0) {
 			lazyLoad(function () {
-				console.log(intervalTimer);
 				clearInterval(intervalTimer);
 			});
 		}
