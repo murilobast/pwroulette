@@ -10,8 +10,10 @@ intervalID = 0;
 Template.chest.rendered = function () {
 	let intervalTimer = setInterval(function () {
 		if ($('img[data-src]').length > 0) {
-			lazyLoad();
-			clearInterval(intervalTimer);
+			lazyLoad(function () {
+				console.log(intervalTimer);
+				clearInterval(intervalTimer);
+			});
 		}
 	}, 100);
 };
@@ -278,7 +280,7 @@ function crossGet(url) {
 	}
 }
 
-function lazyLoad() {
+function lazyLoad(cb) {
 	let $images = $('img[data-src]');
 	if ($images.length > 0) {
 		$images.each(function (i, img) {
@@ -288,6 +290,10 @@ function lazyLoad() {
 
 			img.onload = function () {
 				img.removeAttribute('data-src');
+			}
+
+			if (typeof cb === 'function' && i === $images.length - 1) {
+				cb();
 			}
 		});
 	}
