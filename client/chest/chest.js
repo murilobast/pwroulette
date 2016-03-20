@@ -42,6 +42,8 @@ Template.chest.helpers({
 	},
 
 	selected: function () {
+		if (!Session.get('selected'))
+			Session.set('selected', Chests.findOne({}, {sort: {_id: 1}}))
 		return Session.get('selected') || Chests.findOne({}, {sort: {_id: 1}});
 	},
 
@@ -54,7 +56,7 @@ Template.macro.helpers({
 	chestItems: function () {
 		let selected = Session.get('selected');
 		if (selected) {
-			return selected.items;
+			return Session.get('selected').items;
 		}
 	},
 
@@ -76,13 +78,14 @@ Template.chest.events({
 		clearInterval(intervalID);
 		$('.chest').removeClass('selected');
 		$(e.currentTarget).addClass('selected');
+		console.log(this);
 		Session.set('selected', this);
 	},
 
 	'click #macro': function (e, t) {
 		$(t.find('.modal-window.macro')).addClass('show');
 		$(t.find('.modal-mask.macro')).addClass('show');
-		lazyLoad();
+		// lazyLoad();
 	},
 
 	'click #add_chest': function (e, t) {
