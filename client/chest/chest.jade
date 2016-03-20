@@ -15,7 +15,7 @@ template(name="chest")
 				.chests__bag__container__inner
 					each getResult
 						.chests__bag__container__inner__item.floating
-							img(src="{{currURL}}/#{id}.png")
+							img(data-src="{{currURL}}/#{id}.png")
 							span.chests__bag__container__inner__item__amount #{amount}
 							.floating__text
 								+floating info = info name = name amount = amount id = id avatar = avatar
@@ -38,7 +38,7 @@ template(name="chest")
 				.chests__list__container__inner
 					each getChests
 						.chests__bag__container__inner__item.floating.chest
-							img(src="{{currURL}}/#{id}.png")
+							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
 								span #{name} (1)
 								if info
@@ -51,7 +51,7 @@ template(name="chest")
 				.chests__list__container__inner
 					each getAvatarChests
 						.chests__bag__container__inner__item.floating.chest.avatar
-							img(src="{{currURL}}/#{id}.png")
+							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
 								span #{name} (1)
 								if info
@@ -65,7 +65,7 @@ template(name="chest")
 				.chests__list__container__inner
 					each getOtherChests
 						.chests__bag__container__inner__item.floating.chest
-							img(src="{{currURL}}/#{id}.png")
+							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
 								span #{name} (1)
 								if info
@@ -89,7 +89,7 @@ template(name="floating")
 			each info.infos
 				span(style="color: {{color}};") {{{text}}}
 	if avatar
-		img(src="{{currURL}}/cards/#{id}.jpg")
+		img(data-avatar="{{currURL}}/cards/#{id}.jpg")
 
 template(name="macro")
 	.modal-mask.macro
@@ -111,7 +111,7 @@ template(name="macro")
 					.modal-window__container__content__bag__inner
 						each chestItems
 							.modal-window__container__content__bag__inner__item.floating.macro__item
-								img(src="{{currURL}}/#{id}.png")
+								img(data-src="{{currURL}}/#{id}.png")
 								span.modal-window__container__content__bag__inner__item__percent #{amount}
 								.floating__text
 									span  #{name} (#{weight}%)
@@ -124,7 +124,7 @@ template(name="macro")
 											each info.infos
 												span(style="color: {{color}};") {{{text}}}
 									if avatar
-										img(src="{{currURL}}/cards/#{id}.jpg")
+										img(data-avatar="{{currURL}}/cards/#{id}.jpg")
 											
 			.modal-window__container__footer
 				button(type="submit").modal-window__container__footer__submit#macro_submit.button Ok

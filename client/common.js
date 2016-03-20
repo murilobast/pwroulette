@@ -15,7 +15,17 @@ Template.body.events({
 		let $target = $(e.currentTarget);
 		let $curTarget = $target.find('.floating__text').addClass('show');
 		let windowWidth = $(window).width() - 240;
-		
+		let $img = $curTarget.find('img');
+		if ($img.length > 0) {
+			let src = $img.data('avatar');
+
+			$img.attr('src', src);
+
+			$img[0].onload = function () {
+				$img[0].removeAttribute('data-avatar');
+			}
+		}
+
 		$(document).mousemove(function (e) {
 			let left = (e.pageX > windowWidth) ? windowWidth : e.pageX;
 			$curTarget.css({
@@ -52,7 +62,6 @@ function getItemFullInfo(id, avatar = false) {
 					if (color === 'rgb(255, 203, 74)' || color === 'rgb(0, 255, 255)' || color === 'rgb(255, 0, 238)' || color === 'rgb(128, 128, 128)') {
 						if (color === 'rgb(0, 255, 255)' || color === 'rgb(128, 128, 128)') {
 							if (textArray.length > 0) {
-								console.log('obj');
 								$(info).text('<br>' + $(info).text() + '<br>');
 							} else {
 								$(info).text($(info).text() + '<br>');
@@ -77,10 +86,8 @@ function getItemFullInfo(id, avatar = false) {
 
 					clearInterval(getInterval);
 					ItemInfo.insert(itemInfo, function (err, data) {
-						console.log(textArray, err);
 					});
 				}
-				console.log(itemInfo);
 			});
 		}, 1000);
 	}

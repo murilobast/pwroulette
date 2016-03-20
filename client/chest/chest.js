@@ -7,6 +7,12 @@ Session.setDefault('until', 0);
 
 intervalID = 0;
 
+Template.chest.rendered = function () {
+	setTimeout(function () {
+		lazyLoad();
+	}, 200);
+};
+
 Template.chest.helpers({
 	getChests: function () {
 		return Chests.find({active: true, $or: [{avatar: false}, {avatar: {$exists: false}}]}, {sort: {_id: 1}});
@@ -73,6 +79,7 @@ Template.chest.events({
 	'click #macro': function (e, t) {
 		$(t.find('.modal-window.macro')).addClass('show');
 		$(t.find('.modal-mask.macro')).addClass('show');
+		lazyLoad();
 	},
 
 	'click #add_chest': function (e, t) {
@@ -140,6 +147,7 @@ Template.chest.events({
 			
 			setTimeout(function () {
 				chat.scrollTop = chat.scrollHeight;
+				lazyLoad();
 			}, 200);
 		}, 20);
 	}
@@ -261,5 +269,20 @@ function crossGet(url) {
 		});
 	} else {
 		alert('ERRO: URL invalida.')
+	}
+}
+
+function lazyLoad() {
+	let $images = $('img[data-src]');
+	if ($images.length > 0) {
+		$images.each(function (i, img) {
+			let $img = $(img);
+			let src = $img.data('src');
+			$img.attr('src', src);
+
+			img.onload = function () {
+				img.removeAttribute('data-src');
+			}
+		});
 	}
 }
