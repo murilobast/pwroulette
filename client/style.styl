@@ -21,7 +21,13 @@ body:before
 	z-index -1  
 	@media (min-width: 720px)
 		background-position center top
+img
+	opacity 1
+	transition opacity .6s ease-in-out
 	
+img[data-src], img[data-avatar]
+	opacity 0
+
 a, a:hover
 	text-decoration none	
 	 
