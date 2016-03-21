@@ -5,16 +5,13 @@ Session.setDefault('opened', 0);
 Session.setDefault('amount', 0);
 Session.setDefault('until', 0);
 
-intervalID = 0;
+chestTimer = 0;
+lazyTimer = 0;
 
 Template.chest.rendered = function () {
-	let intervalTimer = setInterval(function () {
-		if ($('img[data-src]').length > 0) {
-			lazyLoad(function () {
-				clearInterval(intervalTimer);
-			});
-		}
-	}, 1000);
+	lazyTimer = setInterval(function () {
+		lazyLoad();
+	}, 200);
 };
 
 Template.chest.helpers({
@@ -76,7 +73,7 @@ Template.chest.events({
 		Session.set('opened', 0);
 		Session.set('chat', []);
 
-		clearInterval(intervalID);
+		clearInterval(chestTimer);
 		$('.chest').removeClass('selected');
 		$(e.currentTarget).addClass('selected');
 		Session.set('selected', this);
@@ -85,7 +82,6 @@ Template.chest.events({
 	'click #macro': function (e, t) {
 		$(t.find('.modal-window.macro')).addClass('show');
 		$(t.find('.modal-mask.macro')).addClass('show');
-		// lazyLoad();
 	},
 
 	'click #add_chest': function (e, t) {
@@ -94,7 +90,7 @@ Template.chest.events({
 	},
 
 	'click #reset': function (e, t) {
-		clearInterval(intervalID);
+		clearInterval(chestTimer);
 		Session.set('bag', []);
 		Session.set('opened', 0);
 		Session.set('chat', []);
@@ -104,9 +100,7 @@ Template.chest.events({
 		e.preventDefault();
 		let amount = t.find('.amount').value || 1;
 		let expected = Session.get('until').id || 0;
-
 		let id = Session.get('selected').id;
-		let chest = Chests.findOne({id: id});
 		let curItems = Session.get('bag');
 		let curChat = Session.get('chat');
 		let opened = Session.get('opened');
@@ -114,14 +108,12 @@ Template.chest.events({
 		let item = {};
 		let msg = '';
 
-		if (intervalID) {
-			clearInterval(intervalID);
+		if (chestTimer) {
+			clearInterval(chestTimer);
 		}
 
-		intervalID = setInterval(function () {
-
-			chest = Chests.findOne({id: id});
-			item = new OpenChest(chest.items);
+		chestTimer = setInterval(function () {
+			item = new OpenChest(Session.get('selected').items);
 			if (curItems.length > 0) {
 				let find = _.find(curItems, function (obj, i) {
 					if (obj.id == item.id) {
@@ -143,19 +135,18 @@ Template.chest.events({
 			Session.set('chat', curChat);
 			Session.set('opened', opened);
 
-			if (curChat.length > 30) {
-				curChat.splice(0, 20);
+			if (curChat.length > 20) {
+				curChat.splice(0, 10);
 			}
 
 			if (amount === 0 || (expected && (item.id === expected))) {
-				clearInterval(intervalID);
+				clearInterval(chestTimer);
 			}
 			
 			setTimeout(function () {
 				chat.scrollTop = chat.scrollHeight;
-				lazyLoad();
 			}, 200);
-		}, 20);
+		}, 50);
 	}
 });
 
@@ -278,7 +269,7 @@ function crossGet(url) {
 	}
 }
 
-function lazyLoad(cb) {
+function lazyLoad() {
 	let $images = $('img[data-src]');
 	if ($images.length > 0) {
 		$images.each(function (i, img) {
@@ -289,10 +280,7 @@ function lazyLoad(cb) {
 			img.onload = function () {
 				img.removeAttribute('data-src');
 			}
-
-			if (typeof cb === 'function' && i === $images.length - 1) {
-				cb();
-			}
 		});
 	}
+	return;
 }
