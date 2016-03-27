@@ -1,5 +1,8 @@
 Router.route('/', {
 	name: 'home',
+	waitOn: function () {
+		Meteor.subscribe('changelog');
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render('home');
@@ -9,6 +12,10 @@ Router.route('/', {
 
 Router.route('/forge', {
 	name: 'forge',
+	waitOn: function () {
+		Meteor.subscribe('items');
+		Meteor.subscribe('addons');
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render('forge');
@@ -30,6 +37,10 @@ Router.route('/forge', {
 
 Router.route('/chest', {
 	name: 'chest',
+	waitOn: function () {
+		Meteor.subscribe('chests');
+		Meteor.subscribe('itemInfo');
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render('chest');
@@ -60,6 +71,9 @@ Router.route('/user', {
 
 Router.route('/diceroll', {
 	name: 'dice',
+	waitOn: function () {
+		Meteor.subscribe('dices');
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render('dice');

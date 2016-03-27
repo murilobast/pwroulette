@@ -80,11 +80,11 @@ Items.attachSchema(new SimpleSchema({
 		autoform: {
 			type: "select",
 	  options: function () {
-		var adds = Addons.find().fetch();
-		var opts = [];
-		adds.forEach(function (val, i) {
-			opts.push({label: val.id, value: val.id});
-		});
+			var adds = Addons.find().fetch();
+			var opts = [];
+			adds.forEach(function (val, i) {
+				opts.push({label: val.id, value: val.id});
+			});
 		return opts;
 		}
 	},
@@ -124,3 +124,15 @@ Items.attachSchema(new SimpleSchema({
 		defaultValue: 0
 	},
 }));
+
+Items.allow({
+	insert: function () {
+		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
+	},
+	update: function () {
+		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
+	},
+	remove: function () {
+		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
+	}
+});

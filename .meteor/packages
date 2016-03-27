@@ -18,8 +18,6 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 mquandalle:jade
 stylus
-insecure
-autopublish
 iron:router
 okgrow:analytics
 aldeed:autoform
@@ -37,3 +35,4 @@ tap:i18n
 http
 manuelschoebel:ms-seo
 spiderable
+gadicohen:phantomjs

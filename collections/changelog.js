@@ -11,3 +11,15 @@ Changelog.attachSchema(new SimpleSchema({
 		label: "Description"
 	}
 }));
+
+Changelog.allow({
+	insert: function () {
+		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
+	},
+	update: function () {
+		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
+	},
+	remove: function () {
+		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
+	}
+});
