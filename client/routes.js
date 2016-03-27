@@ -1,8 +1,10 @@
 Router.route('/', {
 	name: 'home',
+
 	waitOn: function () {
-		Meteor.subscribe('changelog');
+		return Meteor.subscribe('changelog');
 	},
+
 	action: function () {
 		if (this.ready()) {
 			this.render('home');
@@ -12,15 +14,17 @@ Router.route('/', {
 
 Router.route('/forge', {
 	name: 'forge',
+
 	waitOn: function () {
-		Meteor.subscribe('items');
-		Meteor.subscribe('addons');
+		return [Meteor.subscribe('items'), Meteor.subscribe('addons')];
 	},
+
 	action: function () {
 		if (this.ready()) {
 			this.render('forge');
 		}
 	},
+
 	onAfterAction: function () {
 		SEO.set({
 			title: 'Roletar Adds - PW Simulator',
@@ -37,15 +41,17 @@ Router.route('/forge', {
 
 Router.route('/chest', {
 	name: 'chests',
+
 	waitOn: function () {
-		Meteor.subscribe('chests');
-		Meteor.subscribe('itemInfo');
+		return [Meteor.subscribe('chests'), Meteor.subscribe('itemInfo')];
 	},
+
 	action: function () {
 		if (this.ready()) {
 			this.render('chest');
 		}
 	},
+
 	onAfterAction: function () {
 		SEO.set({
 			title: 'Abrir Baús - PW Simulator',
@@ -62,17 +68,21 @@ Router.route('/chest', {
 
 Router.route('/chest/:id', {
 	name: 'chest',
+
 	waitOn: function () {
 		return [Meteor.subscribe('chests'), Meteor.subscribe('itemInfo'), Meteor.subscribe('fullChest', ~~this.params.id)];
 	},
+
 	data: function () {
 		return Chests.findOne({id: ~~this.params.id});
 	},
+
 	action: function () {
 		if (this.ready()) {
 			this.render('chest');
 		}
 	},
+
 	onAfterAction: function () {
 		let name = (typeof this.data() !== 'undefined') ? this.data().name : 'Baús';
 		Session.set('selected', this.data());
@@ -91,6 +101,7 @@ Router.route('/chest/:id', {
 
 Router.route('/user', {
 	name: 'user',
+
 	action: function () {
 		if (this.ready()) {
 			this.render('user');
@@ -100,9 +111,11 @@ Router.route('/user', {
 
 Router.route('/diceroll', {
 	name: 'dice',
+
 	waitOn: function () {
-		Meteor.subscribe('dices');
+		return Meteor.subscribe('dices');
 	},
+
 	action: function () {
 		if (this.ready()) {
 			this.render('dice');

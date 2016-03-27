@@ -4,16 +4,17 @@ template(name="home")
 	.home
 		ul.home__sections
 			li.home__sections__section
-				a(href="/forge").home__sections__section__item Reforja
+				a(href="/forge" title="Reforja").home__sections__section__item Reforja
 			li.home__sections__section
-				a(href="/chest").home__sections__section__item Abrir Baús
+				a(href="/chest" title="Abrir Baús").home__sections__section__item Abrir Baús
 		if changelogs
-			.home__changelog
-				.home__changelog__header
-					h3 Changelog
-				ul.home__changelog__content
-					each changelogs
-						+changelog
+			noindex
+				.home__changelog
+					.home__changelog__header
+						h3 Changelog
+					ul.home__changelog__content
+						each changelogs
+							+changelog
 
 template(name="changelog")
 	li.home__changelog__content__item

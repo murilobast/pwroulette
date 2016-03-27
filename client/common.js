@@ -14,8 +14,11 @@ Template.body.events({
 		getItemFullInfo(this.id, this.avatar);
 		let $target = $(e.currentTarget);
 		let $curTarget = $target.find('.floating__text').addClass('show');
-		let windowWidth = $(window).width() - 240;
+		let $window = $(window);
+		let windowWidth = $window.width() - $curTarget.width();
+		let windowHeight = $window.height() - $curTarget.height();
 		let $img = $curTarget.find('img');
+
 		if ($img.length > 0) {
 			let src = $img.data('avatar');
 
@@ -27,11 +30,15 @@ Template.body.events({
 		}
 
 		$(document).mousemove(function (e) {
-			let left = (e.pageX > windowWidth) ? windowWidth : e.pageX;
+			let _left = e.pageX + 20;
+			let left = (_left > windowWidth) ? windowWidth : _left;
+			let _top = $target.offset().top - $window.scrollTop() + 50;
+			let top = (_top > windowHeight) ? windowHeight - 20 : _top;
+
 			$curTarget.css({
 				position: 'fixed',
 				left: left,
-				top: (e.pageY + 32)
+				top: top
 			});
 		});
 	},

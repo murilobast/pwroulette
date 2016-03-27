@@ -28,7 +28,8 @@ img
 img[data-src], img[data-avatar]
 	opacity 0
 
-a, a:hover
+a, a:hover, a:active, a:focus
+	outline: 0
 	text-decoration none	
 	 
 p, h3
@@ -46,10 +47,12 @@ ul li
 	max-width 960px 
 	margin 0 auto
 	padding 56px 0 24px
+	text-align center
 	@media (min-width: 720px)
 		padding 62px 0 0
 	
 .title
+	text-align left
 	background-color #1b2126
 	display block
 	width 100%

@@ -40,9 +40,7 @@ Template.chest.helpers({
 	},
 
 	selected: function () {
-		if (!Session.get('selected'))
-			Session.set('selected', Chests.findOne({}, {sort: {_id: 1}}))
-		return Session.get('selected') || Chests.findOne({}, {sort: {_id: 1}});
+		return Session.get('selected');
 	},
 
 	info: function () {

@@ -1,6 +1,6 @@
 template(name="forge")
 	.title 
-		h1 {{_ "reroll"}}
+		h1 Roletar Adds
 	.window
 		.forge(class='{{centered}}')
 			.forge-window
@@ -11,7 +11,7 @@ template(name="forge")
 					.forge-window__tabs__fourth(value="3" class="{{curTab 3}}").tab R8 II
 					.forge-window__tabs__fifth(value="4" class="{{curTab 4}}").tab R8 III
 				form#roulette
-					button(type="submit").forge-window__start {{_ "start"}}
+					button(type="submit").forge-window__start Iniciar
 				.forge-window__items
 					each items
 						.forge-window__items__item#item(style="background-image: url('/icons/#{id}.png');").floating #{id}

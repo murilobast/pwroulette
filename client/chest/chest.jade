@@ -1,32 +1,34 @@
 template(name="chest")
 	.title 
-		h1 {{_ "open_chest"}}
-	.chests
-		form.chests__bag#bag
-			.chests__bag__top
-			.chests__bag__container
-				.chests__bag__container__header
-					if selected
+		h1 Abrir baús
+	if selected
+		.chests
+			form.chests__bag#bag
+				.chests__bag__top
+				.chests__bag__container
+					.chests__bag__container__header
 						.chests__bag__container__header__icon
 							img(src="{{currURL}}/#{selected.id}.png")
 						.chests__bag__container__header__name
 							h3 #{selected.name}
 						span.chests__bag__container__header__amount (#{opened})
-				.chests__bag__container__inner
-					each getResult
-						.chests__bag__container__inner__item.floating
-							img(data-src="{{currURL}}/#{id}.png")
-							span.chests__bag__container__inner__item__amount #{amount}
-							.floating__text
-								+floating info = info name = name amount = amount id = id avatar = avatar
-				.chests__bag__container__form
-					button(type="button").chests__bag__container__form__reset.button#reset Resetar
-					button(type="button").chests__bag__container__form__macro.button#macro Macro
-					button(name="openChest" type="submit").chests__bag__container__form__open.button {{_ "open"}}
-			.chests__bag__bottom
-		.chat#chat
-			each chatMsg
-				.chat__msg #{this}
+					.chests__bag__container__inner
+						each getResult
+							.chests__bag__container__inner__item.floating
+								img(data-src="{{currURL}}/#{id}.png")
+								span.chests__bag__container__inner__item__amount #{amount}
+								.floating__text
+									+floating info = info name = name amount = amount id = id avatar = avatar
+					noindex
+						.chests__bag__container__form
+							button(type="button").chests__bag__container__form__reset.button#reset Resetar
+							button(type="button").chests__bag__container__form__macro.button#macro Macro
+							button(name="openChest" type="submit").chests__bag__container__form__open.button Abrir
+				.chests__bag__bottom
+			noindex
+				.chat#chat
+					each chatMsg
+						.chat__msg #{this}
 
 	.chests
 		form.chests__list#chests
@@ -37,7 +39,7 @@ template(name="chest")
 						h3 Báus ativos no jogo
 				.chests__list__container__inner
 					each getChests
-						a(href="/chest/#{id}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest
+						a(href="/chest/#{id}" title="#{name}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest
 							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
 								span #{name} (1)
@@ -50,7 +52,7 @@ template(name="chest")
 						h3 Avatar
 				.chests__list__container__inner
 					each getAvatarChests
-						a(href="/chest/#{id}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest.avatar
+						a(href="/chest/#{id}" title="#{name}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest.avatar
 							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
 								span #{name} (1)
@@ -61,10 +63,11 @@ template(name="chest")
 				.chests__list__container__header
 					.chests__list__container__header__name
 						h3 Outros Baús
-					button(type="button").chests__list__container__header__add.button#add_chest Adicionar
+					noindex
+						button(type="button").chests__list__container__header__add.button#add_chest Adicionar
 				.chests__list__container__inner
 					each getOtherChests
-						a(href="/chest/#{id}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest
+						a(href="/chest/#{id}" title="#{name}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest
 							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
 								span #{name} (1)
@@ -92,43 +95,44 @@ template(name="floating")
 		img(data-avatar="{{currURL}}/cards/#{id}.jpg")
 
 template(name="macro")
-	.modal-mask.macro
-	form.modal-window.macro
-		.modal-window__top
-		.modal-window__container
-			.modal-window__container__header
-				h3 Auto abrir
-			.modal-window__container__content
-				.modal-window__container__content__amount
-					label Abrir
-					input(type="number" name="amount" value="1").amount
-					label Baús
-				.modal-window__container__content__until
-					span Ou até vir:
-					if untl
-						span.selected-item #{untl.name} (#{untl.weight}%)
-				.modal-window__container__content__bag
-					.modal-window__container__content__bag__inner
-						each chestItems
-							.modal-window__container__content__bag__inner__item.floating.macro__item
-								img(src="{{currURL}}/#{id}.png")
-								span.modal-window__container__content__bag__inner__item__percent #{amount}
-								.floating__text
-									span  #{name} (#{weight}%)
-									if info
-										if info.type
-											p
-												span Tipo: 
-												b #{info.type}
-										p 
-											each info.infos
-												span(style="color: {{color}};") {{{text}}}
-									if avatar
-										img(data-avatar="{{currURL}}/cards/#{id}.jpg")
-											
-			.modal-window__container__footer
-				button(type="submit").modal-window__container__footer__submit#macro_submit.button Ok
-		.modal-window__bottom
+	noindex
+		.modal-mask.macro
+		form.modal-window.macro
+			.modal-window__top
+			.modal-window__container
+				.modal-window__container__header
+					h3 Auto abrir
+				.modal-window__container__content
+					.modal-window__container__content__amount
+						label Abrir
+						input(type="number" name="amount" value="1").amount
+						label Baús
+					.modal-window__container__content__until
+						span Ou até vir:
+						if untl
+							span.selected-item #{untl.name} (#{untl.weight}%)
+					.modal-window__container__content__bag
+						.modal-window__container__content__bag__inner
+							each chestItems
+								.modal-window__container__content__bag__inner__item.floating.macro__item
+									img(src="{{currURL}}/#{id}.png")
+									span.modal-window__container__content__bag__inner__item__percent #{amount}
+									.floating__text
+										span  #{name} (#{weight}%)
+										if info
+											if info.type
+												p
+													span Tipo: 
+													b #{info.type}
+											p 
+												each info.infos
+													span(style="color: {{color}};") {{{text}}}
+										if avatar
+											img(data-avatar="{{currURL}}/cards/#{id}.jpg")
+												
+				.modal-window__container__footer
+					button(type="submit").modal-window__container__footer__submit#macro_submit.button Ok
+			.modal-window__bottom
 
 template(name="addChest")
 	.modal-mask.addChest
