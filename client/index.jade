@@ -1,11 +1,24 @@
 head
 	meta(name="viewport" content="width=device-width, initial-scale=1")
 
+	// SEO
+	title PW Simulator
+	meta(name="language" content="Portuguese")
+	meta(http-equiv="content-language" content="pt")
+	meta(name="description" content="PW Simulator é uma ferramente para simular Drops de Báus e Reforja de Equipamentos em Perfect World")
+	meta(name="google-site-verification" content="xK1TMl_QbLUOrMU0oqXYNZZrNjUBpLgF8Nl07Qh1QV4")
+	meta(name="og:title" content="PW Simulator")
+	meta(name="og:site_name" content="PW Simulator")
+	meta(name="og:image" content="launcher-icon-0-75x.png")
+	meta(name="og:type " content="website")
+	meta(name="og:locale" content="pt_br")
+		
 	// Chorme/Android app
-	link(rel="icon" type="image/png" href="launcher-icon-0-75x.png")
-	link(rel="manifest" href="manifest.json")
 	meta(name="apple-mobile-web-app-capable" content="yes")
 	meta(name="mobile-web-app-capable" content="yes")
+	link(rel="canonical" href="http://pwsimulator.com")
+	link(rel="icon" type="image/png" href="launcher-icon-0-75x.png")
+	link(rel="manifest" href="manifest.json")
 body
 	+header
 	
@@ -13,10 +26,5 @@ body
 		+Router
 
 	footer
-		span ©2016 - Murilobast
-			a(href="http://murilobast.com" target="_blank") murilobastos.com
-		//- +contact
-
-template(name="index")
-	+chest
-	+forge
+		span ©2016 - Murilo Bastos
+			a(href="http://murilobastos.com" target="_blank") murilobastos.com
