@@ -36,7 +36,7 @@ Router.route('/forge', {
 });
 
 Router.route('/chest', {
-	name: 'chest',
+	name: 'chests',
 	waitOn: function () {
 		Meteor.subscribe('chests');
 		Meteor.subscribe('itemInfo');
@@ -55,6 +55,35 @@ Router.route('/chest', {
 			og: {
 				title: 'Abrir Baús - PW Simulator',
 				description: 'Simule dropes de báus'
+			}
+		});
+	}
+});
+
+Router.route('/chest/:id', {
+	name: 'chest',
+	waitOn: function () {
+		return [Meteor.subscribe('chests'), Meteor.subscribe('itemInfo'), Meteor.subscribe('fullChest', ~~this.params.id)];
+	},
+	data: function () {
+		return Chests.findOne({id: ~~this.params.id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render('chest');
+		}
+	},
+	onAfterAction: function () {
+		let name = (typeof this.data() !== 'undefined') ? this.data().name : 'Baús';
+		Session.set('selected', this.data());
+		SEO.set({
+			title: name + ' - PW Simulator',
+			meta: {
+				description: 'Simule o drop de ' + name
+			},
+			og: {
+				title: name + ' - PW Simulator',
+				description: 'Simule o drop de ' + name
 			}
 		});
 	}

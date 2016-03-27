@@ -47,6 +47,12 @@ Template.chest.helpers({
 
 	info: function () {
 		return ItemInfo.findOne({id: this.id});
+	},
+
+	isSelected: function () {
+		if (Template.instance().data !== null)
+			if (~~Template.instance().data.id === this.id)
+				return 'selected';
 	}
 });
 
@@ -74,9 +80,6 @@ Template.chest.events({
 		Session.set('chat', []);
 
 		clearInterval(chestTimer);
-		$('.chest').removeClass('selected');
-		$(e.currentTarget).addClass('selected');
-		Session.set('selected', this);
 	},
 
 	'click #macro': function (e, t) {
