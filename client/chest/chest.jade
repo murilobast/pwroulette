@@ -42,7 +42,7 @@ template(name="chest")
 						a(href="/chest/#{id}" title="#{name}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest
 							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
-								span #{name} (1)
+								span #{name}
 								if info
 									p 
 										each info.infos
@@ -55,7 +55,7 @@ template(name="chest")
 						a(href="/chest/#{id}" title="#{name}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest.avatar
 							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
-								span #{name} (1)
+								span #{name}
 								if info
 									p 
 										each info.infos
@@ -70,7 +70,7 @@ template(name="chest")
 						a(href="/chest/#{id}" title="#{name}" class="#{isSelected}").chests__bag__container__inner__item.floating.chest
 							img(data-src="{{currURL}}/#{id}.png")
 							.floating__text
-								span #{name} (1)
+								span #{name}
 								if info
 									p 
 										each info.infos
