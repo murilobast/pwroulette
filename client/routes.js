@@ -85,15 +85,21 @@ Router.route('/chest/:id', {
 
 	onAfterAction: function () {
 		let name = (typeof this.data() !== 'undefined') ? this.data().name : 'Baús';
+		let desc = 'Simule o drop de ' + name;
+
+		if (typeof this.data() !== 'undefined' && (typeof this.data().desc !== 'undefined'))
+			desc = this.data().desc;
+		
 		Session.set('selected', this.data());
+
 		SEO.set({
 			title: name + ' - PW Simulator',
 			meta: {
-				description: 'Simule o drop de ' + name
+				description: desc
 			},
 			og: {
 				title: name + ' - PW Simulator',
-				description: 'Simule o drop de ' + name
+				description: desc
 			}
 		});
 	}

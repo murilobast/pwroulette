@@ -13,13 +13,16 @@ Chests.attachSchema(new SimpleSchema({
 	},
 	id: {
 		type: Number,
-		label: "ID",
-		defaultValue: 0
+		label: "ID"
 	},
 	name: {
 		type: String,
-		label: "Name",
-		defaultValue: 0
+		label: "Name"
+	},
+	desc: {
+		type: String,
+		label: "Description",
+		optional: true
 	},
 	items: {
 		type: Array,
@@ -30,8 +33,7 @@ Chests.attachSchema(new SimpleSchema({
 	},
 	'items.$.name': {
 		type: String,
-		label: "Name",
-		defaultValue: 'frenesi'
+		label: "Name"
 	},
 	'items.$.weight': {
 		type: Number,
