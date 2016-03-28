@@ -6,10 +6,9 @@ Meteor.startup(function () {
 				'description': 'PW Simulator é uma ferramente para simular Drops de Báus e Reforja de Equipamentos em Perfect World'
 			},
 			og: {
-				'site_name': 'PW Simulator' 
-			},
-			og: {
-				'title': 'PW Simulator' 
+				'site_name': 'PW Simulator',
+				'title': 'PW Simulator',
+				image: 'launcher-icon-0-75x.png'
 			}
 		});
 	}

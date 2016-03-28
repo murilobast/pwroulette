@@ -86,10 +86,16 @@ Router.route('/chest/:id', {
 	onAfterAction: function () {
 		let name = (typeof this.data() !== 'undefined') ? this.data().name : 'Baús';
 		let desc = 'Simule o drop de ' + name;
+		let img = 'launcher-icon-0-75x.png';
 
-		if (typeof this.data() !== 'undefined' && (typeof this.data().desc !== 'undefined'))
-			desc = this.data().desc;
-		
+		if (typeof this.data() !== 'undefined' && (typeof this.data().desc !== 'undefined')) {
+			desc += ': ' + this.data().desc;
+			img = location.protocol + '//' + location.hostname + ':8181/' + this.data().id + '.png';
+		}
+
+
+		desc+= ' - Simulações para Perfect World';
+
 		Session.set('selected', this.data());
 
 		SEO.set({
@@ -99,7 +105,9 @@ Router.route('/chest/:id', {
 			},
 			og: {
 				title: name + ' - PW Simulator',
-				description: desc
+				site_name: name + ' - PW Simulator',
+				description: desc,
+				image: img
 			}
 		});
 	}
