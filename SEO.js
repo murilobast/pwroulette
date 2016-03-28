@@ -8,7 +8,7 @@ Meteor.startup(function () {
 			og: {
 				'site_name': 'PW Simulator',
 				'title': 'PW Simulator',
-				image: 'launcher-icon-0-75x.png'
+				image: '/launcher-icon-0-75x.png'
 			}
 		});
 	}

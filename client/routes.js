@@ -86,7 +86,7 @@ Router.route('/chest/:id', {
 	onAfterAction: function () {
 		let name = (typeof this.data() !== 'undefined') ? this.data().name : 'Baús';
 		let desc = 'Simule o drop de ' + name;
-		let img = 'launcher-icon-0-75x.png';
+		let img = '/launcher-icon-0-75x.png';
 
 		if (typeof this.data() !== 'undefined' && (typeof this.data().desc !== 'undefined')) {
 			desc += ': ' + this.data().desc;
