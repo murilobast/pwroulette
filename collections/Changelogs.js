@@ -14,12 +14,15 @@ Changelogs.attachSchema(new SimpleSchema({
 
 Changelogs.allow({
 	insert: function () {
+		return true;
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	},
 	update: function () {
+		return true;
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	},
 	remove: function () {
+		return true;
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	}
 });

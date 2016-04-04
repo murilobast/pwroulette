@@ -21,4 +21,5 @@ static-html
 standard-minifier-css
 standard-minifier-js
 kadira:flow-router
-ultimatejs:tracker-react
+spiderable
+gadicohen:phantomjs
