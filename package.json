@@ -1,0 +1,13 @@
+{
+  "name": "pwimulator-react",
+  "version": "2.0.0",
+  "description": "PW Simulator - React",
+  "author": "Murilo Bastos",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-komposer": "^1.7.1",
+    "react-mounter": "^1.1.0"
+  }
+}

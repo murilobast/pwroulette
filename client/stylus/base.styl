@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700')
+
+html, body
+	background-color rgba(51, 51, 51, .65)
+	font-family: 'Roboto', sans-serif
+	padding 0
+	margin 0
+	min-height 100vh
+	
+body:before
+	content ''
+	display block
+	background-size cover
+	background-image url('/bg/01.jpg')
+	background-position left top
+	background-repeat no-repeat
+	position fixed
+	top 0
+	bottom 0
+	width 100%
+	z-index -1  
+	@media (min-width: 720px)
+		background-position center top
+img
+	opacity 1
+	transition opacity .6s ease-in-out
+	
+img[data-src], img[data-avatar]
+	opacity 0
+
+a, a:hover, a:active, a:focus
+	outline: 0
+	text-decoration none	
+	 
+p, h3
+	margin 0
+	padding 0
+	
+ul
+	margin 0
+	padding 0
+	
+ul li
+	text-decoration none
+	
+.content
+	max-width 960px 
+	margin 0 auto
+	padding 56px 0 24px
+	text-align center
+	@media (min-width: 720px)
+		padding 62px 0
+	
+.title
+	text-align left
+	background-color #1b2126
+	display block
+	width 100%
+	margin 0
+	padding 8px 12px
+	box-shadow 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24)
+	box-sizing: border-box;
+	h1
+		color #FFF
+		font-size 18px
+		font-weight normal
+		margin 0
+	@media (min-width: 720px)
+		width 100%
+		position absolute
+		left 0
+		right 0
+		top 78px
+		padding 12px 24px 
+
+footer
+	bottom 0
+	left 0
+	right 0
+	height 32px
+	width 100%
+	color #FFF
+	text-align center
+	font-size 14px
+	background rgba(0, 0, 0, .6)
+	margin 0
+	position fixed
+	a, span
+		line-height 32px
+	a
+		color #e2e2e2
+		
+.floating
+	position relative
+	&__text
+		width 240px
+		font-size 12px 
+		position absolute
+		border-radius 3px
+		padding 4px 8px
+		box-sizing border-box
+		z-index 5
+		display none
+		background-color rgba(0, 0, 0, .8)
+		color #FFF 
+		> span
+			white-space nowrap
+			background-color rgba(0, 0, 0, 0)
+			position relative
+		p b
+			font-weight bold
+			font-size 12px
+			color #76644a 
+		p span
+			white-space normal
+			font-size 11px
+		img
+			width 100%
+			height auto
+			margin 4px auto
+			display block
+			@media (max-width: 720px)
+				width 120px
+		&.show
+			display block 
+		&:before
+			content ''
+			border-radius 3px
+			position absolute
+			top 1px
+			bottom 1px
+			right 1px
+			left 1px
+			border 1px solid #76644a
+
+.button
+	width 64px
+	height 21px   
+	border 0  
+	border none
+	padding 0
+	color #FFF 
+	overflow hidden
+	background-color transparent 
+	background-image url('/assets/button/_normal.png')
+	background-repeat no-repeat
+	outline 0
+	cursor pointer
+	font-size 12px 
+	&:hover
+		background-image url('/assets/button/_hover.png')
+	&:active
+		background-image url('/assets/button/_pressed.png')
+	&.disabled
+		background-image initial
+		
+
+object
+	display none

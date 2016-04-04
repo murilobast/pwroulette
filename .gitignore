@@ -1,1 +1,4 @@
 settings.json
+.meteor/local
+.meteor/meteorite
+node_modules

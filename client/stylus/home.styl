@@ -1,0 +1,61 @@
+.home
+	padding 20px
+	&__sections
+		font-size 0
+		margin-top 16px
+		width 100%
+		&__section
+			margin-top 12px
+			width 100%
+			&__item
+				border-radius 4px
+				width 100%
+				display block
+				text-align center
+				font-size 24px
+				vertical-align top
+				padding 40px 20px
+				// background-color #1b2126
+				background-color rgba(27, 33, 38, .85)
+				color #fff
+				text-decoration none
+				box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+				transition box-shadow .3s ease-in-out
+				&:hover
+					color #fff
+					text-decoration none
+					box-shadow 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+	&__changelog
+		background-color rgba(0,0,0,0.7)
+		padding 10px
+		margin-top 40px
+		box-shadow 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+		border-radius 2px
+		text-align left
+		&__header
+			margin 6px 0
+			h3
+				color #fff
+				text-transform uppercase
+				font-size 18px
+		&__content
+			font-size 24px
+			&__item
+				display block
+				margin 12px
+				&__time
+					color rgba(255, 255, 255, .55)
+					font-size 12px
+				&__desc
+					color #fff
+					font-size 16px
+	@media (min-width: 720px)
+		padding 0 20px
+		&__sections
+			margin-top 30px
+			display flex
+			justify-content space-between
+			&__section
+				margin-top 0
+				width 46%
+				display inline-block
