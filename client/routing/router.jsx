@@ -5,9 +5,10 @@ import {mount} from 'react-mounter';
 import {MainLayout} from '/client/layouts/MainLayout.jsx';
 import Navbar from '/client/components/default/Navbar.jsx';
 import Footer from '/client/components/default/Footer.jsx';
+
 // Containers
-import Home from '/client/containers/homeData.jsx';
-import Chests from '/client/containers/chestsData.jsx';
+import Home from '/client/containers/HomeComposer.jsx';
+import ChestsWrapper from '/client/containers/ChestsComposer.jsx';
 
 // Defining routes
 FlowRouter.route('/', {
@@ -28,7 +29,7 @@ FlowRouter.route('/chest', {
 	action() {
 		mount(MainLayout, {
 			navbar: <Navbar />,
-			content: <Chests />,
+			content: <ChestsWrapper />,
 			footer: <Footer />
 		});
 	}

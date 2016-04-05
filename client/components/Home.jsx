@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 // Creating main content component
-export class Home extends React.Component {
+export class Home extends Component {
 	constructor() {
 		super();
 	}
