@@ -4,10 +4,11 @@ import ChestsWrapper from '/client/components/chests/ChestsWrapper.jsx';
 ChestsSubs = new SubsManager();
 
 function composer(props, onData) {
-	const handle = ChestsSubs.subscribe('chests');
+	const handleChests = ChestsSubs.subscribe('chests');
+	const handleInfos = ChestsSubs.subscribe('itemInfo');
 	
-	if (handle.ready()) {
-		const chests = Chests.find({}).fetch();
+	if (handleChests.ready() && handleInfos.ready()) {
+		const chests = Chests.find().fetch();
 		onData(null, {chests});
 	}
 }

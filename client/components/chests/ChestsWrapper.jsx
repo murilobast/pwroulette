@@ -12,9 +12,7 @@ export default class ChestsWrapper extends Component {
 				<div className="title">
 					<h1>Baús</h1>
 				</div>
-				<div className="chests">
-					<ChestList chests={this.props.chests} />
-				</div>
+				<ChestList chests={this.props.chests} infos={this.props.infos} />
 			</section>
 		)
 	}

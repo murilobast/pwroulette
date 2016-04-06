@@ -9,6 +9,7 @@ import Footer from '/client/components/default/Footer.jsx';
 // Containers
 import Home from '/client/containers/HomeComposer.jsx';
 import ChestsWrapper from '/client/containers/ChestsComposer.jsx';
+import FullChest from '/client/containers/FullChestComposer.jsx';
 
 // Defining routes
 FlowRouter.route('/', {
@@ -30,6 +31,18 @@ FlowRouter.route('/chest', {
 		mount(MainLayout, {
 			navbar: <Navbar />,
 			content: <ChestsWrapper />,
+			footer: <Footer />
+		});
+	}
+});
+
+FlowRouter.route('/chest/:id', {
+	name: 'chest',
+
+	action(param) {
+		mount(MainLayout, {
+			navbar: <Navbar />,
+			content: <FullChest chestId={param.id} />,
 			footer: <Footer />
 		});
 	}
