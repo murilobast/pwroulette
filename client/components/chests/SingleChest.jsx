@@ -15,11 +15,14 @@ export default class ChestsList extends Component {
 		$target.find('.floating__text').removeClass('show');
 	}
 
+	createMarkup(markup) {
+		return {__html: markup};
+	}
+
 	render() {
 		let chest = this.props.chest;
 		let itemInfo = ItemInfo.findOne({id: chest.id}) || {infos: []};
 
-		console.log(itemInfo)
 		return (
 			<a 
 				href={"/chest/" + chest.id} 
@@ -33,8 +36,8 @@ export default class ChestsList extends Component {
 					<span>{chest.name}</span>
 					<p>
 						{itemInfo.infos.map((info) => (
-							<span style={{color: info.color}} key={info.text}>
-								{info.text}
+							<span style={{color: info.color}} key={info.text} dangerouslySetInnerHTML={this.createMarkup(info.text)}>
+								
 							</span>
 						))}
 					</p>
