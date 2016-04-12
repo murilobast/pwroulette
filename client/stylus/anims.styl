@@ -1,0 +1,15 @@
+.shake-appear
+	margin-left -100vh
+	opacity 0
+
+.shake-appear.shake-appear-active
+	margin-left 0
+	opacity 1
+	transition all .5s cubic-bezier(.7, -0.47, .41, 1.49)
+	
+.fade-appear
+	opacity 0
+
+.fade-appear.fade-appear-active
+	opacity 1
+	transition opacity 2s cubic-bezier(.7, -0.47, .41, 1.49)

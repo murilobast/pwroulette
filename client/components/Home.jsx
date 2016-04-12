@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 // Creating main content component
 export class Home extends Component {
@@ -11,22 +12,34 @@ export class Home extends Component {
 			return Changelogs.find({}, {sort: {timestamp: 'desc'}}).fetch();
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		return false;
+	}
+
 	render() {
 		return (
 			<section id="home">
 				<div className="title">
-					<h1>Home</h1>
+					<h2>Home</h2>
 				</div>
 				<div className="home">
-					<ul className="home__sections">
-						<li className="home__sections__section">
-							<a href="/forge" className="home__sections__section__item">Reforja</a>
-						</li>
-						<li className="home__sections__section">
-							<a href="/chest" className="home__sections__section__item">Abrir Baús</a>
-						</li>
-					</ul>
-					<Changelogs changelogs={this.props.changelogs} />
+					<ReactCSSTransitionGroup
+						transitionName="shake"
+						transitionAppear={true}
+						transitionEnterTimeout={0}
+						transitionAppearTimeout={1000}
+						transitionLeaveTimeout={0}
+					>
+						<ul className="home__sections">
+							<li className="home__sections__section">
+								<a href="/forge" className="home__sections__section__item">Reforja</a>
+							</li>
+							<li className="home__sections__section">
+								<a href="/chest" className="home__sections__section__item">Abrir Baús</a>
+							</li>
+						</ul>
+						<Changelogs changelogs={this.props.changelogs} />
+					</ReactCSSTransitionGroup>
 				</div>
 			</section>
 		)

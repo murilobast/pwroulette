@@ -1,5 +1,5 @@
 Meteor.publish('chests', () => {
-	return Chests.find();
+	return Chests.find({}, {fields: {items: 0}});
 });
 
 Meteor.publish('fullChest', (id) => {

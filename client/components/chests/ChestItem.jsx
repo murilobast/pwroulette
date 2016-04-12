@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class ChestsList extends Component {
+export default class ChestItem extends Component {
 	constructor() {
 		super();
 	}
@@ -16,7 +16,7 @@ export default class ChestsList extends Component {
 	}
 
 	lazyLoad() {
-		$(this.refs.chestIcon).removeAttr('data-lazy');
+		$(this.refs.itemIcon).removeAttr('data-lazy');
 	}
 
 	createMarkup(markup) {
@@ -24,35 +24,32 @@ export default class ChestsList extends Component {
 	}
 
 	render() {
-		let chest = this.props.chest;
-		let itemInfo = ItemInfo.findOne({id: chest.id}) || {infos: []};
+		let item = this.props.item;
+		let itemInfo = ItemInfo.findOne({id: item.id}) || {infos: []};
 
 		return (
-			<a 
-				href={"/chest/" + chest.id} 
-				title={chest.name} 
+			<div 
 				className="chests__bag__container__inner__item floating chest"
 				onMouseEnter={this.showFloatingText}
 				onMouseLeave={this.hideFloatingText}
 			>
-				<img
-					src={'//pwsimulator.com:8181/' + chest.id + '.png'}
-					alt={chest.name} 
-					ref="chestIcon"
+				<img 
+					src={'//pwsimulator.com:8181/' + item.id + '.png'}
 					data-lazy={true}
 					onLoad={this.lazyLoad.bind(this)}
+					alt={item.name}
+					ref="itemIcon"
 				/>
+				<span className="chests__bag__container__inner__item__amount">{item.amount}</span>
 				<div className="floating__text">
-					<span>{chest.name}</span>
+					<span>{item.name}</span>
 					<p>
-						{itemInfo.infos.map((info) => (
-							<span style={{color: info.color}} key={info.text} dangerouslySetInnerHTML={this.createMarkup(info.text)}>
-								
-							</span>
+						{itemInfo.infos.map((info, i) => (
+							<span style={{color: info.color}} key={'desc' + i} dangerouslySetInnerHTML={this.createMarkup(info.text)}></span>
 						))}
 					</p>
 				</div>
-			</a>
+			</div>
 		)
 	}
 }

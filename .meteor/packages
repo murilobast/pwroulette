@@ -26,3 +26,5 @@ gadicohen:phantomjs
 settinghead:auto-nprogress
 meteorhacks:fast-render
 meteorhacks:subs-manager
+http
+kadira:debug

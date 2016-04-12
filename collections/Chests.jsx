@@ -67,6 +67,7 @@ Chests.allow({
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	},
 	remove: function () {
+		return true;
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	}
 });

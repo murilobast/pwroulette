@@ -5,9 +5,10 @@ FullChestSub = new SubsManager();
 
 function composer(props, onData) {
 	let id = ~~props.chestId;
-	const handle = FullChestSub.subscribe('fullChest', id);
+	const handleChest = FullChestSub.subscribe('fullChest', id);
+	const handleInfos = ChestsSubs.subscribe('itemInfo');
 
-	if (handle.ready()) {
+	if (handleChest.ready() && handleInfos.ready()) {
 		const chest = Chests.findOne({id: id})
 		onData(null, {chest});
 	}

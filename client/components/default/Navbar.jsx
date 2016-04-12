@@ -27,7 +27,7 @@ export default class Navbar extends React.Component {
 				<div className="header__content">
 					<a href="#!" className="header__content__menu" id="menu" onClick={this.toggleHeader}></a>
 					<a href="/" title="Inicio" className="header__content__brand">
-						<h3 className="header__content__brand__title">PW Simulator</h3>
+						<h1 className="header__content__brand__title">PW Simulator</h1>
 					</a>
 				</div>
 				<div className="header__menu" id="side" onClick={this.menuClick}>
