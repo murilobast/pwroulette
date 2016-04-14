@@ -26,6 +26,8 @@ export default class ChestsList extends Component {
 	render() {
 		let chest = this.props.chest;
 		let itemInfo = ItemInfo.findOne({id: chest.id}) || {infos: []};
+		// let path = '//127.0.0.1:8181/' + chest.id + '.png';
+		let path = '//static.pwsimulator.com/' + chest.id + '.png';
 
 		return (
 			<a 
@@ -36,7 +38,7 @@ export default class ChestsList extends Component {
 				onMouseLeave={this.hideFloatingText}
 			>
 				<img
-					src={'//pwsimulator.com:8181/' + chest.id + '.png'}
+					src={path}
 					alt={chest.name} 
 					ref="chestIcon"
 					data-lazy={true}

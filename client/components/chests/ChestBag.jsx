@@ -17,7 +17,8 @@ export default class ChestBag extends Component {
 		clearInterval(intervalTimer);
 		let chest = this.props.chest;
 		let items = chest.items;
-		let toOpen = Session.get('toOpen') || 100;
+		let toOpen = Session.get('toOpen') || 1;
+		let until = Session.get('until') || 0;
 		let opened = Session.get('opened-' + chest.id) || 0;
 		let curItems = Session.get('bag-' + chest.id) || [];
 		
@@ -41,9 +42,10 @@ export default class ChestBag extends Component {
 			Session.set('opened-' + chest.id, opened);
 			this.forceUpdate();
 			
-			if (toOpen === 0)
+			console.log(until, item.id)
+			if (toOpen === 0 || until === item.id)
 				clearInterval(intervalTimer);
-		}, 1);
+		}, 25);
 	}
 
 	getItem(items) {
@@ -93,7 +95,7 @@ export default class ChestBag extends Component {
 				<div className="chests__bag__container">
 					<div className="chests__bag__container__header">
 						<div className="chests__bag__container__header__icon">
-							<img src={'//pwsimulator.com:8181/' + chest.id + '.png'}  alt={chest.name}/>
+							<img src={'//static.pwsimulator.com/' + chest.id + '.png'}  alt={chest.name}/>
 						</div>
 						<div className="chests__bag__container__header__name">
 							<h3>{chest.name}</h3>

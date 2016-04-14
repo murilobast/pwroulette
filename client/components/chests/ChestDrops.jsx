@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ChestItem from './ChestItem.jsx';
+import ChestDropsForm from './ChestDropsForm.jsx';
 
 export default class ChestDrops extends Component {
 	constructor() {
@@ -23,7 +24,7 @@ export default class ChestDrops extends Component {
 				transitionLeaveTimeout={1000}
 			>
 				<div className="chests__drops" id="drops">
-					<form className="chests__drops__opts"></form>
+					<ChestDropsForm items={chest.items}/>
 					<ul className="chests__drops__list">
 
 						{chest.items.map((item, i) => (

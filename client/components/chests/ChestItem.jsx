@@ -26,6 +26,8 @@ export default class ChestItem extends Component {
 	render() {
 		let item = this.props.item;
 		let itemInfo = ItemInfo.findOne({id: item.id}) || {infos: []};
+		// let path = '//127.0.0.1:8181/' + item.id + '.png';
+		let path = '//static.pwsimulator.com/' + item.id + '.png';
 
 		return (
 			<div 
@@ -34,7 +36,7 @@ export default class ChestItem extends Component {
 				onMouseLeave={this.hideFloatingText}
 			>
 				<img 
-					src={'//pwsimulator.com:8181/' + item.id + '.png'}
+					src={path}
 					data-lazy={true}
 					onLoad={this.lazyLoad.bind(this)}
 					alt={item.name}
@@ -53,4 +55,3 @@ export default class ChestItem extends Component {
 		)
 	}
 }
-
