@@ -16,7 +16,7 @@ export default class ChestBag extends Component {
 		e.preventDefault();
 		clearInterval(intervalTimer);
 		let chest = this.props.chest;
-		let items = chest.items;
+		let items = this.prepare(chest.items);
 		let toOpen = Session.get('toOpen') || 1;
 		let until = Session.get('until') || 0;
 		let opened = Session.get('opened-' + chest.id) || 0;
@@ -42,7 +42,6 @@ export default class ChestBag extends Component {
 			Session.set('opened-' + chest.id, opened);
 			this.forceUpdate();
 			
-			console.log(until, item.id)
 			if (toOpen === 0 || until === item.id)
 				clearInterval(intervalTimer);
 		}, 25);
@@ -50,7 +49,8 @@ export default class ChestBag extends Component {
 
 	getItem(items) {
 		let item = _.find(items, function(item) {
-			return Math.random() < (item.weight / 100);
+
+			return Math.random() <  item.weight;
 		});
 
 		if (item === undefined) {
@@ -65,13 +65,15 @@ export default class ChestBag extends Component {
 	clone(source) {
 		if (Object.prototype.toString.call(source) === '[object Array]') {
 			var clone = [];
+
 			for (var i=0; i < source.length; i++) {
 				clone[i] = this.clone(source[i]);
 			}
 
 			return clone;
-		} else if (typeof(source)=="object") {
+		} else if (typeof(source) === "object") {
 			var clone = {};
+
 			for (var prop in source) {
 				if (source.hasOwnProperty(prop)) {
 					clone[prop] = this.clone(source[prop]);
@@ -82,6 +84,29 @@ export default class ChestBag extends Component {
 		}
 
 		return source;
+	}
+
+	prepare(items) {
+		let temp = [];
+
+		items.forEach(function (item, i) {
+			item.weight = item.weight / 100;
+
+			if (i > 0) {
+				item.weight = item.weight + temp[i - 1].weight;
+			}
+
+			temp.push(item);
+		});
+
+		return items;
+	}
+
+	reset() {
+		let chest = this.props.chest;
+		Session.set('bag-' + chest.id, []);
+		Session.set('opened-' + chest.id, 0);
+		clearInterval(intervalTimer);
 	}
 
 	render() {
@@ -110,7 +135,14 @@ export default class ChestBag extends Component {
 
 					</div>
 					<div className="chests__bag__container__form">
-						<button className="chests__bag__container__form__reset button" id="reset" type="button">Limpar</button>
+						<button 
+							className="chests__bag__container__form__reset button" 
+							id="reset"
+							type="button"
+							onClick={this.reset.bind(this)}
+						>
+							Limpar
+						</button>
 						<button 
 							className="chests__bag__container__form__open button"
 							name="openChest" 
