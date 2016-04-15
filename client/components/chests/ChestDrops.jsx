@@ -7,6 +7,10 @@ import ChestDropsForm from './ChestDropsForm.jsx';
 export default class ChestDrops extends Component {
 	constructor() {
 		super();
+
+		this.changeUiState = this.changeUiState.bind(this);
+		this.showHelp = this.showHelp.bind(this);
+		this.hideHelp = this.hideHelp.bind(this);
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
@@ -56,8 +60,8 @@ export default class ChestDrops extends Component {
 				<div className="chests__drops" id="drops">
 					<button 
 						className="chests__drops__info__icon" 
-						onMouseEnter={this.showHelp.bind(this)}
-						onMouseLeave={this.hideHelp.bind(this)}
+						onMouseEnter={this.showHelp}
+						onMouseLeave={this.hideHelp}
 					>
 						?
 					</button>
@@ -69,7 +73,7 @@ export default class ChestDrops extends Component {
 							Clicar nos itens abaixo também altera o valor da caixa de seleção.
 						</p>
 					</div>
-					<ChestDropsForm items={chest.items} changeUiState={this.changeUiState.bind(this)}/>
+					<ChestDropsForm items={chest.items} changeUiState={this.changeUiState}/>
 					<SearchInput
 						ref='itemQuery'
 						onChange={this.searchUpdated.bind(this)}

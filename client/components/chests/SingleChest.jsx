@@ -1,18 +1,28 @@
 import React, {Component} from 'react';
 
+const placeholder = {
+	infos: {infos: []}
+}
+
 export default class ChestsList extends Component {
 	constructor() {
 		super();
+
+		this.lazyLoad = this.lazyLoad.bind(this);
+	}
+	
+	shouldComponentUpdate(nextProps, nextState) {
+		return false;
 	}
 
 	showFloatingText(e) {
-		let $target = $(e.currentTarget);
-		let $curTarget = $target.find('.floating__text').addClass('show');
+		let target = e.currentTarget.getElementsByClassName('floating__text')[0];
+		target.classList.add('show');
 	}
 
 	hideFloatingText(e) {
-		let $target = $(e.currentTarget);
-		$target.find('.floating__text').removeClass('show');
+		let target = e.currentTarget.getElementsByClassName('floating__text')[0];
+		target.classList.remove('show');
 	}
 
 	lazyLoad() {
@@ -25,8 +35,7 @@ export default class ChestsList extends Component {
 
 	render() {
 		let chest = this.props.chest;
-		let itemInfo = ItemInfo.findOne({id: chest.id}) || {infos: []};
-		// let path = '//127.0.0.1:8181/' + chest.id + '.png';
+		let itemInfo = ItemInfo.findOne({id: chest.id}) || placeholder.infos;
 		let path = '//static.pwsimulator.com/' + chest.id + '.png';
 
 		return (
@@ -42,7 +51,7 @@ export default class ChestsList extends Component {
 					alt={chest.name} 
 					ref="chestIcon"
 					data-lazy={true}
-					onLoad={this.lazyLoad.bind(this)}
+					onLoad={this.lazyLoad}
 				/>
 				<div className="floating__text">
 					<span>{chest.name}</span>

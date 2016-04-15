@@ -2,20 +2,27 @@ import React from 'react';
 
 // Creating navbar component
 export default class Navbar extends React.Component {
+	shouldComponentUpdate(nextProps, nextState) {
+		return false;
+	}
+	
 	toggleHeader() {
-		let $sideBar = $('#side');
-		$sideBar.toggleClass('isOpen');
+		let sidebar = document.getElementById('side');
+		sidebar.classList.toggle('isOpen');
 	}
 
 	menuClick(e) {
-		var target = e.target;
+		let target = e.target;
+		let sidebar = document.getElementById('side');
+
 		if (target.id === 'mask' || target.tagName === 'A') {
-			$('#side').removeClass('isOpen');
+			sidebar.classList.remove('isOpen');
 		}
 	}
 
 	isActive(path) {
 		var curLocation = FlowRouter.current().path;
+
 		if (curLocation === path) {
 			return 'active';
 		}

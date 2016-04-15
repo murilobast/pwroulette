@@ -1,18 +1,24 @@
 import React, {Component} from 'react';
 
+const placeholder = {
+	infos: {infos: []}
+}
+
 export default class ChestItem extends Component {
 	constructor() {
 		super();
-	}
 
+		this.lazyLoad = this.lazyLoad.bind(this);
+	}
+	
 	showFloatingText(e) {
-		let $target = $(e.currentTarget);
-		let $curTarget = $target.find('.floating__text').addClass('show');
+		let target = e.currentTarget.getElementsByClassName('floating__text')[0];
+		target.classList.add('show');
 	}
 
 	hideFloatingText(e) {
-		let $target = $(e.currentTarget);
-		$target.find('.floating__text').removeClass('show');
+		let target = e.currentTarget.getElementsByClassName('floating__text')[0];
+		target.classList.remove('show');
 	}
 
 	lazyLoad() {
@@ -25,8 +31,7 @@ export default class ChestItem extends Component {
 
 	render() {
 		let item = this.props.item;
-		let itemInfo = ItemInfo.findOne({id: item.id}) || {infos: []};
-		// let path = '//127.0.0.1:8181/' + item.id + '.png';
+		let itemInfo = ItemInfo.findOne({id: item.id}) || placeholder.infos;
 		let path = '//static.pwsimulator.com/' + item.id + '.png';
 
 		return (
@@ -38,7 +43,7 @@ export default class ChestItem extends Component {
 				<img 
 					src={path}
 					data-lazy={true}
-					onLoad={this.lazyLoad.bind(this)}
+					onLoad={this.lazyLoad}
 					alt={item.name}
 					ref="itemIcon"
 				/>

@@ -4,7 +4,7 @@ import ChestBag from './ChestBag.jsx';
 import ChestDrops from './ChestDrops.jsx';
 
 export default class FullChest extends Component {
-	render() {
+	render() {		
 		let chest = this.props.chest;
 		
 		return (
@@ -22,7 +22,7 @@ export default class FullChest extends Component {
 					>
 						<ChestBag chest={chest}/>
 					</ReactCSSTransitionGroup>
-					<ChestDrops chest={chest} />
+					<ChestDrops chest={chest}/>
 				</div>
 			</section>
 		)

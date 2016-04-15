@@ -4,6 +4,12 @@ import SingleChest from './SingleChest.jsx';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class ChestsList extends Component {
+	constructor() {
+		super();
+
+		this.searchUpdated = this.searchUpdated.bind(this);
+	}
+
 	searchUpdated(term) {
 		this.setState({searchTerm: term});
 	}
@@ -32,7 +38,7 @@ export default class ChestsList extends Component {
 								<div className="chests__list__container__header__name">
 									<SearchInput
 										ref='chestQuery'
-										onChange={this.searchUpdated.bind(this)}
+										onChange={this.searchUpdated}
 										placeholder="Digite o nome..."
 										clasName="chests__list__container__header__name__input"
 									/>
@@ -40,7 +46,7 @@ export default class ChestsList extends Component {
 							</div>
 							<div className="chests__list__container__inner">
 								{chests.map((chest) => (
-									<SingleChest chest={chest} key={chest._id} />
+									<SingleChest chest={chest} key={chest._id}/>
 								))}
 							</div>								
 						</div>

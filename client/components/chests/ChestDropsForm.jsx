@@ -1,22 +1,34 @@
 import React, {Component} from 'react';
 
+const placeholder = {
+	toOpen: 1,
+	until: 0
+}
+
+
 export default class ChestDropsForm extends Component {
 	constructor() {
 		super();
+
+		this.setToOpen = this.setToOpen.bind(this);
+		this.setUntil = this.setUntil.bind(this);
+
 		this.state = {
-			toOpen: Session.get('toOpen') || 1,
-			until: Session.get('until') || 0
+			toOpen: Session.get('toOpen') || placeholder.toOpen,
+			until: Session.get('until') || placeholder.until
 		}
 	}
 
 	setToOpen(e) {
 		let toOpen = e.target.value;
+		
 		this.setState({toOpen});
 		Session.set('toOpen', toOpen);
 	}
 
 	setUntil(e) {
 		let until = ~~e.target.value;
+
 		this.setState({until});
 		Session.set('until', until);
 	}
@@ -34,7 +46,7 @@ export default class ChestDropsForm extends Component {
 						id="toOpen"
 						className="chests__drops__opts__field__input"
 						value={this.state.toOpen}
-						onChange={this.setToOpen.bind(this)}
+						onChange={this.setToOpen}
 					/>
 					<label htmlFor="toOpen" className="chests__drops__opts__field__label"> Baús, ou até vir: </label>
 				</div>
@@ -43,8 +55,8 @@ export default class ChestDropsForm extends Component {
 						name="until"
 						id="until"
 						className="chests__drops__opts__field__select"
-						value={Session.get('until') || 0}
-						onChange={this.setUntil.bind(this)}
+						value={Session.get('until') || placeholder.until}
+						onChange={this.setUntil}
 					>
 						<option value="0">
 							Selecione o item
