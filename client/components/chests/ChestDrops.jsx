@@ -5,8 +5,8 @@ import ChestItem from './ChestItem.jsx';
 import ChestDropsForm from './ChestDropsForm.jsx';
 
 export default class ChestDrops extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.changeUiState = this.changeUiState.bind(this);
 		this.showHelp = this.showHelp.bind(this);
@@ -41,8 +41,7 @@ export default class ChestDrops extends Component {
 	}
 
 	render() {
-		let chest = this.props.chest;
-		let items = chest.items;
+		let items = this.props.items;
 
 		if (this.refs.itemQuery) {
 			let filters = ['name'];
@@ -73,7 +72,7 @@ export default class ChestDrops extends Component {
 							Clicar nos itens abaixo também altera o valor da caixa de seleção.
 						</p>
 					</div>
-					<ChestDropsForm items={chest.items} changeUiState={this.changeUiState}/>
+					<ChestDropsForm items={items} changeUiState={this.changeUiState}/>
 					<SearchInput
 						ref='itemQuery'
 						onChange={this.searchUpdated.bind(this)}

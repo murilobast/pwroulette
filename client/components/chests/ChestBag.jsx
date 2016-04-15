@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ChestItem from './ChestItem.jsx';
 
 let intervalTimer = 0;
@@ -12,11 +13,13 @@ const placeholder = {
 }
 
 export default class ChestBag extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+
 		this.reset = this.reset.bind(this);
 		this.stop = this.stop.bind(this);
 		this.openChest = this.openChest.bind(this);
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	}
 
 	componentWillUnmount() {
