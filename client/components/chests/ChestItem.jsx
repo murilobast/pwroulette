@@ -26,8 +26,8 @@ export default class ChestItem extends Component {
 	render() {
 		let item = this.props.item;
 		let itemInfo = ItemInfo.findOne({id: item.id}) || {infos: []};
-		let path = '//127.0.0.1:8181/' + item.id + '.png';
-		// let path = '//static.pwsimulator.com/' + item.id + '.png';
+		// let path = '//127.0.0.1:8181/' + item.id + '.png';
+		let path = '//static.pwsimulator.com/' + item.id + '.png';
 
 		return (
 			<div 

@@ -31,8 +31,20 @@
 					display inline-block
 					vertical-align top
 					margin 8px 8px 8px 0
+					position relative
 					img
 						vertical-align top
+					&__amount
+						position absolute
+						left 1px
+						bottom 2px
+						margin auto
+						color #fff
+						font-size 13px 
+						line-height 14px
+						padding 1px
+						border-radius 3px
+						background-color rgba(51,51,51,0.8)
 				&__name
 					color #E2B443
 					display inline-block
@@ -91,11 +103,12 @@
 				width 294px 
 				margin auto
 				overflow hidden
-				&__open, &__macro, &__reset
+				&__open, &__macro, &__reset, &__stop
 					line-height 21px
 					margin 9px 0
-				&__open
+				&__open,  &__stop
 					float right
+					margin-left 4px
 				&__macro, &__reset
 					float left
 					margin-right 10px

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import ChestItem from './ChestItem.jsx';
 
 let intervalTimer = 0;
+let chedToOpen = 1;
+let canFill = true;
 
 export default class ChestBag extends Component {
 	componentWillUnmount() {
@@ -15,50 +17,63 @@ export default class ChestBag extends Component {
 	openChest(e) {
 		e.preventDefault();
 		clearInterval(intervalTimer);
-		let chest = this.props.chest;
+		let chest = this.clone(this.props.chest);
 		let items = this.prepare(chest.items);
 		let toOpen = Session.get('toOpen') || 1;
 		let until = Session.get('until') || 0;
 		let opened = Session.get('opened-' + chest.id) || 0;
 		let curItems = Session.get('bag-' + chest.id) || [];
-		
-		intervalTimer = setInterval(() => {
-			let item = this.clone(this.getItem(items));
+		let start = new Date();
 
-			let find = _.find(curItems, function (obj, i) {
-				if (obj.id === item.id) {
-					return curItems[i].amount += item.amount;;
+		if (canFill)
+			chedToOpen = toOpen;
+
+		canFill = false;
+
+		intervalTimer = setInterval(() => {
+			this.getItem(items, (sourceItem) => {
+				let item = this.clone(sourceItem);
+
+				let find = _.find(curItems, function (obj, i) {
+					if (obj.id === item.id) {
+						return curItems[i].amount += item.amount;;
+					}
+				});
+
+				if (find === undefined)
+					curItems.push(item);
+
+				opened++;
+				toOpen--;
+				
+				Session.set('bag-' + chest.id, curItems);
+				Session.set('opened-' + chest.id, opened);
+				Session.set('toOpen', toOpen)
+				this.forceUpdate();
+				
+				if (toOpen === 0 || until === item.id) {
+					let finish = new Date();
+					Session.set('toOpen', chedToOpen);
+					canFill = true;
+
+					console.log('Time to open:', (finish - start) / 1000 + 'secs');
+
+					clearInterval(intervalTimer);
 				}
 			});
-
-			if (find === undefined) {
-				curItems.push(item);
-			}
-
-			opened++;
-			toOpen--;
-			
-			Session.set('bag-' + chest.id, curItems);
-			Session.set('opened-' + chest.id, opened);
-			this.forceUpdate();
-			
-			if (toOpen === 0 || until === item.id)
-				clearInterval(intervalTimer);
 		}, 25);
 	}
 
-	getItem(items) {
-		let item = _.find(items, function(item) {
+	getItem(items, cb) {
+		let random = Math.random();
+		let item = 0;
 
-			return Math.random() <  item.weight;
-		});
+		for (var i = 0; i <= items.length; i++) {
+			if (random < items[i].weight) {
+				cb(items[i]);
 
-		if (item === undefined) {
-
-			return this.getItem(items);
-		} else {
-
-			return item;
+				break;
+			}
 		}
 	}
 
@@ -102,11 +117,20 @@ export default class ChestBag extends Component {
 		return items;
 	}
 
+	stop() {
+		clearInterval(intervalTimer);
+		this.forceUpdate();
+	}
+
 	reset() {
 		let chest = this.props.chest;
 		Session.set('bag-' + chest.id, []);
 		Session.set('opened-' + chest.id, 0);
 		clearInterval(intervalTimer);
+		this.forceUpdate();
+
+		if (!canFill)
+			Session.set('toOpen', chedToOpen)
 	}
 
 	render() {
@@ -121,6 +145,7 @@ export default class ChestBag extends Component {
 					<div className="chests__bag__container__header">
 						<div className="chests__bag__container__header__icon">
 							<img src={'//static.pwsimulator.com/' + chest.id + '.png'}  alt={chest.name}/>
+							<span className="chests__bag__container__header__icon__amount">{Session.get('toOpen') || 1}</span>
 						</div>
 						<div className="chests__bag__container__header__name">
 							<h3>{chest.name}</h3>
@@ -149,6 +174,14 @@ export default class ChestBag extends Component {
 							type="submit"
 						>
 							Abrir
+						</button>
+						<button 
+							className="chests__bag__container__form__stop button"
+							name="stop" 
+							type="button"
+							onClick={this.stop.bind(this)}
+						>
+							Parar
 						</button>
 					</div>
 				</div>

@@ -4,8 +4,8 @@ export default class ChestDropsForm extends Component {
 	constructor() {
 		super();
 		this.state = {
-			toOpen: 100,
-			until: 0
+			toOpen: Session.get('toOpen') || 1,
+			until: Session.get('until') || 0
 		}
 	}
 
@@ -25,7 +25,7 @@ export default class ChestDropsForm extends Component {
 		let items = this.props.items;
 
 		return (
-			<form className="chests__drops__opts">
+			<form className="chests__drops__opts" disabled="true">
 				<div className="chests__drops__opts__field">
 					<label htmlFor="toOpen" className="chests__drops__opts__field__label">Abrir </label>
 					<input
@@ -36,15 +36,14 @@ export default class ChestDropsForm extends Component {
 						value={this.state.toOpen}
 						onChange={this.setToOpen.bind(this)}
 					/>
-					<label htmlFor="toOpen" className="chests__drops__opts__field__label"> Baús</label>
+					<label htmlFor="toOpen" className="chests__drops__opts__field__label"> Baús, ou até vir: </label>
 				</div>
 				<div className="chests__drops__opts__field">
-					<label htmlFor="until" className="chests__drops__opts__field__label"> ou até vir </label>
 					<select
 						name="until"
 						id="until"
 						className="chests__drops__opts__field__select"
-						value={this.state.until}
+						value={Session.get('until') || 0}
 						onChange={this.setUntil.bind(this)}
 					>
 						<option value="0">
