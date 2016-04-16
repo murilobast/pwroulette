@@ -9,11 +9,20 @@ export default class ChestItem extends Component {
 		super();
 
 		this.lazyLoad = this.lazyLoad.bind(this);
+		this.showFloatingText = this.showFloatingText.bind(this);
+		this.hideFloatingText = this.hideFloatingText.bind(this);
 	}
 	
 	showFloatingText(e) {
 		let target = e.currentTarget.getElementsByClassName('floating__text')[0];
 		target.classList.add('show');
+
+		if (typeof this.refs.avatar !== 'undefined') {
+			let $img = $(this.refs.avatar);
+
+			$img.attr('src', $img.attr('data-lazy'));
+			$img.removeAttr('data-lazy');
+		}
 	}
 
 	hideFloatingText(e) {
@@ -33,6 +42,21 @@ export default class ChestItem extends Component {
 		let item = this.props.item;
 		let itemInfo = ItemInfo.findOne({id: item.id}) || placeholder.infos;
 		let path = '//static.pwsimulator.com/' + item.id + '.png';
+		let avatar = (
+			<span>{/* not avatar */}</span>
+		);
+
+		if (item.avatar) {
+			avatar = (
+				<img 
+					ref="avatar"
+					data-lazy={'//static.pwsimulator.com/cards/' + item.id + '.jpg'}
+					onLoad={this.lazyLoad}
+					alt={item.name}
+					title={item.name}
+				/>
+			);
+		}
 
 		return (
 			<div 
@@ -56,6 +80,7 @@ export default class ChestItem extends Component {
 							<span style={{color: info.color}} key={'desc' + i} dangerouslySetInnerHTML={this.createMarkup(info.text)}></span>
 						))}
 					</p>
+					{avatar}
 				</div>
 			</div>
 		)
