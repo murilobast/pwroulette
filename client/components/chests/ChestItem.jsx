@@ -45,6 +45,7 @@ export default class ChestItem extends Component {
 					data-lazy={true}
 					onLoad={this.lazyLoad}
 					alt={item.name}
+					title={item.name}
 					ref="itemIcon"
 				/>
 				<span className="chests__bag__container__inner__item__amount">{item.amount}</span>

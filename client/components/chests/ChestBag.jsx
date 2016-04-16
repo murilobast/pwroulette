@@ -29,7 +29,7 @@ export default class ChestBag extends Component {
 	openChest(e) {
 		e.preventDefault();
 		clearInterval(intervalTimer);
-		let chest = this.clone(this.props.chest);
+		let chest = JSON.parse(JSON.stringify(this.props.chest));
 		let items = this.prepare(chest.items);
 		let toOpen = Session.get('toOpen') || placeholder.toOpen;
 		let until = Session.get('until') || placeholder.until;
@@ -44,7 +44,7 @@ export default class ChestBag extends Component {
 
 		intervalTimer = setInterval(() => {
 			this.getItem(items, (sourceItem) => {
-				let item = this.clone(sourceItem);
+				let item = JSON.parse(JSON.stringify(sourceItem));
 
 				let find = _.find(curItems, function (obj, i) {
 					if (obj.id === item.id) {
@@ -73,44 +73,19 @@ export default class ChestBag extends Component {
 					clearInterval(intervalTimer);
 				}
 			});
-		}, 25);
+		}, 5);
 	}
 
 	getItem(items, cb) {
 		let random = Math.random();
-		let item = 0;
 
 		for (var i = 0; i <= items.length; i++) {
-			if (random < items[i].weight) {
+			if (random <= items[i].weight) {
 				cb(items[i]);
 
 				break;
 			}
 		}
-	}
-
-	clone(source) {
-		if (Object.prototype.toString.call(source) === '[object Array]') {
-			var clone = [];
-
-			for (var i = 0; i < source.length; i++) {
-				clone[i] = this.clone(source[i]);
-			}
-
-			return clone;
-		} else if (typeof(source) === "object") {
-			var clone = {};
-
-			for (var prop in source) {
-				if (source.hasOwnProperty(prop)) {
-					clone[prop] = this.clone(source[prop]);
-				}
-			}
-
-			return clone;
-		}
-
-		return source;
 	}
 
 	prepare(items) {
@@ -156,13 +131,18 @@ export default class ChestBag extends Component {
 				<div className="chests__bag__container">
 					<div className="chests__bag__container__header">
 						<div className="chests__bag__container__header__icon">
-							<img src={'//static.pwsimulator.com/' + chest.id + '.png'}  alt={chest.name}/>
+							<img src={'//static.pwsimulator.com/' + chest.id + '.png'}  alt={chest.name} title={chest.name}/>
 							<span className="chests__bag__container__header__icon__amount">{Session.get('toOpen') || placeholder.toOpen}</span>
 						</div>
 						<div className="chests__bag__container__header__name">
-							<h3>{chest.name}</h3>
+							<h3 title={chest.name + ' (' + opened + ')'}>{chest.name} ({opened})</h3>
 						</div>
-						<span className="chests__bag__container__header__amount">({opened})</span>
+						<a 
+							className="chests__bag__container__form__back button"
+							href="/chest"
+						>
+							Voltar
+						</a>
 					</div>
 					<div className="chests__bag__container__inner">
 

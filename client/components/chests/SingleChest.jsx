@@ -48,7 +48,8 @@ export default class ChestsList extends Component {
 			>
 				<img
 					src={path}
-					alt={chest.name} 
+					alt={chest.name}
+					alt={chest.title}
 					ref="chestIcon"
 					data-lazy={true}
 					onLoad={this.lazyLoad}

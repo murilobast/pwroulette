@@ -49,7 +49,7 @@
 					color #E2B443
 					display inline-block
 					vertical-align top
-					// max-width 230px
+					width calc(100% - 114px) 
 					position relative
 					h3
 						white-space nowrap 
@@ -103,12 +103,13 @@
 				width 294px 
 				margin auto
 				overflow hidden
-				&__open, &__macro, &__reset, &__stop
+				&__open, &__macro, &__reset, &__stop, &__back
 					line-height 21px
 					margin 9px 0
-				&__open,  &__stop
+				&__open,  &__stop, &__back
 					float right
 					margin-left 4px
+					text-align center
 				&__macro, &__reset
 					float left
 					margin-right 10px
@@ -153,7 +154,7 @@
 							box-sizing border-box
 							background-color transparent
 							border 1px solid rgba(255, 205, 77, .6)
-							width 294px 
+							width 95% 
 					h3
 						display inline-block
 						vertical-align top
