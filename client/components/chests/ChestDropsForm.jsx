@@ -5,7 +5,6 @@ const placeholder = {
 	until: 0
 }
 
-
 export default class ChestDropsForm extends Component {
 	constructor() {
 		super();

@@ -42,6 +42,11 @@ export default class ChestDrops extends Component {
 
 	render() {
 		let items = this.props.items;
+		let list = this.props.list;
+		let searchState = (items.length > 0) ? false : true;
+		let infoText = (items.length > 0) 
+			? 'Clicar nos itens abaixo também altera o valor da caixa de seleção.' 
+			: 'Por motivos de performance, a listagem de drops foi desabilitada para baús de avatar';
 
 		if (this.refs.itemQuery) {
 			let filters = ['name'];
@@ -69,15 +74,16 @@ export default class ChestDrops extends Component {
 							Para abrir baús infinitamente, altere a quantidade para 0.
 						</p>
 						<p className="chests__drops__info__text">
-							Clicar nos itens abaixo também altera o valor da caixa de seleção.
+							{infoText}
 						</p>
 					</div>
-					<ChestDropsForm items={items} changeUiState={this.changeUiState}/>
+					<ChestDropsForm items={list} changeUiState={this.changeUiState}/>
 					<SearchInput
 						ref='itemQuery'
 						onChange={this.searchUpdated.bind(this)}
 						placeholder="Digite o nome do item"
 						clasName="chests__drops__input"
+						disabled={searchState}
 					/>
 					<ul className="chests__drops__list">
 

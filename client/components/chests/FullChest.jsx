@@ -4,6 +4,10 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ChestBag from './ChestBag.jsx';
 import ChestDrops from './ChestDrops.jsx';
 
+const placeholder = {
+	items: []
+}
+
 export default class FullChest extends Component {
 	constructor(props) {
 		super(props);
@@ -13,7 +17,8 @@ export default class FullChest extends Component {
 
 	render() {		
 		let chest = this.props.chest;
-		
+		let items = (chest.avatar) ? placeholder.items : chest.items;
+
 		return (
 			<section id="chests-list">
 				<div className="title">
@@ -29,7 +34,7 @@ export default class FullChest extends Component {
 					>
 						<ChestBag chest={chest}/>
 					</ReactCSSTransitionGroup>
-					<ChestDrops items={chest.items} key="chestDrops"/>
+					<ChestDrops list={chest.items} items={items} key="chestDrops"/>
 				</div>
 			</section>
 		)

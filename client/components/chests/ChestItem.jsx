@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const placeholder = {
 	infos: {infos: []}
@@ -11,27 +12,35 @@ export default class ChestItem extends Component {
 		this.lazyLoad = this.lazyLoad.bind(this);
 		this.showFloatingText = this.showFloatingText.bind(this);
 		this.hideFloatingText = this.hideFloatingText.bind(this);
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 	}
 	
+	// change
 	showFloatingText(e) {
 		let target = e.currentTarget.getElementsByClassName('floating__text')[0];
 		target.classList.add('show');
 
 		if (typeof this.refs.avatar !== 'undefined') {
-			let $img = $(this.refs.avatar);
+			let img = this.refs.avatar;
+			let dataset = img.dataset;
 
-			$img.attr('src', $img.attr('data-lazy'));
-			$img.removeAttr('data-lazy');
+			if (typeof dataset.avatar !== 'undefined') {
+				img.src = dataset.avatar;
+				delete dataset.avatar;
+			}
 		}
 	}
 
+	// change
 	hideFloatingText(e) {
 		let target = e.currentTarget.getElementsByClassName('floating__text')[0];
 		target.classList.remove('show');
 	}
 
 	lazyLoad() {
-		$(this.refs.itemIcon).removeAttr('data-lazy');
+		for (prop in this.refs) {
+			delete this.refs[prop].dataset.lazy;			
+		}
 	}
 
 	createMarkup(markup) {
@@ -50,7 +59,8 @@ export default class ChestItem extends Component {
 			avatar = (
 				<img 
 					ref="avatar"
-					data-lazy={'//static.pwsimulator.com/cards/' + item.id + '.jpg'}
+					data-lazy={true}
+					data-avatar={'//static.pwsimulator.com/cards/' + item.id + '.jpg'}
 					onLoad={this.lazyLoad}
 					alt={item.name}
 					title={item.name}
