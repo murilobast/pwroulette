@@ -34,7 +34,7 @@ export default class ChestBag extends Component {
 		let toOpen = Session.get('toOpen') || placeholder.toOpen;
 		let until = Session.get('until') || placeholder.until;
 		let opened = Session.get('opened-' + chest.id) || placeholder.opened;
-		let curItems = Session.get('bag-' + chest.id) || placeholder.bag;
+		let curItems = Session.get('bag-' + chest.id) || [];
 		let start = new Date();
 
 		if (canFill)

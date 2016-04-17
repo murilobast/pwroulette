@@ -8,8 +8,9 @@ function composer(props, onData) {
 	const handleInfos = ChestsSubs.subscribe('itemInfo');
 	
 	if (handleChests.ready() && handleInfos.ready()) {
-		const chests = Chests.find().fetch();
-		onData(null, {chests});
+		const chests = Chests.find({}, {sort: {name: 1}}).fetch();
+		const featured = Chests.find({}, {sort: {count: -1}, limit: 8}).fetch();
+		onData(null, {chests, featured});
 	}
 }
 

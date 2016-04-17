@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import SearchInput from 'react-search-input';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {HTTP} from 'meteor/http';
 import SingleChest from './SingleChest.jsx';
 import ChestAddModal from './ChestAddModal.jsx';
 
@@ -40,6 +41,7 @@ export default class ChestsList extends Component {
 
 	render() {
 		let chests = this.props.chests;
+		let featured = this.props.featured;
 
 		if (this.refs.chestQuery) {
 			let filters = ['name'];
@@ -78,6 +80,16 @@ export default class ChestsList extends Component {
 							</div>
 							<div className="chests__list__container__inner">
 								{chests.map((chest) => (
+									<SingleChest chest={chest} key={chest._id}/>
+								))}
+							</div>
+							<div className="chests__list__container__header">
+								<div className="chests__list__container__header__name">
+									<h3>Báus em destaque</h3>
+								</div>
+							</div>
+							<div className="chests__list__container__inner featured">
+								{featured.map((chest) => (
 									<SingleChest chest={chest} key={chest._id}/>
 								))}
 							</div>
@@ -135,34 +147,46 @@ export default class ChestsList extends Component {
 				items: []
 			};
 
-			$.getJSON("http://alloworigin.com/get?url=" + encodeURIComponent(url) + "&callback=?", (data) => {
-				let $content = $(data.contents).find('tbody tr:last-of-type td:first-of-type p');
-				let $last = $(data.contents).find('tbody tr:last-of-type td:last-of-type p');
-				chest.name = $last.first().text();
-				chest.id = Number($last.first().find('a').attr('href').replace('items/', ''));;
-
+			HTTP.call('GET', 'http://alloworigin.com/get?url=' + encodeURIComponent(url) + '&callback=?', (statusCode, result) => {
+				let htmlString = result.data.contents;
+				let parser = new DOMParser();
+				let doc = parser.parseFromString(htmlString, 'text/html');
+				let content = doc.querySelectorAll('tbody tr:last-of-type td:first-of-type p');
+				let last = doc.querySelector('tbody tr:last-of-type td:last-of-type p');
+				console.log(last);
+				// let href = last.querySelector('a').href;
 				let totalWeight = 0;
 				let reg  = /(?:\s-\s([0-9]+)\s)?\(([0-9]+\.?[0-9]*)%\)/;
 				let replace  = /(\([0-9]+\.?[0-9]*%\))/g;
-				let start = (reg.test($($content[6]).text())) ? 6 : 7;
+				let hrefReg = /(:?\/)([0-9]+)/;
+				let start = (reg.test(content[6].textContent)) ? 6 : 7;
+				
+				// chest.name = last.textContent;
+				chest.name = 'Tesouro do Sol';
+				// chest.id = ~~(href.match(hrefReg)[2]);
+				chest.id = 47897;
 
-				for (let i = start; i < $content.length; i++) {
-					let text = $($content[i]).text();
-					let id = Number($($content[i]).find('a').attr('href').replace('items/', ''));
-					let weight = Number(text.match(reg)[2]);
+				for (let i = start; i < content.length; i++) {
+					let item = content[i];
+					let name = item.textContent;
+					let itemHref = item.querySelector('a').href;
+					let id = ~~(itemHref.match(hrefReg)[2]);
+					let weight = ~~(name.match(reg)[2]);
+					let amount = name.match(reg)[1] || 1;
+
+					name = name.replace(reg, '');
+					name = name.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 					totalWeight += weight;
-					console.log(totalWeight.toFixed(4));
-					let amount = text.match(reg)[1] || 1;
-
-					text = text.replace(reg, '');
-					text = text.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 					
+					console.log(totalWeight.toFixed(4));
+
 					let obj = {
-						id: id,
-						name: text,
-						weight: weight,
-						amount: amount
+						id,
+						name,
+						weight,
+						amount
 					}
+
 					chest.items.push(obj);
 				}
 

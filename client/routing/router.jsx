@@ -38,6 +38,7 @@ FlowRouter.route('/chest', {
 
 FlowRouter.route('/chest/:id', {
 	name: 'chest',
+	triggersEnter: [updateCount],
 
 	action(param) {
 		mount(MainLayout, {
@@ -47,3 +48,7 @@ FlowRouter.route('/chest/:id', {
 		});
 	}
 });
+
+function updateCount(context) {
+	Meteor.call('updateCount', ~~context.params.id);
+}

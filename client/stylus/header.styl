@@ -26,6 +26,9 @@
 			border 1px solid rgba(50, 50, 50, .3)
 			border-radius 4px
 			box-sizing border-box
+			background-color rgba(0, 0, 0, 0)
+			outline 0
+			cursor pointer
 		&__brand
 			&__title
 				margin 0
@@ -45,7 +48,7 @@
 		background-color #333
 		font-size 16px
 		box-shadow 1px 0 3px rgba(0, 0, 0, .12), 1px 0 2px rgba(0, 0, 0, .24)
-		transition margin 0.2s ease-in-out
+		transition margin .2s ease-in-out
 		z-index 5
 		&__mask
 			position fixed
@@ -56,19 +59,20 @@
 			margin-left 100%
 			background-color rgba(0, 0, 0, .3)
 			opacity 0 
-			transition opacity 0.2s ease-in-out
+			transition opacity .2s ease-in-out, margin .01s ease-in-out .2s
 		&.isOpen
 			margin-left 0
 			#mask
 				margin-left 0
 				opacity 1
+				transition opacity .2s ease-in-out
 		&__link
 			display block
 			line-height 48px
 			position relative
-			transition all 0.1s ease-in-out
+			transition all .1s ease-in-out
 			&:before
-				transition all 0.2s ease-in-out
+				transition all .2s ease-in-out
 				content ''
 				position absolute
 				left 0

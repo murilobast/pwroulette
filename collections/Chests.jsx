@@ -15,6 +15,11 @@ Chests.attachSchema(new SimpleSchema({
 		type: Number,
 		label: "ID"
 	},
+	count: {
+		type: Number,
+		label: "Count",
+		optional: true
+	},
 	name: {
 		type: String,
 		label: "Name"
