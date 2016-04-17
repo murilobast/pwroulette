@@ -161,10 +161,8 @@ export default class ChestsList extends Component {
 				let hrefReg = /(:?\/)([0-9]+)/;
 				let start = (reg.test(content[6].textContent)) ? 6 : 7;
 				
-				// chest.name = last.textContent;
-				chest.name = 'Tesouro do Sol';
-				// chest.id = ~~(href.match(hrefReg)[2]);
-				chest.id = 47897;
+				chest.name = last.textContent;
+				chest.id = ~~(href.match(hrefReg)[2]);
 
 				for (let i = start; i < content.length; i++) {
 					let item = content[i];

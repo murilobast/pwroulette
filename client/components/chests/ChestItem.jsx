@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {HTTP} from 'meteor/http';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 const placeholder = {

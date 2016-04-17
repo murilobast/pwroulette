@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {HTTP} from 'meteor/http';
 
 const placeholder = {
 	infos: {infos: []}
