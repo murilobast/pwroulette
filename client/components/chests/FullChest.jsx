@@ -13,6 +13,20 @@ export default class FullChest extends Component {
 		super(props);
 
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+		
+		// SEO
+		prerenderReady = true;
+		let desc = (props.chest.desc)
+			? props.chest.desc
+			: 'Simule a abertura de ' + props.chest.name;
+			
+		SEO.set({
+			title: props.chest.name + ' - PW Simulator',
+			description: desc + ' - Simulador de drops de báus para Perfect World',
+			meta: {
+				'property="og:title"': props.chest.name + ' - PW Simulator'
+			}
+    });
 	}
 
 	render() {		
@@ -21,12 +35,20 @@ export default class FullChest extends Component {
 
 		return (
 			<section id="chests-list">
-				<div className="title">
-					<h2>{chest.name}</h2>
-				</div>
+				<ReactCSSTransitionGroup 
+					transitionName="fade"
+					transitionAppear={true}
+					transitionEnterTimeout={1000}
+					transitionAppearTimeout={2000}
+					transitionLeaveTimeout={1000}
+				>
+					<div className="title">
+						<h2>{chest.name}</h2>
+					</div>
+				</ReactCSSTransitionGroup>
 				<div className="chests">
 					<ReactCSSTransitionGroup 
-						transitionName="shake"
+						transitionName="fade"
 						transitionAppear={true}
 						transitionEnterTimeout={1000}
 						transitionAppearTimeout={1000}

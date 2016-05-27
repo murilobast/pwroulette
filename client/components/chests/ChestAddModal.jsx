@@ -1,33 +1,134 @@
-import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, {Component} from 'react';
+import {HTTP} from 'meteor/http';
 
-// Creating navbar component
-export default class ChestAddModal extends React.Component {
+export default class ChestAddModal extends Component {
+	constructor() {
+		super();
+		
+		this.insertChest = this.insertChest.bind(this);
+		this.closeModal = this.closeModal.bind(this);
+		this.crossGet = this.crossGet.bind(this);
+	}
+
+	insertChest(e) {
+		e.preventDefault();
+		let url = this.refs.url.value;
+
+		this.crossGet(url);
+	}
+
+	closeModal(e) {
+		this.props.updateState(false);
+	}
+
 	render() {
-		if (this.props.isOpen) {
+		return (
+			<div className="modal">
+				<button className="modal-mask show" onClick={this.closeModal}></button>
+				<form className="modal-window show" onSubmit={this.insertChest}>
+					<div className="modal-window__top"></div>
+					<div className="modal-window__container">
+						<div className="modal-window__container__header">
+							<h3>Adicionar Baú</h3>
+						</div>
+						<div className="modal-window__container__content">
+							<div className="modal-window__container__content__url">
+								<label>Url do pwdatabase</label>
+								<input type="text" name="url" ref="url"/>
+								<p>Enviar url da página de drops do báu.</p>
+								<p>Ex: http://www.pwdatabase.com/br/quest/27109</p>
+							</div>
+						</div>
 
-			return (
-				<ReactCSSTransitionGroup 
-					transitionName="fade"
-					transitionAppear={true}
-					transitionEnterTimeout={1000}
-					transitionAppearTimeout={2500}
-					transitionLeaveTimeout={10}
-				>
-					{this.props.children}
-				</ReactCSSTransitionGroup>
-			);
+						<div className="modal-window__container__footer">
+							<button 
+								className="modal-window__container__footer__cancel cancel button"
+								type="button"
+								onClick={this.closeModal}
+							>
+								Cancelar
+							</button>
+							<button
+								className="modal-window__container__footer__submit button" id="addChest_submit"
+								type="submit"
+							>
+								Add
+							</button>
+						</div>
+					</div>
+					<div className="modal-window__bottom"></div>
+				</form>
+			</div>
+		)
+	}
+
+	crossGet(url) {
+		let urlReg = /(?:pwdatabase\.com\/br\/quest\/)([0-9]*)$/;
+
+		if (urlReg.test(url)) {
+			let chest = {
+				active: false,
+				items: []
+			};
+
+			HTTP.call('GET', 'http://alloworigin.com/get?url=' + encodeURIComponent(url) + '&callback=?', (statusCode, result) => {
+				let htmlString = result.data.contents;
+				let parser = new DOMParser();
+				let doc = parser.parseFromString(htmlString, 'text/html');
+				let content = doc.querySelectorAll('tbody tr:last-of-type td:first-of-type p');
+				let last = doc.querySelector('tbody tr:last-of-type td:last-of-type p');
+				let href = last.querySelector('a').href;
+				let totalWeight = 0;
+				let reg  = /(?:\s-\s([0-9]+)\s)?\(([0-9]+\.?[0-9]*)%\)/;
+				let replace  = /(\([0-9]+\.?[0-9]*%\))/g;
+				let hrefReg = /(:?\/)([0-9]+)/;
+				let start = (reg.test(content[6].textContent)) ? 6 : 7;
+
+				// Caching loop variables
+				let i = 0;
+				let obj = {};
+				let item = {};
+				let name = '';
+				let itemHref = '';
+				let id = 0;
+				let weight = 0;
+				let amount = 0;
+
+				chest.name = last.textContent;
+				chest.id = ~~(href.match(hrefReg)[2]);
+
+				for (i = start; i < content.length; i++) {
+					item = content[i];
+					name = item.textContent;
+					itemHref = item.querySelector('a').href;
+					id = ~~(itemHref.match(hrefReg)[2]);
+					weight = ~~(name.match(reg)[2]);
+					amount = name.match(reg)[1] || 1;
+
+					name = name.replace(reg, '');
+					name = name.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+					totalWeight += weight;
+					
+					console.log(totalWeight.toFixed(4));
+
+					obj = {
+						id,
+						name,
+						weight,
+						amount
+					}
+
+					chest.items.push(obj);
+				}
+
+				console.log(chest);
+				Meteor.call('createChest', chest);
+				this.props.updateState(false);
+			});
+
 		} else {
-			
-			return (
-				<ReactCSSTransitionGroup
-					transitionName="fade"
-					transitionAppear={true}
-					transitionEnterTimeout={1000}
-					transitionAppearTimeout={2500}
-					transitionLeaveTimeout={10}
-				/>
-			);
+			alert('ERRO: URL invalida.')
+			this.props.updateState(false);
 		}
 	}
 }

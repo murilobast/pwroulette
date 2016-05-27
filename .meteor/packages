@@ -21,10 +21,8 @@ static-html
 standard-minifier-css
 standard-minifier-js
 kadira:flow-router
-spiderable
-gadicohen:phantomjs
-settinghead:auto-nprogress
 meteorhacks:fast-render
 meteorhacks:subs-manager
 http
-kadira:debug
+dfischer:prerenderio
+tomwasd:flow-router-seo

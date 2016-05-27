@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SearchInput from 'react-search-input';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {HTTP} from 'meteor/http';
+import Modal from '/client/components/default/Modal.jsx';
 import SingleChest from './SingleChest.jsx';
 import ChestAddModal from './ChestAddModal.jsx';
 
@@ -13,26 +13,27 @@ export default class ChestsList extends Component {
 			modalOpen: false
 		}
 
+		this.updateState = this.updateState.bind(this);
 		this.searchUpdated = this.searchUpdated.bind(this);
-		this.insertChest = this.insertChest.bind(this);
-		this.closeModal = this.closeModal.bind(this);
 		this.openModal = this.openModal.bind(this);
-		this.crossGet = this.crossGet.bind(this);
+
+		// SEO
+		prerenderReady = true;
+		SEO.set({
+			title: 'Abrir Baús - PW Simulator',
+			description: 'Simule drops de báus para Perfect World com apenas um simples click!',
+			meta: {
+				'property="og:title"': 'Abrir Baús - PW Simulator'
+			}
+		});
 	}
 
-	insertChest(e) {
-		e.preventDefault();
-		let url = this.refs.url.value;
-
-		this.crossGet(url);
+	updateState(value) {
+		this.setState({modalOpen: value});
 	}
 
 	openModal(term) {
 		this.setState({modalOpen: true});
-	}
-
-	closeModal(e) {
-		this.setState({modalOpen: false});
 	}
 
 	searchUpdated(term) {
@@ -50,7 +51,7 @@ export default class ChestsList extends Component {
 
 		return (
 			<ReactCSSTransitionGroup 
-				transitionName="shake"
+				transitionName="fade"
 				transitionAppear={true}
 				transitionEnterTimeout={1000}
 				transitionAppearTimeout={1000}
@@ -85,7 +86,7 @@ export default class ChestsList extends Component {
 							</div>
 							<div className="chests__list__container__header">
 								<div className="chests__list__container__header__name">
-									<h3>Báus em destaque</h3>
+									<h3>Baús em destaque</h3>
 								</div>
 							</div>
 							<div className="chests__list__container__inner featured">
@@ -97,105 +98,10 @@ export default class ChestsList extends Component {
 						<div className="chests__list__bottom"></div>
 					</form>
 				</div>
-				<ChestAddModal isOpen={this.state.modalOpen}>
-					<button className="modal-mask show" onClick={this.closeModal}></button>
-
-					<form className="modal-window show" onSubmit={this.insertChest}>
-						<div className="modal-window__top"></div>
-						<div className="modal-window__container">
-							<div className="modal-window__container__header">
-								<h3>Adicionar Baú</h3>
-							</div>
-							<div className="modal-window__container__content">
-								<div className="modal-window__container__content__url">
-									<label>Url do pwdatabase</label>
-									<input type="text" name="url" ref="url"/>
-									<p>Enviar url da página de drops do báu.</p>
-									<p>Ex: http://www.pwdatabase.com/br/quest/27109</p>
-								</div>
-							</div>
-
-							<div className="modal-window__container__footer">
-								<button 
-									className="modal-window__container__footer__cancel cancel button"
-									type="button"
-									onClick={this.closeModal}
-								>
-									Cancelar
-								</button>
-								<button
-									className="modal-window__container__footer__submit button" id="addChest_submit"
-									type="submit"
-								>
-									Add
-								</button>
-							</div>
-						</div>
-						<div className="modal-window__bottom"></div>
-					</form>
-				</ChestAddModal>
+				<Modal isOpen={this.state.modalOpen}>
+					<ChestAddModal updateState={this.updateState}/>
+				</Modal>
 			</ReactCSSTransitionGroup>
 		)
-	}
-
-	crossGet(url) {
-		let urlReg = /(?:pwdatabase\.com\/br\/quest\/)([0-9]*)$/;
-
-		if (urlReg.test(url)) {
-			let chest = {
-				active: false,
-				items: []
-			};
-
-			HTTP.call('GET', 'http://alloworigin.com/get?url=' + encodeURIComponent(url) + '&callback=?', (statusCode, result) => {
-				let htmlString = result.data.contents;
-				let parser = new DOMParser();
-				let doc = parser.parseFromString(htmlString, 'text/html');
-				let content = doc.querySelectorAll('tbody tr:last-of-type td:first-of-type p');
-				let last = doc.querySelector('tbody tr:last-of-type td:last-of-type p');
-				console.log(last);
-				// let href = last.querySelector('a').href;
-				let totalWeight = 0;
-				let reg  = /(?:\s-\s([0-9]+)\s)?\(([0-9]+\.?[0-9]*)%\)/;
-				let replace  = /(\([0-9]+\.?[0-9]*%\))/g;
-				let hrefReg = /(:?\/)([0-9]+)/;
-				let start = (reg.test(content[6].textContent)) ? 6 : 7;
-				
-				chest.name = last.textContent;
-				chest.id = ~~(href.match(hrefReg)[2]);
-
-				for (let i = start; i < content.length; i++) {
-					let item = content[i];
-					let name = item.textContent;
-					let itemHref = item.querySelector('a').href;
-					let id = ~~(itemHref.match(hrefReg)[2]);
-					let weight = ~~(name.match(reg)[2]);
-					let amount = name.match(reg)[1] || 1;
-
-					name = name.replace(reg, '');
-					name = name.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-					totalWeight += weight;
-					
-					console.log(totalWeight.toFixed(4));
-
-					let obj = {
-						id,
-						name,
-						weight,
-						amount
-					}
-
-					chest.items.push(obj);
-				}
-
-				console.log(chest);
-				Meteor.call('createChest', chest);
-				this.setState({modalOpen: false});
-			});
-
-		} else {
-			alert('ERRO: URL invalida.')
-			this.setState({modalOpen: false});
-		}
 	}
 }

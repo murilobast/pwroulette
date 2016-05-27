@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-// Creating main content component
 export class Home extends Component {
 	constructor() {
 		super();
+		prerenderReady = true;
 	}
 
 	changelogs() {
@@ -19,12 +19,20 @@ export class Home extends Component {
 	render() {
 		return (
 			<section id="home">
-				<div className="title">
-					<h2>Home</h2>
-				</div>
+				<ReactCSSTransitionGroup
+					transitionName="fade"
+					transitionAppear={true}
+					transitionEnterTimeout={1000}
+					transitionAppearTimeout={2000}
+					transitionLeaveTimeout={1000}
+				>
+					<div className="title">
+						<h2>Home</h2>
+					</div>
+				</ReactCSSTransitionGroup>
 				<div className="home">
 					<ReactCSSTransitionGroup
-						transitionName="shake"
+						transitionName="fade"
 						transitionAppear={true}
 						transitionEnterTimeout={0}
 						transitionAppearTimeout={1000}

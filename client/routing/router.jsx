@@ -9,6 +9,7 @@ import Footer from '/client/components/default/Footer.jsx';
 // Containers
 import Home from '/client/containers/HomeComposer.jsx';
 import ChestsWrapper from '/client/containers/ChestsComposer.jsx';
+import ForgeWrapper from '/client/containers/ForgeComposer.jsx';
 import FullChest from '/client/containers/FullChestComposer.jsx';
 
 // Defining routes
@@ -19,6 +20,18 @@ FlowRouter.route('/', {
 		mount(MainLayout, {
 			navbar: <Navbar />,
 			content: <Home />,
+			footer: <Footer />
+		});
+	}
+});
+
+FlowRouter.route('/forge', {
+	name: 'forge',
+
+	action() {
+		mount(MainLayout, {
+			navbar: <Navbar />,
+			content: <ForgeWrapper />,
 			footer: <Footer />
 		});
 	}

@@ -6,12 +6,17 @@ const placeholder = {
 }
 
 export default class ChestsList extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			itemInfo: ItemInfo.findOne({id: props.chest.id}) || placeholder.infos
+		}
 
 		this.lazyLoad = this.lazyLoad.bind(this);
 		this.showFloatingText = this.showFloatingText.bind(this);
 		this.hideFloatingText = this.hideFloatingText.bind(this);
+		this.setDesc = this.setDesc.bind(this);
 	}
 	
 	shouldComponentUpdate(nextProps, nextState) {
@@ -22,6 +27,27 @@ export default class ChestsList extends Component {
 		this.refs.floatingText.classList.add('show');
 
 		this.getInfo(this.props.chest.id, false);
+
+		if (typeof this.props.chest.desc === 'undefined') {
+			this.setDesc();
+		}
+	}
+
+	setDesc() {
+		let infos = this.state.itemInfo.infos
+		let desc = '';
+
+		if (infos.length > 0) {
+			infos.forEach((info, i) => {
+				desc += info.text.replace(/<br>/g, '') + ' ';
+			});
+
+			Chests.update({_id: this.props.chest._id},  {$set: {desc: desc}}, (err, data) => {
+				if (!err) {
+					console.log('Inserindo descrição para',  this.props.chest.name);
+				}
+			});
+		}
 	}
 
 	hideFloatingText(e) {
@@ -38,7 +64,7 @@ export default class ChestsList extends Component {
 
 	render() {
 		let chest = this.props.chest;
-		let itemInfo = ItemInfo.findOne({id: chest.id}) || placeholder.infos;
+		let itemInfo = this.state.itemInfo;
 		let path = '//static.pwsimulator.com/' + chest.id + '.png';
 
 		return (

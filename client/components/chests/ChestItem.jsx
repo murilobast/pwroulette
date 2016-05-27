@@ -29,7 +29,7 @@ export default class ChestItem extends Component {
 			}
 		}
 
-		this.getInfo(this.props.item.id, false);
+		this.getInfo(this.props.item.id, false);		
 	}
 
 	hideFloatingText(e) {

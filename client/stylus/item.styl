@@ -1,0 +1,59 @@
+.item
+	width 316px
+	height 521px 
+	margin 8px auto 0
+	padding 0 2px
+	text-align left
+	display inline-block
+	position relative
+	&__desc
+		border-radius 3px
+		padding 10px
+		box-sizing border-box
+		background-color rgba(0, 0, 0, .7)
+		position relative
+		box-shadow 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24)
+		&:before
+			content ''
+			border-radius 3px
+			position absolute
+			top 1px
+			bottom 1px
+			right 1px
+			left 1px
+			border 1px solid #76644a
+		p
+			font-size 13px
+			padding 3px 0 
+			color #FFF 
+		&__name
+			font-size 14px
+			color #ff6000
+			margin-bottom 6px
+		&__attr
+			color rgb(128, 128, 255) !important
+		&__adic
+			color rgb(0, 255, 255) !important
+		&__byme
+			color rgb(128, 255, 128) !important
+			
+#roulette
+	padding 20px 0 0
+	display block
+	&__submit
+		text-align center
+		display block
+		margin auto
+		color #FFF
+		background #036 
+		border-radius 3px
+		border 1px solid #333
+		font-size 14px
+		padding 4px 8px
+		transition all 0.4s ease-in-out
+		cursor pointer
+		&:hover
+			background #666
+			
+@media (min-width: 720px)
+	margin-top 0 

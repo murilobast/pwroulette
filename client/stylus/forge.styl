@@ -1,0 +1,109 @@
+.window
+	min-height 312px
+	font-size 0
+	text-align center
+	margin-top 16px
+	.forge, .info
+		display inline-block
+		vertical-align top
+		width 100% 
+		vertical-align top
+		position relative
+.forge-window
+	background-image url('/assets/forge.png')
+	background-repeat no-repeat 
+	width 320px 
+	height 312px
+	display inline-block
+	position relative
+	text-align left
+	&__start
+		position absolute
+		bottom 15px
+		right 24px
+		width 64px
+		height 21px   
+		border 0  
+		border none
+		padding 0
+		color #FFF 
+		overflow hidden
+		background-color transparent 
+		background-image url('/assets/button/_normal.png')
+		background-repeat no-repeat
+		outline 0
+		cursor pointer
+		font-size 12px 
+		&:hover
+			background-image url('/assets/button/_hover.png')
+		&:active
+			background-image url('/assets/button/_pressed.png')
+		&.disabled
+			background-image initial
+	&__items
+		position absolute
+		top 42px
+		right 12px
+		width 296px
+		height 148px
+		padding 2px 0
+		box-sizing border-box
+		&__item
+			width 32px
+			height 32px
+			margin 0 3px 5px 2px
+			float left
+			box-sizing border-box
+			position relative
+			cursor pointer
+			&.active
+				span
+					font-size 13px 
+					padding 1px
+					border-radius 3px
+					background-color rgba(51,51,51,0.8)
+					color #FFF
+					position absolute
+					right 1px
+					bottom 1px
+				&:after
+					content ''
+					position absolute
+					top 0
+					left 0
+					width 32px
+					height 32px
+					display block
+					box-sizing border-box
+					border 2px solid rgba(255, 205, 77, .6)
+	&__require
+		position absolute
+		top 205px
+		left 9px
+		&__item
+			height 61px
+			width 76px 
+			float left 
+			font-size 12px
+			img
+				margin 0 2px
+			&__amount
+				color #FFF
+				padding 6px 
+	&__selected
+		position absolute
+		width 32px
+		height 32px
+		bottom 10px
+		left 86px
+		
+@media (min-width: 720px)
+	.window
+		margin-top 0
+		.forge, .info
+			width 50%
+			text-align right
+			&.centered
+				text-align center
+		.info
+			text-align left
