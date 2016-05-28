@@ -19,6 +19,7 @@ export default class ForgeTabs extends Component {
 	}
 
 	setTab(e) {
+		this.props.clicked();
 		Session.set('currentTab', ~~e.target.value);
 	}
 

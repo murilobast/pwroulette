@@ -8,7 +8,7 @@ function composer(props, onData) {
 	const handleAddons = ChestsSubs.subscribe('addons');
 	
 	if (handleItems.ready() && handleAddons.ready()) {
-		const items = Items.find({}, {sort: {name: 1}}).fetch();
+		const items = Items.find({}, {sort: {id: 1}}).fetch();
 		onData(null, {items});
 	}
 }

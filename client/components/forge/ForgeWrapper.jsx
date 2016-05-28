@@ -21,7 +21,7 @@ export default class ForgeWrapper extends Component {
 						<h2>Roletar Adds</h2>
 					</div>
 				</ReactCSSTransitionGroup>
-				<ForgeItems items={this.props.items} handler={this.props.handleItems}/>
+				<ForgeItems items={this.props.items}/>
 			</section>
 		)
 	}
