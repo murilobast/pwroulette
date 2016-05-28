@@ -24,7 +24,7 @@ kadira:flow-router
 meteorhacks:fast-render
 meteorhacks:subs-manager
 http
-dfischer:prerenderio
+dferber:prerender
 tomwasd:flow-router-seo
 okgrow:analytics
 
