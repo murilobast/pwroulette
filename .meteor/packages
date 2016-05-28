@@ -15,9 +15,9 @@ es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 stylus
+#static-html
 aldeed:simple-schema
 aldeed:collection2
-static-html
 standard-minifier-css
 standard-minifier-js
 kadira:flow-router
@@ -26,3 +26,12 @@ meteorhacks:subs-manager
 http
 dfischer:prerenderio
 tomwasd:flow-router-seo
+
+accounts-password
+accounts-base
+accounts-ui
+alanning:roles
+
+#remove after blaze-free
+blaze-html-templates
+mquandalle:jade

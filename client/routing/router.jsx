@@ -11,6 +11,8 @@ import Home from '/client/containers/HomeComposer.jsx';
 import ChestsWrapper from '/client/containers/ChestsComposer.jsx';
 import ForgeWrapper from '/client/containers/ForgeComposer.jsx';
 import FullChest from '/client/containers/FullChestComposer.jsx';
+import Login from '/client/components/Login.jsx';
+import Dice from '/client/components/Dice.jsx';
 
 // Defining routes
 FlowRouter.route('/', {
@@ -57,6 +59,34 @@ FlowRouter.route('/chest/:id', {
 		mount(MainLayout, {
 			navbar: <Navbar />,
 			content: <FullChest chestId={param.id} />,
+			footer: <Footer />
+		});
+	}
+});
+
+FlowRouter.route('/user', {
+	name: 'login',
+
+	action() {
+		mount(MainLayout, {
+			navbar: <Navbar />,
+			content: <Login />,
+			footer: <Footer />
+		});
+	}
+});
+
+FlowRouter.route('/diceroll', {
+	name: 'dices',
+	
+	subscriptions(params) {
+		this.register('dices', Meteor.subscribe('dices'));
+	},
+
+	action() {
+		mount(MainLayout, {
+			navbar: <Navbar />,
+			content: <Dice />,
 			footer: <Footer />
 		});
 	}

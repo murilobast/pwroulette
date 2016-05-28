@@ -1,0 +1,34 @@
+template(name="dice")
+	.title 
+		h2 Rolar o Dado
+	.diceroll
+		form.diceroll__form#dice
+			.diceroll__form__info
+				label Nome
+				input(type="text" name="name")
+			.diceroll__form__buttons
+				.diceroll__form__buttons__left
+					button(type="submit") Rolar
+				if hasPower
+					.diceroll__form__buttons__right
+						button#reset Resetar
+			.diceroll__form__text
+				if ranking
+					p O resultado do último dado rolado foi: 
+						strong #{lastDice}
+					p Você está em #{ranking}º lugar.
+		if hasResult
+			.diceroll__result
+				each results
+					+diceResult
+		else
+			.diceroll__none
+				p Nenhum dado foi rolado ainda.
+
+
+template(name="diceResult")
+	.diceResult
+		.diceResult__name #{name}
+		.diceResult__value #{value}
+		if hasPower
+			button.diceResult__remove#remove Deletar
