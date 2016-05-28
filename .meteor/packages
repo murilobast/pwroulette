@@ -24,10 +24,9 @@ kadira:flow-router
 meteorhacks:fast-render
 meteorhacks:subs-manager
 http
-dferber:prerender
 tomwasd:flow-router-seo
 okgrow:analytics
-
+spiderable
 accounts-password
 accounts-base
 accounts-ui
