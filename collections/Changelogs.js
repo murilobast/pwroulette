@@ -1,4 +1,4 @@
-Changelogs = new Mongo.Collection('changelogs');
+Changelogs = new Mongo.Collection('changelog');
 
 Changelogs.attachSchema(new SimpleSchema({
 	timestamp: {
@@ -14,15 +14,12 @@ Changelogs.attachSchema(new SimpleSchema({
 
 Changelogs.allow({
 	insert: function () {
-		return true;
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	},
 	update: function () {
-		return true;
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	},
 	remove: function () {
-		return true;
 		return Roles.userIsInRole(Meteor.userId(), 'admin', Meteor.user().emails[0].address);
 	}
 });
