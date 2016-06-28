@@ -4,6 +4,7 @@ export default class Rouletter {
 			return [];
 		}
 
+
 		this.attrs = [];
 		this.reg = new RegExp('([0-9]+)?~([0-9]+)');
 		this.unique = this.prepareWeight(this.shuffleWeight(addons.unique));

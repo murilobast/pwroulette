@@ -23,7 +23,7 @@ export default class ForgeItems extends Component {
 			item = Session.get('selectedItem');
 		}
 
-		let adds = Addons.findOne({id: item.addType});
+		let adds = Addons.findOne({id: item.addType}) || [];
 		let count = Session.get('count-' + item.id) || 0;
 		let addons = [];
 
@@ -36,6 +36,9 @@ export default class ForgeItems extends Component {
 		count++;
 		Session.set('count-' + item.id, count);
 		Session.set('add-' + item.id, addons);
+
+		// Dirty fix
+		this.forceUpdate();
 	}
 
 	clicked() {

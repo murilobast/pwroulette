@@ -1,14 +1,13 @@
 import {composeWithTracker} from 'react-komposer';
 import ForgeWrapper from '/client/components/forge/ForgeWrapper.jsx';
+import items from './items.js';
 
 ChestsSubs = new SubsManager();
 
 function composer(props, onData) {
-	const handleItems = ChestsSubs.subscribe('items');
 	const handleAddons = ChestsSubs.subscribe('addons');
 	
-	if (handleItems.ready() && handleAddons.ready()) {
-		const items = Items.find({}, {sort: {id: 1}}).fetch();
+	if (handleAddons.ready()) {
 		onData(null, {items});
 	}
 }
