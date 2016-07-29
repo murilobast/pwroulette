@@ -18,9 +18,29 @@ Meteor.methods({
 			return;
 
 		} else {
-			// Chests.remove({id: chest.id});
-			console.log('Chest already exist');
+			Chests.remove({id: chest.id});
+			console.log('Chest', chest.id, 'already exist');
+			Meteor.call('createChest', chest);
+			console.log('Delleting and calling it again!');
 		}
+	},
+
+	'updateChests': function () {
+		let chests = Chests.find().fetch();
+		let ids = [];
+
+		for (let chest of chests) {
+			if (!chest.avatar)
+				ids.push(getChestFromItemId(chest.id))
+			console.log(chests.length - ids.length)
+		}
+
+		return ids;
+	},
+
+	'returnData': function (url) {
+
+		return HTTP.call('GET', url);
 	}
 });
 
@@ -40,7 +60,17 @@ function getImage(id, card) {
 				"id": id,
 				"url": 'http://www.pwdatabase.com/images/icons/cards/' + id + '.jpg',
 				type: 'card'
-				}
+			}
 		});
 	}
+}
+
+
+function getChestFromItemId(chestId) {
+	let url = 'http://pwdatabase.com/br/items/' + chestId;
+	let result = HTTP.call('GET', url);
+	let rgxp = /<a href="quest\/([0-9]+)"/;
+	let id = result.content.match(rgxp)[1];
+
+	return id;
 }
