@@ -71,59 +71,60 @@ export default class ChestAddModal extends Component {
 				items: []
 			};
 
-			HTTP.call('GET', 'http://alloworigin.com/get?url=' + encodeURIComponent(url) + '&callback=?', (statusCode, result) => {
-				let htmlString = result.data.contents;
-				let parser = new DOMParser();
-				let doc = parser.parseFromString(htmlString, 'text/html');
-				let content = doc.querySelectorAll('tbody tr:last-of-type td:first-of-type p');
-				let last = doc.querySelector('tbody tr:last-of-type td:last-of-type p');
-				let href = last.querySelector('a').href;
-				let totalWeight = 0;
-				let reg  = /(?:\s-\s([0-9]+)\s)?\(([0-9]+\.?[0-9]*)%\)/;
-				let replace  = /(\([0-9]+\.?[0-9]*%\))/g;
-				let hrefReg = /(:?\/)([0-9]+)/;
-				let start = (reg.test(content[6].textContent)) ? 6 : 7;
-
-				// Caching loop variables
-				let i = 0;
-				let obj = {};
-				let item = {};
-				let name = '';
-				let itemHref = '';
-				let id = 0;
-				let weight = 0;
-				let amount = 0;
-
-				chest.name = last.textContent;
-				chest.id = ~~(href.match(hrefReg)[2]);
-
-				for (i = start; i < content.length; i++) {
-					item = content[i];
-					name = item.textContent;
-					itemHref = item.querySelector('a').href;
-					id = ~~(itemHref.match(hrefReg)[2]);
-					weight = ~~(name.match(reg)[2]);
-					amount = name.match(reg)[1] || 1;
-
-					name = name.replace(reg, '');
-					name = name.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-					totalWeight += weight;
+			Meteor.call('returnData', url, (err, result) => {
+				if (!err) {
+					let htmlString = result.content;
+					let parser = new DOMParser();
+					let doc = parser.parseFromString(htmlString, 'text/html');
+					let content = doc.querySelectorAll('tbody tr:last-of-type td:first-of-type p');
+					let last = doc.querySelector('tbody tr:last-of-type td:last-of-type p');
+					let href = last.querySelector('a').href;
+					let totalWeight = 0;
+					let reg  = /(?:\s-\s([0-9]+)\s)?\(([0-9]+\.?[0-9]*)%\)/;
+					let replace  = /(\([0-9]+\.?[0-9]*%\))/g;
+					let hrefReg = /(:?\/)([0-9]+)/;
+					let start = (reg.test(content[6].textContent)) ? 6 : 7;
 					
-					console.log(totalWeight.toFixed(4));
+					// Caching loop variables
+					let i = 0;
+					let obj = {};
+					let item = {};
+					let name = '';
+					let itemHref = '';
+					let id = 0;
+					let weight = 0;
+					let amount = 0;
 
-					obj = {
-						id,
-						name,
-						weight,
-						amount
+					chest.name = last.textContent;
+					chest.id = parseInt(href.match(hrefReg)[2]);
+					
+
+					for (i = start; i < content.length; i++) {
+						item = content[i];
+						name = item.textContent;
+						itemHref = item.querySelector('a').href;
+						id = parseInt(itemHref.match(hrefReg)[2]); 
+						weight = Number(name.match(reg)[2])
+						amount = name.match(reg)[1] || 1;
+
+						name = name.replace(reg, '');
+						name = name.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+						totalWeight += weight;
+						
+
+						obj = {
+							id,
+							name,
+							weight,
+							amount
+						}
+
+						chest.items.push(obj);
 					}
 
-					chest.items.push(obj);
+					Meteor.call('createChest', chest);
+					this.props.updateState(false);
 				}
-
-				console.log(chest);
-				Meteor.call('createChest', chest);
-				this.props.updateState(false);
 			});
 
 		} else {
