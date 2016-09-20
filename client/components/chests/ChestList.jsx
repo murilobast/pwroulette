@@ -75,7 +75,7 @@ export default class ChestsList extends Component {
 										ref='chestQuery'
 										onChange={this.searchUpdated}
 										placeholder="Digite o nome..."
-										clasName="chests__list__container__header__name__input"
+										className="chests__list__container__header__name__input"
 									/>
 								</div>
 							</div>

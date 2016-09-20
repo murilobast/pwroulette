@@ -82,7 +82,7 @@ export default class ChestDrops extends Component {
 						ref='itemQuery'
 						onChange={this.searchUpdated.bind(this)}
 						placeholder="Digite o nome do item"
-						clasName="chests__drops__input"
+						className="chests__drops__input"
 						disabled={searchState}
 					/>
 					<ul className="chests__drops__list">

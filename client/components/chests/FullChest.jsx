@@ -3,6 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ChestBag from './ChestBag.jsx';
 import ChestDrops from './ChestDrops.jsx';
+import GoogleAd from 'react-google-ad';
 
 const placeholder = {
 	items: []
@@ -26,7 +27,7 @@ export default class FullChest extends Component {
 			meta: {
 				'property="og:title"': props.chest.name + ' - PW Simulator'
 			}
-    });
+		});
 	}
 
 	render() {		
@@ -56,6 +57,7 @@ export default class FullChest extends Component {
 					>
 						<ChestBag chest={chest}/>
 					</ReactCSSTransitionGroup>
+					<GoogleAd client="ca-pub-9211196233969408" slot="4229088511" format="auto" />
 					<ChestDrops list={chest.items} items={items} key="chestDrops"/>
 				</div>
 			</section>

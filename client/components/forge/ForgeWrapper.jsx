@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ForgeItems from './ForgeItems.jsx';
+import GoogleAd from 'react-google-ad';
 
 export default class ForgeWrapper extends Component {
 	constructor(props) {
@@ -21,6 +22,7 @@ export default class ForgeWrapper extends Component {
 						<h2>Roletar Adds</h2>
 					</div>
 				</ReactCSSTransitionGroup>
+				<GoogleAd client="ca-pub-9211196233969408" slot="4229088511" format="auto" />
 				<ForgeItems items={this.props.items}/>
 			</section>
 		)
