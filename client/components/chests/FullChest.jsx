@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ChestBag from './ChestBag.jsx';
 import ChestDrops from './ChestDrops.jsx';
-import GoogleAd from 'react-google-ad';
+import MountAd from '../ads/MountAd.jsx';
 
 const placeholder = {
 	items: []
@@ -55,9 +55,9 @@ export default class FullChest extends Component {
 						transitionAppearTimeout={1000}
 						transitionLeaveTimeout={1000}
 					>
+						<MountAd slot="8764876118" format="auto" type="top"/>
 						<ChestBag chest={chest}/>
 					</ReactCSSTransitionGroup>
-					<GoogleAd client="ca-pub-9211196233969408" slot="4229088511" format="auto" />
 					<ChestDrops list={chest.items} items={items} key="chestDrops"/>
 				</div>
 			</section>

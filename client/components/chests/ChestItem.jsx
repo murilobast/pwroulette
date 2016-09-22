@@ -104,9 +104,9 @@ export default class ChestItem extends Component {
 		if (ItemInfo.find({id: id}, {limit: 1}).count() === 0) {
 			let url = 'http://www.pwdatabase.com/br/items/' + id;
 
-			HTTP.call('GET', 'http://alloworigin.com/get?url=' + encodeURIComponent(url) + '&callback=?', (statusCode, result) => {
-				if (result.data !== null) {
-					let htmlString = result.data.contents;
+			Meteor.call('returnData', url, (err, result) => {
+				if (!err) {
+					let htmlString = result.content;
 					let parser = new DOMParser();
 					let doc = parser.parseFromString(htmlString, 'text/html');
 					let infos = doc.querySelectorAll('.iteminfo > span');
@@ -144,10 +144,7 @@ export default class ChestItem extends Component {
 							console.log('Inserindo informações do item', id);
 						});
 					}
-
-					return;
 				}
-				console.log('Limite de conexões excedido!');
 			});
 		}
 	}
