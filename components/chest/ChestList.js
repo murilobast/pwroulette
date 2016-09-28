@@ -6,7 +6,6 @@ import S from 'string'
 import ChestItem from './ChestItem'
 import ChestAdd from './ChestAdd'
 import colors from '../../vars/colors'
-import chests from '../../vars/chests'
 
 const { height, width } = Dimensions.get('window')
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
@@ -14,18 +13,30 @@ const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
 export default class ChestList extends Component {
 	constructor(props) {
 		super(props)
-		let data = [...chests, ...chests, ...chests, ...chests]
 
 
 		this.state = {
-			chests: data,
-			chestDataSource: ds.cloneWithRows(data),
+			chests: [],
+			chestDataSource: ds.cloneWithRows([]),
 			modalVisible: false
 		}
 
 		this._hideModal = this._hideModal.bind(this)
 		this._openModal = this._openModal.bind(this)
 		this._filterChests = this._filterChests.bind(this)
+	}
+
+	componentDidMount() {
+		return fetch('http://api.pwsimulator.com?q=all')
+			.then((response) => response.json())
+			.then((responseJson) => {
+				this.setState({ chestDataSource: ds.cloneWithRows(responseJson), chests: responseJson })
+
+				return
+			})
+			.catch((error) => {
+				console.error(error)
+			})
 	}
 
 	_hideModal() {
@@ -44,24 +55,27 @@ export default class ChestList extends Component {
 		})
 
 		this.setState({ chestDataSource: ds.cloneWithRows(chests) })
+		this._scrollView.scrollTo({ y: 0 }, true)
 	}
 
 	render() {
 		return (
 			<View style={ styles.container }>
 				<View style={ styles.header }>
+					<Text style={ styles.title }>Selecione um baú</Text>
 					<TextInput 
 						style={ styles.search }
 						autoCorrect={ false }
 						blurOnSubmit={ true }
 						underlineColorAndroid={ colors.main }
 						onChangeText={(text) => { this._filterChests(text) }}
-						defaultValue={ 'Pesquisar...' }
 					/>
 				</View>
 				<ListView
+					ref={(scrollView) => { this._scrollView = scrollView; }}
 					initialListSize={ 12 }
-					scrollRenderAheadDistance={ 2 }
+					pageSize={ 12 }
+					scrollRenderAheadDistance={ 12 }
 					dataSource={ this.state.chestDataSource }
 					renderHeader={ this._renderHeader }
 					renderRow={(chest) => { return this._renderItemRow(chest) }}
@@ -94,7 +108,12 @@ const styles = StyleSheet.create({
 
 	header: {
 		paddingHorizontal: 12,
-		// paddingVertical: 8
+		paddingTop: 12
+	},
+
+	title: {
+		fontSize: 20,
+		color: '#fff'
 	},
 
 	search: {
