@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { StyleSheet, DrawerLayoutAndroid, View, Text, ToolbarAndroid } from 'react-native'
+import { StyleSheet, StatusBar, DrawerLayoutAndroid, View, Text, ToolbarAndroid } from 'react-native'
 // Local imports
 import colors from '../../vars/colors'
 import NavigationView from './NavigationView'
 
 export default class ViewContainer extends Component {
 	render() {
-		console.log('dafuq', colors)
 		return (
 			<DrawerLayoutAndroid
 				ref={(ref) => this._drawer = ref }
@@ -14,9 +13,12 @@ export default class ViewContainer extends Component {
 				drawerPosition={ DrawerLayoutAndroid.positions.Left }
 				renderNavigationView={ () => <NavigationView/> }
 			>
+				<StatusBar
+					backgroundColor={ colors.mainDarker }
+				/>
 				<ToolbarAndroid
-					style={ styles.toolbar }
-					// navIcon={ require('image!ic_menu_white_24dp') }
+					style={[ styles.toolbar ]}
+					navIcon={ require('image!ic_menu_white_24dp') }
 					onIconClicked={() => { this._drawer.openDrawer() }}
 				>
 					<Text style={ styles.titleFirst }>PW</Text>
@@ -31,14 +33,6 @@ export default class ViewContainer extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignSelf: 'stretch',
-		backgroundColor: '#eee',
-		width: null,
-		height: null
-	},
-
 	content: {
 		flex: 1,
 		backgroundColor: '#333'
@@ -57,6 +51,7 @@ const styles = StyleSheet.create({
 
 	toolbar: {
 		backgroundColor: colors.main,
-		height: 56
+		height: 56,
+		elevation: 3
 	}
 })

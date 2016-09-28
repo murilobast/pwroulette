@@ -7,9 +7,9 @@ export default class NavigationView extends Component {
 	render() {
 		return (
 			<ScrollView style={ styles.container }>
-				<Text style={ styles.item }>First Item</Text>
-				<Text style={ styles.item }>Second Item</Text>
-				<Text style={ styles.item }>Third Item</Text>
+				<Text style={ styles.item }>Listagem</Text>
+				<Text style={ styles.item }>Adicionar Baú</Text>
+				<Text style={ styles.item }>Sobre</Text>
 			</ScrollView>
 		)
 	}
