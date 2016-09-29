@@ -4,6 +4,12 @@ import { StyleSheet, TouchableNativeFeedback, View, Image, Text } from 'react-na
 import colors from '../../vars/colors'
 
 export default class ChestItem extends Component {
+	constructor(props) {
+		super(props)
+
+		this._goToChest = this._goToChest.bind(this)
+	}
+
 	render() {
 		let chest = this.props.chest
 
@@ -23,7 +29,14 @@ export default class ChestItem extends Component {
 	}
 
 	_goToChest() {
-		this.props.navigator.push({ name: 'chest', data: chest })
+		return fetch('http://api.pwsimulator.com?q=' + this.props.chest.id)
+			.then((response) => response.json())
+			.then((responseJson) => {
+				this.props.navigator.push({ name: 'chest', data: responseJson[0] })
+			})
+			.catch((error) => {
+				console.error(error)
+			})
 	}
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Dimensions, Modal, View, ListView, Text, TextInput } from 'react-native'
+import { StyleSheet, Dimensions, RecyclerViewBackedScrollView, Modal, View, ListView, Text, TextInput } from 'react-native'
 import ActionButton from 'react-native-action-button'
 import S from 'string'
 // Local imports
@@ -73,13 +73,13 @@ export default class ChestList extends Component {
 				</View>
 				<ListView
 					ref={(scrollView) => { this._scrollView = scrollView; }}
+					scrollRenderAheadDistance={ 12 }
 					initialListSize={ 12 }
 					pageSize={ 12 }
-					scrollRenderAheadDistance={ 12 }
 					dataSource={ this.state.chestDataSource }
-					renderHeader={ this._renderHeader }
 					renderRow={(chest) => { return this._renderItemRow(chest) }}
 					enableEmptySections={ true }
+					renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
 				/>
 				 <Modal
 					animationType={ 'slide' }
@@ -118,6 +118,7 @@ const styles = StyleSheet.create({
 
 	search: {
 		color: '#eee',
-		fontSize: 16
+		fontSize: 16,
+		padding: 4
 	}
 })
