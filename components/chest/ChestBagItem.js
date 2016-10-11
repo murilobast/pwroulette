@@ -29,16 +29,10 @@ export default class ChestItem extends Component {
 	}
 
 	_goToChest() {
-		this.props.setLoader(true)
-
 		return fetch('http://api.pwsimulator.com?q=' + this.props.chest.id)
 			.then((response) => response.json())
 			.then((responseJson) => {
-				this.props.setLoader(false)
-
 				this.props.navigator.push({ name: 'chest', data: responseJson[0] })
-
-				return
 			})
 			.catch((error) => {
 				console.error(error)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, StatusBar, DrawerLayoutAndroid, View, Text, ToolbarAndroid } from 'react-native'
+import { StyleSheet, StatusBar, DrawerLayoutAndroid, View, Image, Text, ToolbarAndroid } from 'react-native'
 // Local imports
 import colors from '../../vars/colors'
 import NavigationView from './NavigationView'
@@ -24,9 +24,11 @@ export default class ViewContainer extends Component {
 					<Text style={ styles.titleFirst }>PW</Text>
 					<Text style={ styles.titleSecond }>SIMULATOR</Text>
 				</ToolbarAndroid>
-				<View style={ styles.content }>
-					{ this.props.children }
-				</View>
+				<Image source={{ uri: 'http://cdn.wallpapersafari.com/43/54/KgpyxG.jpg' }} style={ styles.content }>
+					<View style={{ backgroundColor: colors.background, flex: 1 }}>
+						{ this.props.children }
+					</View>
+				</Image>
 			</DrawerLayoutAndroid>
 		)
 	}

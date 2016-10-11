@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Navigator, BackAndroid } from 'react-native'
 // Local imports
 import ChestList from '../components/chest/ChestList'
-import ChestBag from '../components/chest/ChestBag'
+import ChestBagWrapper from '../components/chest/ChestBagWrapper'
 
 let navigator = {};
 
@@ -36,7 +36,7 @@ export default class AppNavigator extends Component {
 
 			case 'chest':
 				return (
-					<ChestBag
+					<ChestBagWrapper
 						chest={ route.data }
 						{ ...globalNavigatorProps }
 					/>
@@ -53,7 +53,7 @@ export default class AppNavigator extends Component {
 				ref={(nav) => { navigator = nav }}
 				renderScene={ this._renderScene }
 				configureScene={(route) => ({
-					...route.sceneConfig || Navigator.SceneConfigs.PushFromRight
+					...route.sceneConfig || Navigator.SceneConfigs.HorizontalSwipeJump
 				})}
 			/>
 		)

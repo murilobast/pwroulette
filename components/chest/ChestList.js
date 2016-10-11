@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Dimensions, RecyclerViewBackedScrollView, Modal, View, ListView, Text, TextInput } from 'react-native'
+import { StyleSheet, Dimensions, ActivityIndicator, Modal, View, ListView, Text, TextInput } from 'react-native'
 import ActionButton from 'react-native-action-button'
 import S from 'string'
 // Local imports
@@ -14,23 +14,28 @@ export default class ChestList extends Component {
 	constructor(props) {
 		super(props)
 
-
 		this.state = {
 			chests: [],
 			chestDataSource: ds.cloneWithRows([]),
+			loading: true,
 			modalVisible: false
 		}
 
 		this._hideModal = this._hideModal.bind(this)
 		this._openModal = this._openModal.bind(this)
 		this._filterChests = this._filterChests.bind(this)
+		this._setLoader = this._setLoader.bind(this)
 	}
 
 	componentDidMount() {
 		return fetch('http://api.pwsimulator.com?q=all')
 			.then((response) => response.json())
 			.then((responseJson) => {
-				this.setState({ chestDataSource: ds.cloneWithRows(responseJson), chests: responseJson })
+				this.setState({
+					chestDataSource: ds.cloneWithRows(responseJson),
+					chests: responseJson,
+					loading: false
+				})
 
 				return
 			})
@@ -59,6 +64,12 @@ export default class ChestList extends Component {
 	}
 
 	render() {
+		let loader = (this.state.loading)
+			? <View style={ styles.loaderWrapper }>
+				<ActivityIndicator style={ styles.loader } animating={ true } color={ '#fff' }/>
+			</View>
+			: null
+
 		return (
 			<View style={ styles.container }>
 				<View style={ styles.header }>
@@ -67,19 +78,16 @@ export default class ChestList extends Component {
 						style={ styles.search }
 						autoCorrect={ false }
 						blurOnSubmit={ true }
-						underlineColorAndroid={ colors.main }
 						onChangeText={(text) => { this._filterChests(text) }}
+						underlineColorAndroid={ '#eee' }
 					/>
 				</View>
 				<ListView
 					ref={(scrollView) => { this._scrollView = scrollView; }}
-					scrollRenderAheadDistance={ 12 }
 					initialListSize={ 12 }
-					pageSize={ 12 }
 					dataSource={ this.state.chestDataSource }
 					renderRow={(chest) => { return this._renderItemRow(chest) }}
 					enableEmptySections={ true }
-					renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
 				/>
 				 <Modal
 					animationType={ 'slide' }
@@ -90,13 +98,18 @@ export default class ChestList extends Component {
 					<ChestAdd/>
 				</Modal>
 				 <ActionButton onPress={ this._openModal } buttonColor={ colors.mainDarker }/>
+				{ loader }
 			</View>
 		)
 	}
 
+	_setLoader(loading) {
+		this.setState({ loading })
+	}
+
 	_renderItemRow(chest) {
 		return (
-			<ChestItem chest={ chest } navigator={ this.props.navigator }/>
+			<ChestItem chest={ chest } navigator={ this.props.navigator } setLoader={ this._setLoader }/>
 		)
 	}
 }
@@ -104,6 +117,26 @@ export default class ChestList extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
+	},
+
+	loaderWrapper: {
+		flex: 1,
+		position: 'absolute',
+		top: 0,
+		backgroundColor: colors.backgroundLight,
+		width,
+		height
+		
+	},
+	
+	loader: {
+		flex: 1,
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		alignItems: 'center',
+		height
 	},
 
 	header: {

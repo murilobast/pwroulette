@@ -1,64 +1,48 @@
 import React, { Component } from 'react'
-import { StyleSheet, View, Image, Text } from 'react-native'
+import { StyleSheet, Dimensions, ScrollView, View, Image, Text } from 'react-native'
 // Local imports
 import colors from '../../vars/colors'
-import ChestDrops from './ChestDrops'
+import ChestItem from './ChestItem'
+
+const { height, width } = Dimensions.get('window')
+const itemSize = ((width - 24) - 48) / 8
 
 export default class ChestBag extends Component {
 	render() {
-		let chest = this.props.chest
+		const items = this.props.items
 
-		return (
-			<View style={ styles.container }>
-				<View style={ styles.header }>
-					<Image
-						style={ styles.icon }
-						source={{ uri: 'http://static.pwsimulator.com/' + chest.id + '.png' }}
-					/>
-					<Text style={ styles.name }>{ chest.name }</Text>
-				</View>
-				<Text style={ styles.desc }>{ chest.desc }</Text>
-				<View style={ styles.itemList }>
-					<ChestDrops items={ chest.items }/>
-				</View>
-			</View>
-		)
+		const maxHeight = (items.length / 8) * itemSize + 12
+
+		return <View style={ styles.bag }>
+			{items.map((item, i) => {
+				return <Image
+					key={ i }
+					style={ styles.icon }
+					source={{ uri: 'http://static.pwsimulator.com/' + item.id + '.png' }}
+				/>
+			})}
+		</View>
 	}
 }
 
 const styles = StyleSheet.create({
-	container: {
+	bag: {
 		flex: 1,
-		backgroundColor: '#333'
-	},
-
-	header: {
-		alignItems: 'center',
-		flexDirection: 'row',
+		backgroundColor: colors.backgroundLight,
+		height: (width / 1.5),
+		width: (width - 24),
+		marginHorizontal: 12,
+		marginBottom: 12,
 		borderRadius: 2,
-		padding: 12,
-		paddingBottom: 0
+		padding: 8,
+		elevation: 2,
+		flexDirection: 'row',
+		flexWrap: 'wrap'
 	},
 
 	icon: {
-		width: 38,
-		height: 38
-	},
-
-	name: {
-		color: '#fff',
-		fontSize: 18,
-		marginLeft: 8
-	},
-
-	desc: {
-		marginHorizontal: 12,
-		marginBottom: 12,
-		paddingVertical: 4,
-		color: '#eee'
-	},
-
-	itemList: {
-		flex: 1
+		width: itemSize,
+		height: itemSize,
+		margin: 2
 	}
 })
