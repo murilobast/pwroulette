@@ -1,19 +1,21 @@
-import React, {Component} from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+// Local imports
+import MountAd from './ads/MountAd.jsx'
 
 export class Home extends Component {
 	constructor() {
-		super();
-		prerenderReady = true;
+		super()
+		prerenderReady = true
 	}
 
 	changelogs() {
 		if (typeof Changelogs.find !== 'undefined')
-			return Changelogs.find({}, {sort: {timestamp: 'desc'}}).fetch();
+			return Changelogs.find({}, {sort: {timestamp: 'desc'}}).fetch()
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		return false;
+		return false
 	}
 
 	render() {
@@ -46,17 +48,17 @@ export class Home extends Component {
 								<a href="/chest" className="home__sections__section__item">Abrir Baús</a>
 							</li>
 						</ul>
-						<Changelogs changelogs={this.props.changelogs} />
+						<MountAd slot="8764876118" format="auto" type="top"/>
 					</ReactCSSTransitionGroup>
 				</div>
 			</section>
 		)
 	}
-};
+}
 
 export class Changelogs extends React.Component {
 	render() {
-		let changelogs = this.props.changelogs;
+		let changelogs = this.props.changelogs
 
 		return (
 			<div className="home__changelog">
@@ -75,7 +77,7 @@ export class Changelogs extends React.Component {
 
 export class Changelog extends React.Component {
 	render() {
-		let changelog = this.props.changelog;
+		let changelog = this.props.changelog
 		
 		return (
 			<li className="home__changelog__content__item">
@@ -90,4 +92,4 @@ export class Changelog extends React.Component {
 	}
 }
 
-export default Home;
+export default Home

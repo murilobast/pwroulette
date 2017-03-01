@@ -76,8 +76,8 @@ export default class ChestAddModal extends Component {
 					let htmlString = result.content;
 					let parser = new DOMParser();
 					let doc = parser.parseFromString(htmlString, 'text/html');
-					let content = doc.querySelectorAll('tbody tr:last-of-type td:first-of-type p');
-					let last = doc.querySelector('tbody tr:last-of-type td:last-of-type p');
+					let content = doc.querySelectorAll('#content > table:first-of-type tbody tr:last-of-type td:first-of-type p');
+					let last = doc.querySelector('#content > table:first-of-type tbody tr:last-of-type td:last-of-type p');
 					let href = last.querySelector('a').href;
 					let totalWeight = 0;
 					let reg  = /(?:\s-\s([0-9]+)\s)?\(([0-9]+\.?[0-9]*)%\)/;
@@ -94,11 +94,11 @@ export default class ChestAddModal extends Component {
 					let id = 0;
 					let weight = 0;
 					let amount = 0;
+					let percent = 0;
 
 					chest.name = last.textContent;
 					chest.id = parseInt(href.match(hrefReg)[2]);
 					
-
 					for (i = start; i < content.length; i++) {
 						item = content[i];
 						name = item.textContent;
@@ -111,6 +111,8 @@ export default class ChestAddModal extends Component {
 						name = name.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 						totalWeight += weight;
 						
+						percent += weight
+						console.log(percent)
 
 						obj = {
 							id,
