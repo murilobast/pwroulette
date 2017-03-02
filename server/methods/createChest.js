@@ -8,22 +8,27 @@ Meteor.methods({
 					getImage(chest.id)
 
 					chest.items.forEach((val, i) => {
+						if (chest.avatar) {
+							getImage(val.id, true)
+
+							return
+						}
+
 						getImage(val.id, false)
 					
-						if (i + 1 === chest.items.length && chest.avatar)
-							getImage(val.id, true)
 					})
 				}
 			})
 
 			return
-		} else {
-			Chests.remove({ id: chest.id }, () => {
-				console.log('Chest', chest.id, 'already exist')
-				Meteor.call('createChest', chest)
-				console.log('Delleting and calling it again!')			
-			});
 		}
+
+		return // fix?
+		// Chests.remove({ id: chest.id }, () => {
+		// 	console.log('Chest', chest.id, 'already exist')
+		// 	Meteor.call('createChest', chest)
+		// 	console.log('Delleting and calling it again!')			
+		// });
 	},
 
 	'updateChests': () => {
@@ -33,6 +38,7 @@ Meteor.methods({
 		for (let chest of chests) {
 			if (!chest.avatar)
 				ids.push(getChestFromItemId(chest.id))
+
 			console.log(chests.length - ids.length)
 		}
 
