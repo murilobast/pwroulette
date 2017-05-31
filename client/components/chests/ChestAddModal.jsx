@@ -102,6 +102,8 @@ export default class ChestAddModal extends Component {
 					for (i = start; i < content.length; i++) {
 						item = content[i];
 						name = item.textContent;
+						console.log(item.querySelector('a'))
+						return
 						itemHref = item.querySelector('a').href;
 						id = parseInt(itemHref.match(hrefReg)[2]); 
 						weight = Number(name.match(reg)[2])
