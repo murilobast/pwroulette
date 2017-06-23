@@ -1,0 +1,128 @@
+// Local variables
+$timing = .5s
+
+.main-header
+	line-height 45px
+	position fixed
+	top 0
+	left 0
+	right 0
+	z-index 10
+	transition all $timing ease-in-out
+	background-color $color-main
+	box-shadow $depth-2
+
+	.container
+		z-index 10
+		transition all $timing ease-in-out
+		padding 12px
+
+	&--menu
+		.main-header
+			&__logo
+				margin 48px 0 0 calc(50% - 30px)
+				transition background-image $timing ease-in-out, margin .3s ease-in-out .3s
+
+			&__mask
+				transform scale(1)
+				opacity 1
+				height 100%
+				transition transform $timing ease-in-out, opacity .3s ease-in-out .3s, height 0s
+
+			&__menu
+				height calc(100% - 60px)
+				opacity 1
+				transition opacity $timing ease-in-out .7s, height 0s .2s
+
+			&__button
+				background-image url('../../../assets/icons/close.svg')
+
+	&__mask
+		background-color #fff
+		position fixed
+		z-index -1
+		top 0
+		bottom 0
+		left 0
+		right 0
+		height 0
+		transform scale(0)
+		opacity 0
+		transition transform .4s ease-in-out .7s, opacity .3s ease-in-out .5s, height 0s ease-in-out .7s
+
+	&__logo, &__menu, &__link
+		display inline-block
+		vertical-align top
+		line-height 45px
+
+	&__menu
+		+below($breakpoint-mobile)
+			position fixed
+			top 60px
+			bottom 0
+			left 0
+			right 0
+			height 100%
+			display flex
+			flex-direction column
+			justify-content center
+			align-items center
+			opacity 0
+			height 0
+			transition opacity $timing ease-in-out .2s, height 0s ease-in-out .7s
+
+	&__logo
+		margin 0 24px 0 0
+		height 45px
+		width 60px
+		font-size 32px
+		color #fff
+		line-height 45px
+		font-weight 500
+		// mask url('../../../assets/logo-default.svg')
+		// mask-image url('../../../assets/logo-default.svg')
+
+	&__link
+		a
+			font-size 17px
+			letter-spacing .76px
+			font-weight 400
+			color #fff
+			margin 0 12px
+			font-weight normal
+			transition all $timing ease-in-out
+
+		+below($breakpoint-mobile)
+			display block
+			line-height 52px
+
+
+	&__button
+		display none
+		background-image url('../../../assets/icons/menu.svg')
+
+		+below($breakpoint-mobile)
+			display block
+			height 24px
+			width 35px
+			border 0
+			bottom 0
+			top 0
+			right 20px
+			margin auto
+			position absolute
+			background-color transparent
+			background-position center
+			background-repeat no-repeat
+			outline 0
+			transition background-image $timing
+
+	// Colors
+	&--lottery
+		.main-header
+			&__logo svg g
+				fill url(#sweepstakes)
+
+			&__link a
+				color $color-brand-lottery-dark
+ 

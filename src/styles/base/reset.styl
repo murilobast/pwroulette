@@ -1,0 +1,31 @@
+body:before
+	content ''
+	position fixed
+	top 0
+	bottom 0
+	width 100%
+	z-index -1
+	background-image url('../assets/images/bg.jpg')
+	background-size cover
+	background-position center top
+	background-repeat no-repeat
+
+body, html, h1, h2, h3, h4, h5, p, ul, li
+	padding 0
+	margin 0
+
+ul, li
+	list-style none
+
+body, html
+	font-family $font-default
+	-webkit-font-smoothing antialiased
+	background-color $color-light-transparent
+	min-height 200vh
+
+a
+	text-decoration none
+	color inherit
+
+object
+	display none

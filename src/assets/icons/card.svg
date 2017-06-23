@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="113px" height="65px" viewBox="0 0 113 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Slice 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="20.0593772%" y1="82.0092749%" x2="95.3716979%" y2="31.3154849%" id="linearGradient-1">
+            <stop stop-color="#EF3359" offset="0%"></stop>
+            <stop stop-color="#F34A42" offset="49.8047167%"></stop>
+            <stop stop-color="#F34A42" offset="49.8047167%"></stop>
+            <stop stop-color="#F44C40" offset="54.3745958%"></stop>
+            <stop stop-color="#F7622C" offset="99.4665801%"></stop>
+            <stop stop-color="#F7622C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-Copy">
+            <rect id="Rectangle-8" fill="url(#linearGradient-1)" x="0" y="0" width="113" height="65" rx="4.2"></rect>
+            <rect id="Rectangle-8" fill="#FFFFFF" x="9.06790123" y="27.2580645" width="14.6481481" height="8.38709677" rx="1.4"></rect>
+        </g>
+    </g>
+</svg>

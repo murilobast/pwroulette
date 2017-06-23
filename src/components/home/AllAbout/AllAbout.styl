@@ -1,0 +1,107 @@
+.all-about
+	display block
+	margin-top 128px
+	text-align center
+
+	+below($breakpoint-mobile)
+		margin-top 94px
+
+	&__pre
+		font-size 24px
+		line-height 28px
+		letter-spacing 2.8px
+		margin-bottom 33px
+		color $color-dark-gray
+
+	&__cards
+		display flex
+		justify-content space-around
+		align-items stretch
+		padding 0 3%
+		margin-top 128px
+
+		+below($breakpoint-mobile)
+			flex-direction column
+			margin-top 71px
+
+	&__card
+		background-color #fff
+		width 28%
+		display inline-block
+		vertical-align top
+		border-radius 10px 10px 0 0
+		box-shadow 0 28px 32px 0px rgba(0, 0, 0, .20)
+		margin-bottom 92px
+		font-size 0
+		position relative
+
+		+below($breakpoint-mobile)
+			width 100%
+
+	&__image
+		width 100%
+
+	&__title
+		font-size 31px
+		line-height 37px
+		letter-spacing 3.6px
+		color $color-dark-brown
+		font-weight normal
+		border-bottom 1px solid $color-gray
+		padding 15px 0
+
+	&__links
+		margin-bottom 60px
+
+	&__link
+		text-align left
+		padding 16px 10px
+		border-bottom 1px solid $color-gray
+
+		a
+			width 100%
+			font-size 15px
+			line-height 18px
+			letter-spacing 1.7px
+			color $color-light-black
+			display block
+			white-space nowrap
+			overflow hidden
+			text-overflow ellipsis
+
+
+	&__more
+		width 66px
+		height 66px
+		border-radius 50%
+		background-color red
+		font-size 37px
+		line-height 66px
+		letter-spacing 4.3em
+		text-align center
+		display block
+		color #fff
+		position absolute
+		left 0
+		right 0
+		margin auto
+		bottom -33px
+		transition all .3s ease-in-out
+		cursor pointer
+
+		+above($breakpoint-mobile)
+			&:hover
+				box-shadow 0 26px 46px -14px rgba(0, 0, 0, .32)
+
+		&--cartoes
+			background-color $color-brand-cards
+
+		&--seguros
+			background-color $color-brand-insurance
+
+		&--investimento
+			background-color $color-brand-money
+
+		span
+			display inline-block
+			width 17px

@@ -1,0 +1,20 @@
+<!doctype html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>Star</title>
+	</head>
+	<body>
+		<div id="root">
+			<% if (htmlWebpackPlugin.options.markup) { %>
+				<%= htmlWebpackPlugin.options.markup %>
+			<% } %>
+		</div>
+		<!-- <link href="https://fonts.googleapis.com/css?family=Rubik:300,400" rel="stylesheet"> -->
+		<% if (htmlWebpackPlugin.options.preloadedState) { %>
+			<script>
+				window.__STATE__ = JSON.stringify(<%= htmlWebpackPlugin.options.preloadedState %>).replace(/</g, '\\u003c');
+			</script>
+		<% } %>
+	</body>
+</html>

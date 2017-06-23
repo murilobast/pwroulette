@@ -1,0 +1,91 @@
+$facebook = #39559F
+$twitter = #1CC4FF
+$linkedin = #1686B0
+$whatsapp = #0DD562
+
+.social
+	display block
+
+	+below($breakpoint-mobile)
+		width 100%
+
+	&__item
+		height 40px
+		line-height 40px
+		background-color red
+		display inline-block
+		width 25%
+		cursor pointer
+		text-align center
+		vertical-align top
+		transition all .3s ease-in-out
+
+		a
+				background-position center
+				background-repeat no-repeat
+				background-size 21px 21px
+				display inline-block
+				height 40px
+				width 100%
+				line-height 40px
+				vertical-align middle
+
+		&--rounded
+			width 40px
+			border-radius 50%
+			margin 0 6px
+
+			+below($breakpoint-mobile)
+				border-radius 0
+
+		+below($breakpoint-mobile)
+			width 25%
+			margin 0
+
+		&--facebook
+			background-color $facebook
+
+			&:hover
+				background-color darken($facebook, 15%)
+
+			&:active
+				background-color darken($facebook, 25%)
+
+			a
+				background-image url('../../../assets/icons/facebook.svg')
+
+		&--twitter
+			background-color $twitter
+
+			&:hover
+				background-color darken($twitter, 15%)
+
+			&:active
+				background-color darken($twitter, 25%)
+
+			a
+				background-image url('../../../assets/icons/twitter.svg')
+
+		&--linkedin
+			background-color $linkedin
+
+			&:hover
+				background-color darken($linkedin, 15%)
+
+			&:active
+				background-color darken($linkedin, 25%)
+
+			a
+				background-image url('../../../assets/icons/linkedin.svg')
+
+		&--whatsapp
+			background-color $whatsapp
+
+			&:hover
+				background-color darken($whatsapp, 15%)
+
+			&:active
+				background-color darken($whatsapp, 25%)
+
+			a
+				background-image url('../../../assets/icons/whatsapp.svg')

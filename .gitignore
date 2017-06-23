@@ -1,0 +1,10 @@
+yarn.lock
+node_modules
+build
+server/renderer.js
+server/static/*
+*.renderer.js
+.DS_Store
+dist
+.vscode
+.vscode/*

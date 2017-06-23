@@ -1,0 +1,45 @@
+.main-footer
+	display none
+	background-color $color-black
+	padding 55px 0
+
+	&__links, &__section, &__info
+		display inline-block
+		vertical-align top
+
+	&__section
+		+below($breakpoint-mobile)
+			width 50%
+
+	&__info
+		margin-right 80px
+
+	&__logo
+		width 117px
+		margin-bottom 43px
+
+	&__help
+		font-size 14px
+		line-height 17px
+		display block
+		color #fff
+		margin-bottom 12px
+
+	&__link a
+		font-size 12px
+		line-height 15px
+		padding 15px 0
+		margin 0 12px
+		display block
+		color #fff
+
+		+below($breakpoint-mobile)
+			margin 0
+
+	&__copyright
+		margin 54px 0 37px
+		font-size 14px
+		line-height 17px
+		color #fff
+		text-align center
+		display block
