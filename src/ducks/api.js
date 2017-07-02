@@ -8,10 +8,15 @@ import S from 'string'
 import pender from 'helpers/pender'
 
 const GET_CHEST_LIST = 'api/GET_CHEST_LIST'
+const GET_SINGLE_CHEST = 'api/GET_SINGLE_CHEST'
 const FILTER_CHESTS = 'api/FILTER_CHESTS'
 
 const fetchChests = () =>
 	fetch('http://localhost:8001/?q=all')
+		.then(res => res.json())
+
+const fetchSingleChest = id =>
+	fetch(`http://localhost:8001/?q=${id}`)
 		.then(res => res.json())
 
 export const getChestList = createPromiseAction({
@@ -19,16 +24,21 @@ export const getChestList = createPromiseAction({
 	promiseCreator: fetchChests
 })
 
+export const getSingleChest = createPromiseAction({
+	type: GET_SINGLE_CHEST,
+	promiseCreator: fetchSingleChest
+})
+
 export const filterChests = createAction(FILTER_CHESTS, filter => filter)
 
 const initialState = Map({
 	pending: Map({
 		getChestList: true,
-		getPostData: true,
-		getCategoryPosts: true
+		getSingleChest: true
 	}),
 	apiChests: [],
-	chests: []
+	chests: [],
+	chest: {}
 })
 
 export default handleActions({
@@ -47,6 +57,13 @@ export default handleActions({
 		onFulfill: (state, action) => {
 			return state.set('apiChests', action.payload)
 				.set('chests', action.payload)
+		}
+	}),
+	...pender({
+		type: GET_SINGLE_CHEST,
+		name: 'getSingleChest',
+		onFulfill: (state, action) => {
+			return state.set('chest', action.payload)
 		}
 	})
 }, initialState)

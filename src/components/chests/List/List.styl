@@ -1,32 +1,38 @@
-.chest-list	
+.chest-list
 	&__item
 		margin 8px 0
-		padding 12px
+		padding 12px 12px 12px 46px
 		background-color $color-transparent
 		border-radius 2px
 		box-shadow $depth-1
 		display inline-block
 		width 100%
+		min-height 58px
 		box-sizing border-box
 		transition all .3s ease-in-out
-		
+		position relative
+		border 1px solid $color-light-transparent
+
 		+above($breakpoint-mobile)
 			width calc(50% - 12px)
-			
+
 			&:nth-child(odd)
 				margin-right 12px
 
 			&:nth-child(even)
 				margin-left 12px
-				
+
 			&:hover
 				box-shadow $depth-2
-				
+
 
 	&__image
-		display inline-block
+		position absolute
+		top 12px
+		left 12px
 		line-height 32px
-		vertical-align top
+		height 32px
+		width 32px
 
 	&__name
 		font-size 18px

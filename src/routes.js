@@ -36,6 +36,14 @@ const routes = (
 					.catch(errorOnLoadingRoute)
 			}}
 		/>
+		<Route
+			path={'/chest/:id'}
+			getComponent={(location, cb) => {
+				System.import('./containers/routes/Chest')
+					.then(loadRoute(cb, null))
+					.catch(errorOnLoadingRoute)
+			}}
+		/>
 	</Route>
 )
 

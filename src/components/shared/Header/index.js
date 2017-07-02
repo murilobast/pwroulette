@@ -57,15 +57,17 @@ class Header extends Component {
 
 		return (
 			<header className={classes}>
-				<div className="main-header__mask" />
+				<div
+					role="button"
+					className="main-header__mask"
+					onClick={this.clickHandler}
+				/>
 				<Wrapper>
 					<div className="main-header__logo">
 						PWS
 					</div>
 					<Menu
 						onMenuClick={this.clickHandler}
-						inverted={inverted}
-						showMenu={showMenu}
 					/>
 				</Wrapper>
 			</header>

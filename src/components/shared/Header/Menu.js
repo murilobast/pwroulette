@@ -1,7 +1,8 @@
+import { Link } from 'react-router'
+
 const menuLinks = [
-	{ title: 'Forja', href: '#' },
-	{ title: 'Baús', href: '#' },
-	{ title: 'Sobre', href: '#' }
+	{ title: 'Home', href: '/' },
+	{ title: 'Baús', href: '/chests/' }
 ]
 
 const Menu = ({ onMenuClick }) =>  (
@@ -13,7 +14,12 @@ const Menu = ({ onMenuClick }) =>  (
 		<ul className="main-header__menu">
 			{menuLinks.map(({ href, title }, i) => (
 				<li className="main-header__link" key={`menu-${i}`}>
-					<a href={href}>{title}</a>
+					<Link
+						to={href}
+						onClick={onMenuClick}
+					>
+						{title}
+					</Link>
 				</li>
 			))}
 		</ul>
