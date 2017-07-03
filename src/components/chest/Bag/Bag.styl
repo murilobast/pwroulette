@@ -1,0 +1,83 @@
+.bag
+	background-color $color-transparent
+	box-shadow $depth-2
+	padding 12px 8px
+	width 291px
+	box-sizing border-box
+	margin 64px auto 30px
+	border-radius 3px
+
+	&__header
+		padding-bottom 6px
+		border-bottom 1px solid $color-light-transparent
+		position relative
+		height 38px
+		box-sizing border-box
+		padding-left 38px
+
+	&__image
+		position absolute
+		left 0
+		top 0
+		height 32px
+		width 32px
+
+	&__title
+		line-height 32px
+		font-size 16px
+		color #fff
+		font-weight normal
+		padding-right 24px
+		text-overflow ellipsis
+		overflow hidden
+		white-space nowrap
+
+	&__back
+		font-size 12px
+		position absolute
+		right 0
+		top 0
+		line-height 32px
+
+	&__items
+		padding 4px 4px 5px 5px
+		border 1px solid $color-light-transparent
+		font-size 0
+		background-color $color-transparent
+		min-height 66px
+		border-radius 3px
+		box-shadow $depth-1
+		margin 6px 0
+
+	&__item
+		display inline-block
+		vertical-align top
+		margin 1px 1px 0 0
+		cursor pointer
+		position relative
+		transition all .3s ease-in-out
+		opacity .6
+		position relative
+
+		&:hover
+			opacity 1
+
+	&__total
+		font-size 10px
+		color #fff
+		position absolute
+		bottom 2px
+		right 2px
+		background-color $color-light-transparent
+		padding 2px
+		border-radius 3px
+		min-width 12px
+		text-align right
+
+	&__icon
+		height 32px
+		width 32px
+
+	&__tools
+		text-align center
+		padding-top 4px

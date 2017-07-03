@@ -3,6 +3,7 @@ import { createAction, handleActions } from 'redux-actions'
 import createPromiseAction from 'helpers/createPromiseAction'
 import { Map } from 'immutable'
 import S from 'string'
+import axios from 'axios'
 
 // Helpers
 import pender from 'helpers/pender'
@@ -12,12 +13,12 @@ const GET_SINGLE_CHEST = 'api/GET_SINGLE_CHEST'
 const FILTER_CHESTS = 'api/FILTER_CHESTS'
 
 const fetchChests = () =>
-	fetch('http://localhost:8001/?q=all')
-		.then(res => res.json())
+	axios('http://localhost:8001/?q=all')
+		.then(res => res.data)
 
 const fetchSingleChest = id =>
-	fetch(`http://localhost:8001/?q=${id}`)
-		.then(res => res.json())
+	axios(`http://localhost:8001/?q=${id}`)
+		.then(res => res.data)
 
 export const getChestList = createPromiseAction({
 	type: GET_CHEST_LIST,

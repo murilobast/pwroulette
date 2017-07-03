@@ -1,5 +1,3 @@
-import { Link } from 'react-router'
-
 // Styles
 import './List.styl'
 
@@ -7,7 +5,7 @@ const List = ({ chests }) => (
 	<section className="chest-list">
 		<ul className="chest-list__chests">
 			{chests.map(({ name, id }) => (
-				<Link to={`/chest/${id}`} key={id}>
+				<a href={`/chest/${id}`} key={id}>
 					<li className="chest-list__item">
 						<img
 							src={`http://www.pwdatabase.com/images/icons/generalm/${id}.png`}
@@ -18,7 +16,7 @@ const List = ({ chests }) => (
 							{name}
 						</h3>
 					</li>
-				</Link>
+				</a>
 			))}
 		</ul>
 	</section>

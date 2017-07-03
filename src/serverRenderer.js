@@ -109,16 +109,6 @@ const renderWithApiToken = (req, res, next) => {
 		req.path.split('/')[1] === 'appcache')
 		return next()
 
-	// Checks if token has expired
-	if (expires < new Date().getTime())
-		setDefaults().then(response => {
-			// If so, generate a new token and set a new expiration time
-			const valid = response.data.body.data.valid_time * 1000
-			expires = valid
-
-			rendererWithCache(req, res, next)
-		})
-	else
 		rendererWithCache(req, res, next)
 }
 
