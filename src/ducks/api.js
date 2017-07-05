@@ -11,13 +11,15 @@ import pender from 'helpers/pender'
 const GET_CHEST_LIST = 'api/GET_CHEST_LIST'
 const GET_SINGLE_CHEST = 'api/GET_SINGLE_CHEST'
 const FILTER_CHESTS = 'api/FILTER_CHESTS'
-
+const { protocol, hostname } = location
+const currentUrl = `${protocol}//${hostname}`
+console.log(`${currentUrl}:8001/?q=all`)
 const fetchChests = () =>
-	axios('http://localhost:8001/?q=all')
+	axios(`${currentUrl}:8001/?q=all`)
 		.then(res => res.data)
 
 const fetchSingleChest = id =>
-	axios(`http://localhost:8001/?q=${id}`)
+	axios(`${currentUrl}:8001/?q=${id}`)
 		.then(res => res.data)
 
 export const getChestList = createPromiseAction({
