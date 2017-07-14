@@ -13,7 +13,7 @@ module.exports = {
 	context: paths.context,
 	entry: [
 			'react-hot-loader/patch',
-			'webpack-dev-server/client?http://0.0.0.0:3000',
+			'webpack-dev-server/client?http://0.0.0.0:3001',
 			'webpack/hot/only-dev-server',
 			paths.appIndexJs,
 			paths.appStyle
@@ -127,7 +127,7 @@ module.exports = {
 	devServer: {
 		contentBase: paths.context,
 		host: '0.0.0.0',
-		port: 3000,
+		port: 3001,
 		hot: true,
 		inline: false,
 		historyApiFallback: true,

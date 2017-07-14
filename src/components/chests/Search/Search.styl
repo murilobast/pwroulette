@@ -1,13 +1,21 @@
 .search
-	margin-top 72px
-	margin-bottom 12px
+	position fixed
+	top 69px
+	left 0
+	right 0
+	background-color $color-transparent
+	z-index 1
+	box-shadow $depth-2
+
+	+below($breakpoint-mobile)
+		t
 
 	&__title
 		color #fff
 		font-weight normal
 		font-size 18px
 		display block
-		
+
 	&__input
 		border 0
 		width 100%

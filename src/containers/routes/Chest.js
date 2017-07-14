@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 // Ducks
 import { getSingleChest } from 'ducks/api'
-import { openChest } from 'ducks/chest'
+import { openChest, resetChests } from 'ducks/chest'
 
 // Page
 import ChestPage from 'pages/Chest'
@@ -22,7 +22,7 @@ class Chests extends Component {
 	}
 
 	render () {
-		const { chest, pending, bagItems, opened } = this.props
+		const { chest, pending, bagItems, opened, resetChests } = this.props
 
 		if (!pending)
 			return (
@@ -30,7 +30,9 @@ class Chests extends Component {
 					{...chest}
 					opened={opened}
 					bagItems={bagItems}
-					openChest={() => this.openChest()}
+					resetChests={resetChests}
+					openChest={this.openChest}
+					stopOpening={this.stopOpening}
 				/>
 			)
 
@@ -60,18 +62,17 @@ class Chests extends Component {
 		return items
 	}
 
-	openChest() {
-		const { chest, openChest } = this.props
+	openChest = () => {
+		const { openChest } = this.props
 		const weightedItems = this.prepareItems()
-		let count = 0
-		let test = setInterval(() => {
-			if (count > 10000)
-				clearInterval(test)
+
+		this.timer = setInterval(() => {
 			openChest(weightedItems)
-			count++
-			console.log(count)
-		}, 0)
-		// openChest(weightedItems)
+		}, 25)
+	}
+
+	stopOpening = () => {
+		clearInterval(this.timer)
 	}
 }
 
@@ -83,8 +84,9 @@ const mapStateToProps = ({ api, chest }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	getSingleChest: (id) => dispatch(getSingleChest(id)),
-	openChest: (items) => dispatch(openChest(items))
+	getSingleChest: id => dispatch(getSingleChest(id)),
+	openChest: items => dispatch(openChest(items)),
+	resetChests: () => dispatch(resetChests())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chests)

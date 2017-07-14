@@ -2,17 +2,17 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 
 // Ducks
-import { getHomePosts } from 'ducks/api'
+// import { getHomePosts } from 'ducks/api'
 
 // Page
 import HomePage from 'pages/Home'
 
 class Home extends Component {
 	componentWillMount() {
-		const { getHomePosts, pending } = this.props
+		// const { getHomePosts, pending } = this.props
 
-		if (pending)
-			getHomePosts()
+		// if (pending)
+		// 	getHomePosts()
 	}
 
 	render () {
@@ -29,7 +29,7 @@ const mapStateToProps = ({ api }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	getHomePosts: () => dispatch(getHomePosts())
+	// getHomePosts: () => dispatch(getHomePosts())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

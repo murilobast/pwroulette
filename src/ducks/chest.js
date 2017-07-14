@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 
 const OPEN_CHEST = 'chest/OPEN_CHEST'
+const RESET_CHEST = 'chest/RESET_CHEST'
 
 const initialState = {
 	opened: 0,
@@ -8,6 +9,7 @@ const initialState = {
 }
 
 export const openChest = createAction(OPEN_CHEST, code => code)
+export const resetChests = createAction(RESET_CHEST, code => code)
 
 const getRandomChest = items => {
 	const random = Math.random()
@@ -15,6 +17,11 @@ const getRandomChest = items => {
 }
 
 export default handleActions({
+	[RESET_CHEST]: state => ({
+		...state,
+		items: [],
+		opened: 0
+	}),
 	[OPEN_CHEST]: (state, { payload }) => {
 		let { opened } = state
 		const item = getRandomChest(payload)

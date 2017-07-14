@@ -3,8 +3,18 @@ import { Helmet } from 'react-helmet'
 // Components
 import Wrapper from 'components/shared/Wrapper'
 import Bag from 'components/chest/Bag'
+import DropList from 'components/chest/DropList'
 
-const Chests = ({ name, items, id, openChest, bagItems, opened }) => (
+const Chests = ({
+	name,
+	items,
+	id,
+	openChest,
+	bagItems,
+	opened,
+	stopOpening,
+	resetChests
+}) => (
 	<Wrapper>
 		<Helmet>
 			<title>{`PWS - ${name}`}</title>
@@ -15,8 +25,11 @@ const Chests = ({ name, items, id, openChest, bagItems, opened }) => (
 			name={name}
 			items={bagItems}
 			opened={opened}
-			openChest={() => openChest()}
+			openChest={openChest}
+			resetChests={resetChests}
+			stopOpening={stopOpening}
 		/>
+		<DropList items={items} />
 	</Wrapper>
 )
 

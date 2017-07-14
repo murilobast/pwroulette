@@ -6,7 +6,7 @@ import Button from 'components/shared/Button'
 // Styles
 import './Bag.styl'
 
-const Bag = ({ name, items, id, opened, openChest }) => (
+const Bag = ({ name, items, id, opened, openChest, stopOpening, resetChests }) => (
 	<section className="bag">
 		<div className="bag__header">
 			<img
@@ -48,11 +48,11 @@ const Bag = ({ name, items, id, opened, openChest }) => (
 			/>
 			<Button
 				text="Parar"
-				action={() => {}}
+				action={stopOpening}
 			/>
 			<Button
 				text="Limpar"
-				action={() => {}}
+				action={resetChests}
 			/>
 		</div>
 	</section>

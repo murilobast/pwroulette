@@ -4,8 +4,12 @@
 	padding 12px 8px
 	width 291px
 	box-sizing border-box
-	margin 64px auto 30px
+	margin 87px auto 30px
 	border-radius 3px
+
+	+above($breakpoint-mobile)
+		width 365px
+		padding 18px 12px
 
 	&__header
 		padding-bottom 6px
@@ -48,6 +52,10 @@
 		border-radius 3px
 		box-shadow $depth-1
 		margin 6px 0
+
+		+above($breakpoint-mobile)
+			margin 12px 0
+			min-height 99px
 
 	&__item
 		display inline-block
