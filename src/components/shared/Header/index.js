@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import classNames from 'classnames'
-
+import { Link } from 'react-router'
 // Components
 import Wrapper from 'components/shared/Wrapper'
 import Menu from './Menu'
@@ -63,9 +63,12 @@ class Header extends Component {
 					onClick={this.clickHandler}
 				/>
 				<Wrapper>
-					<div className="main-header__logo">
+					<Link
+						className="main-header__logo"
+						to="/"
+					>
 						PWS
-					</div>
+					</Link>
 					<Menu
 						onMenuClick={this.clickHandler}
 					/>

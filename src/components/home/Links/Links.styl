@@ -1,0 +1,25 @@
+.links
+	padding 40px 0
+	text-align center
+
+	&__link
+		color #fff
+		font-size 18px
+		display block
+		height 64px
+		line-height 64px
+		background-color $color-darker-main
+		box-shadow $depth-1
+		border-radius 3px
+		transition all .3s ease-in-out
+
+		&:active
+			box-shadow $depth-2
+
+		+above($breakpoint-mobile)
+			width 50%
+			display inline-block
+
+	&__anchor
+		display block
+

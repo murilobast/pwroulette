@@ -6,7 +6,17 @@ import Button from 'components/shared/Button'
 // Styles
 import './Bag.styl'
 
-const Bag = ({ name, items, id, opened, openChest, stopOpening, resetChests }) => (
+const Bag = ({
+	id,
+	name,
+	items,
+	amount,
+	opened,
+	openChest,
+	stopOpening,
+	updateAmount,
+	resetChests
+}) => (
 	<section className="bag">
 		<div className="bag__header">
 			<img
@@ -29,11 +39,16 @@ const Bag = ({ name, items, id, opened, openChest, stopOpening, resetChests }) =
 		</div>
 		<ul className="bag__items">
 			{items.map(({ id, name, total }) => (
-				<li className="bag__item" key={id}>
+				<li
+					title={name}
+					className="bag__item"
+					key={id}
+				>
 					<img
+						alt={name}
+						title={name}
 						className="bag__icon"
 						src={`http://www.pwdatabase.com/images/icons/generalm/${id}.png`}
-						alt={name}
 					/>
 					<span className="bag__total">
 						{total}
@@ -45,6 +60,17 @@ const Bag = ({ name, items, id, opened, openChest, stopOpening, resetChests }) =
 			<Button
 				text="Abrir"
 				action={openChest}
+			/>
+			<input
+				className="bag__amount"
+				value={amount}
+				title="0 = infinito"
+				type="number"
+				min="0"
+				max="1000"
+				step="1"
+				pattern="\d*"
+				onChange={updateAmount}
 			/>
 			<Button
 				text="Parar"

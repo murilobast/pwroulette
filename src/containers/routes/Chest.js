@@ -10,7 +10,8 @@ import ChestPage from 'pages/Chest'
 
 class Chests extends Component {
 	state = {
-		weightedItems: []
+		weightedItems: [],
+		amount: 1
 	}
 
 	componentWillMount() {
@@ -23,20 +24,30 @@ class Chests extends Component {
 
 	render () {
 		const { chest, pending, bagItems, opened, resetChests } = this.props
+		const { amount } = this.state
 
 		if (!pending)
 			return (
 				<ChestPage
 					{...chest}
 					opened={opened}
+					amount={amount}
 					bagItems={bagItems}
 					resetChests={resetChests}
 					openChest={this.openChest}
 					stopOpening={this.stopOpening}
+					updateAmount={this.updateAmount}
 				/>
 			)
 
 		return null
+	}
+
+	updateAmount = e => {
+		this.setState({
+			amount: Number(e.target.value)
+		})
+
 	}
 
 	prepareItems() {
@@ -63,12 +74,19 @@ class Chests extends Component {
 	}
 
 	openChest = () => {
+		const { amount } = this.state
 		const { openChest } = this.props
 		const weightedItems = this.prepareItems()
+		let opened = 0
 
 		this.timer = setInterval(() => {
-			openChest(weightedItems)
-		}, 25)
+			if (opened < amount || amount === 0) {
+				opened += 1
+				return openChest(weightedItems)
+			}
+
+			clearInterval(this.timer)
+		}, 50)
 	}
 
 	stopOpening = () => {

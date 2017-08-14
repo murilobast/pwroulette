@@ -8,12 +8,8 @@ import DropList from 'components/chest/DropList'
 const Chests = ({
 	name,
 	items,
-	id,
-	openChest,
 	bagItems,
-	opened,
-	stopOpening,
-	resetChests
+	...props
 }) => (
 	<Wrapper>
 		<Helmet>
@@ -21,13 +17,9 @@ const Chests = ({
 			<meta name="description" content="IQ 360 Chests description" />
 		</Helmet>
 		<Bag
-			id={id}
 			name={name}
 			items={bagItems}
-			opened={opened}
-			openChest={openChest}
-			resetChests={resetChests}
-			stopOpening={stopOpening}
+			{...props}
 		/>
 		<DropList items={items} />
 	</Wrapper>

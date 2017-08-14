@@ -16,10 +16,19 @@
 		border-radius 3px
 		box-shadow $depth-1
 		padding 0 12px
+		transition box-shadow .3s ease-in-out
 
 		+above($breakpoint-mobile)
 			width 30%
 			display inline-block
+			margin 0 1% 1%
+			width 31.3%
+			box-sizing border-box
+			cursor pointer
+
+			&:hover
+				box-shadow $depth-2
+
 
 	&__icon, &__info
 		display inline-block

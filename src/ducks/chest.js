@@ -13,26 +13,29 @@ export const resetChests = createAction(RESET_CHEST, code => code)
 
 const getRandomChest = items => {
 	const random = Math.random()
-	return items.find(({ weight }) => random <= weight)
+	return [...items].find(({ weight }) => random <= weight)
 }
 
 export default handleActions({
 	[RESET_CHEST]: state => ({
 		...state,
-		items: [],
+		items: [...initialState.items],
 		opened: 0
 	}),
 	[OPEN_CHEST]: (state, { payload }) => {
 		let { opened } = state
 		const item = getRandomChest(payload)
-		let items = [...state.items]
+		const items = [...state.items]
+		console.log(item)
 		const index = items.findIndex(({ id }) => id === item.id)
 
-		if (index > -1)
-			items[index].total += 1
-
-		else
+		if (index > -1) {
+			const foundItem = items[index]
+			foundItem.total += foundItem.amount
+		} else {
+			item.total = item.amount
 			items.push(item)
+		}
 
 		opened += 1
 

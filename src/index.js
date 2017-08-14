@@ -9,6 +9,9 @@ import configureStore from 'configureStore'
 // Containers
 import Root from './containers/Root'
 
+// Assets
+import 'assets/seo/launcher-icon-2x.png'
+
 OfflinePluginRuntime.install()
 const { pathname, search, hash } = window.location
 const location = `${pathname}${search}${hash}`
