@@ -5,13 +5,13 @@
   "author": "Murilo Bastos",
   "license": "ISC",
   "dependencies": {
-    "react": "^15.0.1",
-    "react-addons-css-transition-group": "^15.0.1",
-    "react-addons-pure-render-mixin": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "react-google-ad": "^1.0.2",
-    "react-komposer": "^1.8.0",
-    "react-mounter": "^1.2.0",
-    "react-search-input": "^0.6.0"
+    "react": "15.0.1",
+    "react-addons-css-transition-group": "15.0.1",
+    "react-addons-pure-render-mixin": "15.0.1",
+    "react-dom": "15.0.1",
+    "react-google-ad": "1.0.2",
+    "react-komposer": "1.8.0",
+    "react-mounter": "1.2.0",
+    "react-search-input": "0.6.0"
   }
 }
