@@ -7,11 +7,11 @@ const DropList = ({ items }) => (
 			Olha o que tem dentro:
 		</h3>
 		<ul className="drops__list">
-			{items.map(({ id, name, amount, weight }) => (
+			{items.map(({ id, name, amount, image, weight }) => (
 				<li className="drops__item" key={`drp${id}`}>
 					<img
 						className="drops__icon"
-						src={`http://www.pwdatabase.com/images/icons/generalm/${id}.png`}
+						src={image}
 						alt={name}
 					/>
 					<div className="drops__info">

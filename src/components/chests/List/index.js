@@ -8,11 +8,11 @@ const List = ({ chests }) => (
 	<section className="chest-list">
 		<Wrapper>
 			<ul className="chest-list__chests">
-				{chests.map(({ name, id }) => (
+				{chests.map(({ name, id, image }) => (
 					<a href={`/chest/${id}`} key={id}>
 						<li className="chest-list__item">
 							<img
-								src={`http://www.pwdatabase.com/images/icons/generalm/${id}.png`}
+								src={image}
 								className="chest-list__image"
 								alt={name}
 							/>

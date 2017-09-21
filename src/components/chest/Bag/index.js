@@ -10,6 +10,7 @@ const Bag = ({
 	id,
 	name,
 	items,
+	image,
 	amount,
 	opened,
 	openChest,
@@ -20,7 +21,7 @@ const Bag = ({
 	<section className="bag">
 		<div className="bag__header">
 			<img
-				src={`http://www.pwdatabase.com/images/icons/generalm/${id}.png`}
+				src={image}
 				alt={name}
 				className="bag__image"
 			/>

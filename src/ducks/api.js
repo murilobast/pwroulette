@@ -14,15 +14,15 @@ const FILTER_CHESTS = 'api/FILTER_CHESTS'
 let currentUrl = '/'
 if (process.browser) {
 	const { protocol, hostname } = location
-	currentUrl = `${protocol}//${hostname}`
+	currentUrl = `${protocol}//${hostname}:8081/api`
 }
-console.log(`${currentUrl}:8001/?q=all`)
+
 const fetchChests = () =>
-	axios(`${currentUrl}:8001/?q=all`)
+	axios(`${currentUrl}/get-chest/all`)
 		.then(res => res.data)
 
 const fetchSingleChest = id =>
-	axios(`${currentUrl}:8001/?q=${id}`)
+	axios(`${currentUrl}/get-chest/${id}`)
 		.then(res => res.data)
 
 export const getChestList = createPromiseAction({
@@ -61,15 +61,15 @@ export default handleActions({
 		type: GET_CHEST_LIST,
 		name: 'getChestList',
 		onFulfill: (state, action) => {
-			return state.set('apiChests', action.payload)
-				.set('chests', action.payload)
+			return state.set('apiChests', action.payload.data)
+				.set('chests', action.payload.data)
 		}
 	}),
 	...pender({
 		type: GET_SINGLE_CHEST,
 		name: 'getSingleChest',
 		onFulfill: (state, action) => {
-			return state.set('chest', action.payload)
+			return state.set('chest', action.payload.data)
 		}
 	})
 }, initialState)

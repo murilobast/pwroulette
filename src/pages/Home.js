@@ -17,8 +17,8 @@ const Home = ({ posts }) => (
 				image: ''
 			})}
 		</Helmet>
-		<Disclaimer />
 		<Links />
+		<Disclaimer />
 	</div>
 )
 
