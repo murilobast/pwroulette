@@ -11,8 +11,11 @@ import pender from 'helpers/pender'
 const GET_CHEST_LIST = 'api/GET_CHEST_LIST'
 const GET_SINGLE_CHEST = 'api/GET_SINGLE_CHEST'
 const FILTER_CHESTS = 'api/FILTER_CHESTS'
-const { protocol, hostname } = location
-const currentUrl = `${protocol}//${hostname}`
+let currentUrl = '/'
+if (process.browser) {
+	const { protocol, hostname } = location
+	currentUrl = `${protocol}//${hostname}`
+}
 console.log(`${currentUrl}:8001/?q=all`)
 const fetchChests = () =>
 	axios(`${currentUrl}:8001/?q=all`)

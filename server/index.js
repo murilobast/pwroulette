@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const renderer = require('./renderer')
+const insertChest = require('./api/insertChest')
 const compression = require('compression')
 const responseTime = require('response-time')
 
@@ -19,6 +20,7 @@ app.set('views', path.join(__dirname, '../build'))
 app.use(compression({ filter: shouldCompress }))
 app.use(responseTime())
 
+app.post('/api/add-chest/:id', insertChest)
 app.get('*', renderer)
 app.use(express.static(path.join(__dirname, '../build')))
 
