@@ -1,38 +1,22 @@
-const { Db, MongoClient, Server } = require('mongodb')
+const pmongo = require('promised-mongo')
 const NodeCache = require('node-cache')
 
 const DB_URL = 'mongodb://pwsimulator.com:27017/pws'
 
+const { chests } = pmongo(DB_URL, ['chests'])
 const cache = new NodeCache({ srdTTL: 10 })
 const queryFields = {
-	single: { fields: { _id: 0 } },
-	all: { fields: { id: 1, name: 1, image: 1, description: 1, _id: 0 } }
+	single: { _id: 0 },
+	all: { id: 1, name: 1, image: 1, description: 1, _id: 0 }
 }
 
-const fetchChestFromDb = async id => new Promise((resolve, reject) => {
-	MongoClient.connect(DB_URL, (err, db) => {
-		if (!err) {
-			const collection = db.collection('chests')
-			const fields = id === 'all' ? queryFields.all : queryFields.single
-			const query = id === 'all' ? {} : { id: Number(id) }
-			collection.find(query, fields).toArray((err, result) => {
-				if (!err) {
-					db.close()
-					if (!!result.length) {
-						const data = id === 'all' ? result : result[0]
-						resolve(data)
-					}
-					resolve(false)
-				}
-				db.close()
-				reject(false)
-			})
-			return
-		}
-		db.close()
-		resolve(false)
-	})
-})
+const fetchChestFromDb = id => {
+	const fields = id === 'all' ? queryFields.all : queryFields.single
+	const query = id === 'all' ? {} : { id: Number(id) }
+	if (id === 'all')
+		return chests.find(query, fields)
+	return chests.findOne(query, fields)
+}
 
 const getChest = async (req, res, next) => {
 	res.header('Access-Control-Allow-Origin', '*');
