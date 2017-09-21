@@ -15,10 +15,11 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.config.dev.js",
-    "start:server": "webpack --config config/webpack.config.server.js && nodemon server/index.js",
+    "serve:dev": "webpack --config config/webpack.config.server.js && nodemon server/index.js",
+    "serve:prod": "node server/index.js",
     "bundle": "rimraf build && webpack --config config/webpack.config.js",
     "bundle:server": "webpack --config config/webpack.config.server.js",
-    "build": "yarn bundle && yarn bundle:server && yarn start:server"
+    "build": "yarn bundle && yarn bundle:server && yarn serve:prod"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
