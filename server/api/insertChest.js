@@ -49,7 +49,7 @@ const getNameAndDrops = body => {
 			.attr('href')
 			.replace('items/', '')
 	)
-	return { itemId, name, items }
+	return { _id: itemId, itemId , name, items }
 }
 
 const getAditionalInformation = async id => {
@@ -75,7 +75,7 @@ const insertChest = async (req, res, next) => {
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
 	const { id: _id } = req.params
 	const id = Number(_id)
-	const exists = await chests.find({ id })
+	const exists = await chests.findOne({ id })
 	if (exists) {
 		res.send({
 			error: false,
@@ -94,7 +94,7 @@ const insertChest = async (req, res, next) => {
 			chestStructure,
 			nameAndDrops,
 			adtionalInformation,
-			{ url, id: Number(id) }
+			{ url, id }
 		)
 		await chests.insert(chest)
 		res.send({

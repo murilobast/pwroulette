@@ -1,8 +1,9 @@
 import { Helmet } from 'react-helmet'
 
 // Components
-import Search from 'components/chests/Search'
 import List from 'components/chests/List'
+import AddModal from 'containers/AddModal'
+import Search from 'components/chests/Search'
 
 const Chests = ({ chests, filterChests }) => (
 	<div>
@@ -16,6 +17,7 @@ const Chests = ({ chests, filterChests }) => (
 		<List
 			chests={chests}
 		/>
+		<AddModal />
 	</div>
 )
 
