@@ -15,6 +15,8 @@ let currentUrl = '/'
 if (process.browser && process.env.NODE_ENV === 'development') {
 	const { protocol, hostname } = location
 	currentUrl = `${protocol}//${hostname}:8081/api`
+} else {
+	currentUrl += 'api'
 }
 
 const fetchChests = () =>
