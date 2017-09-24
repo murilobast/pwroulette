@@ -12,7 +12,7 @@ const GET_CHEST_LIST = 'api/GET_CHEST_LIST'
 const GET_SINGLE_CHEST = 'api/GET_SINGLE_CHEST'
 const FILTER_CHESTS = 'api/FILTER_CHESTS'
 let currentUrl = '/'
-if (process.browser) {
+if (process.browser && process.env.NODE_ENV === 'development') {
 	const { protocol, hostname } = location
 	currentUrl = `${protocol}//${hostname}:8081/api`
 }

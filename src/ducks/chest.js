@@ -26,7 +26,7 @@ export default handleActions({
 		let { opened } = state
 		const item = getRandomChest(payload)
 		const items = [...state.items]
-		console.log(item)
+		// console.log(item)
 		const index = items.findIndex(({ id }) => id === item.id)
 
 		if (index > -1) {
