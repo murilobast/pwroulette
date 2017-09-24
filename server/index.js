@@ -6,7 +6,8 @@ const getChest = require('./api/getChest')
 const insertChest = require('./api/insertChest')
 const compression = require('compression')
 const responseTime = require('response-time')
-const PORT = 8081
+const env = 'NODE_ENV' in process.env ? process.env.NODE_ENV : 'development'
+const PORT = env === 'production' ? 80 : 8081
 
 const shouldCompress = (req, res) => {
 	if (req.headers['x-no-compression']) {
@@ -33,7 +34,8 @@ if (cluster.isMaster) {
 	app.get('/api/get-chest/:id', getChest)
 	app.get('*', renderer)
 	app.use(express.static(path.join(__dirname, '../build'), { maxAge: '1d' }))
-	app.listen(8081, ()=>{
-		console.log('[SSR + Redis] Listening on port 8081')
+	app.listen(PORT, () => {
+		console.log('oeeee', process.env.NODE_ENV)
+		console.log(`[SSR + Redis] Listening on port ${PORT}`)
 	})
 }
