@@ -14,8 +14,7 @@ const Home = ({ posts }) => (
 			{generateMetatags({
 				title: 'Home',
 				url: '/',
-				description: 'PW Simulator é uma ferramente para simular Drops de Báus e Reforja de Equipamentos em Perfect World',
-				image: ''
+				description: 'PW Simulator é uma ferramente para simular Drops de Báus e Reforja de Equipamentos em Perfect World'
 			})}
 		</Helmet>
 		<Links />

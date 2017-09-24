@@ -1,3 +1,4 @@
+const redis = require('redis')
 const fetch = require('node-fetch')
 const cheerio = require('cheerio')
 const pmongo = require('promised-mongo')
@@ -6,6 +7,10 @@ const URL_BASE = 'http://www.pwdatabase.com'
 const CHEST_URL = `${URL_BASE}/br/items/`
 const DROPS_URL = `${URL_BASE}/br/quest/`
 const DB_URL = 'mongodb://127.0.0.1:27017/pws'
+
+const client = redis.createClient({
+	prefix: 'pws-chest'
+})
 
 // const { chests } = pmongo(DB_URL, ['chests'])
 const chestStructure = {
@@ -98,6 +103,7 @@ const insertChest = async (req, res, next) => {
 			{ url, id }
 		)
 		await chests.insert(chest)
+		client.del('chest-all')
 		res.send({
 			error: false,
 			message: 'Chest inserted!',

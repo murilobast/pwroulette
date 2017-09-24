@@ -6,11 +6,17 @@ import Bag from 'components/chest/Bag'
 import Wrapper from 'components/shared/Wrapper'
 import DropList from 'components/chest/DropList'
 
-const Chests = ({ chest: { items, name, ...chest }, bagItems, ...props }) => (
+// Helpers
+import generateMetatags from 'helpers/generateMetatags'
+
+const Chests = ({ chest: { items, name, description, ...chest }, bagItems, ...props }) => (
 	<Wrapper>
 		<Helmet>
-			<title>{`PWS - ${name}`}</title>
-			<meta name="description" content="IQ 360 Chests description" />
+			{generateMetatags({
+				title: `PWS - ${name}`,
+				url: '/chest',
+				description: `${name} - ${description}`
+			})}
 		</Helmet>
 		<Bag
 			name={name}
