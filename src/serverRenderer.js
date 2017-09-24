@@ -11,8 +11,6 @@ import routes from 'routes'
 import configureStore from 'configureStore'
 import { setDefaults } from 'helpers/apiRequest'
 
-let expires = new Date().getTime()
-
 const REDIS_EXPIRE_AT = 5 * 60
 const client = redis.createClient({
 	prefix: 'iq-static'

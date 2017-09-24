@@ -5,9 +5,9 @@ const pmongo = require('promised-mongo')
 const URL_BASE = 'http://www.pwdatabase.com'
 const CHEST_URL = `${URL_BASE}/br/items/`
 const DROPS_URL = `${URL_BASE}/br/quest/`
-const DB_URL = 'mongodb://pwsimulator.com:27017/pws'
+const DB_URL = 'mongodb://127.0.0.1:27017/pws'
 
-const { chests } = pmongo(DB_URL, ['chests'])
+// const { chests } = pmongo(DB_URL, ['chests'])
 const chestStructure = {
 	name: '',
 	count: 0,
@@ -71,6 +71,7 @@ const getAditionalInformation = async id => {
 }
 
 const insertChest = async (req, res, next) => {
+	const { chests } = pmongo(DB_URL, ['chests'])
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
 	const { id: _id } = req.params
