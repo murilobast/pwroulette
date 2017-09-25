@@ -114,10 +114,13 @@ const renderWithApiToken = (req, res, next) => {
 		req.path === '/favicon.ico' ||
 		req.path === '/sw.js' ||
 		req.path.split('/')[1] === 'static' ||
-		req.path.split('/')[1] === 'appcache')
+		req.path.split('/')[1] === 'appcache') {
+		res.setHeader('Cache-Control', 'public, max-age=2592000')
+		res.setHeader('Expires', new Date(Date.now() + 2592000000).toUTCString())
 		return next()
+	}
 
-		rendererWithCache(req, res, next)
+	rendererWithCache(req, res, next)
 }
 
 module.exports = renderWithApiToken
