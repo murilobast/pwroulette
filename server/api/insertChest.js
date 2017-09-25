@@ -12,7 +12,6 @@ const client = redis.createClient({
 	prefix: 'pws-static-'
 })
 
-// const { chests } = pmongo(DB_URL, ['chests'])
 const chestStructure = {
 	name: '',
 	count: 0,

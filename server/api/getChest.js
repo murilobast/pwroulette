@@ -6,9 +6,8 @@ const client = redis.createClient({
 })
 
 const DB_URL = 'mongodb://127.0.0.1:27017/pws'
-const REDIS_EXPIRE_AT = 5 * 60
+const REDIS_EXPIRE_AT = 3 * 60 * 60 // 3 Hours
 
-// const { chests } = pmongo(DB_URL, ['chests'])
 const queryFields = {
 	single: { _id: 0 },
 	all: { id: 1, name: 1, image: 1, description: 1, _id: 0 }

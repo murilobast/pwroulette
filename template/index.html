@@ -28,5 +28,12 @@
 				window.__STATE__ = JSON.stringify(<%= htmlWebpackPlugin.options.preloadedState %>).replace(/</g, '\\u003c');
 			</script>
 		<% } %>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71880846-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments)};
+			gtag('js', new Date());
+			gtag('config', 'UA-71880846-1');
+		</script>
 	</body>
 </html>

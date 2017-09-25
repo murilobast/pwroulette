@@ -11,7 +11,7 @@ import routes from 'routes'
 import configureStore from 'configureStore'
 import { setDefaults } from 'helpers/apiRequest'
 
-const REDIS_EXPIRE_AT = 5 * 60
+const REDIS_EXPIRE_AT = 3 * 60 * 60 // 3 Hours
 const client = redis.createClient({
 	prefix: 'pws-static-'
 })

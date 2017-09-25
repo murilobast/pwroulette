@@ -13,12 +13,16 @@ import Root from './containers/Root'
 import 'assets/seo/launcher-icon-2x.png'
 
 OfflinePluginRuntime.install()
+
 const { pathname, search, hash } = window.location
 const location = `${pathname}${search}${hash}`
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 const rootProps = { store, history }
 const rootEl = document.getElementById('root')
+
+browserHistory.listen(({ pathname }) =>
+	process.browser && window.ga('send', 'pageview', window.location.href))
 
 const renderApp = rootProps => (
 	match({ routes, location }, (err, redirectLocation, renderProps) => {
