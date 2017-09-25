@@ -1,4 +1,4 @@
-import GoogleAds from 'react-google-ads'
+import GoogleAd from 'react-google-ad'
 
 // Components
 import Wrapper from 'components/shared/Wrapper'
@@ -9,9 +9,9 @@ import './List.styl'
 const List = ({ chests }) => (
 	<section className="chest-list">
 		<Wrapper>
-			<GoogleAds
+			<GoogleAd
 				client="ca-pub-9211196233969408"
-				slot="8764876118"
+				slot="9728627230"
 				format="auto"
 				style={{ marginBottom: 30, display: 'block' }}
 			/>

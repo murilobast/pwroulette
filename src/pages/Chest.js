@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'
-import GoogleAds from 'react-google-ads'
+import GoogleAd from 'react-google-ad'
 
 // Components
 import Bag from 'components/chest/Bag'
@@ -15,7 +15,7 @@ const Chests = ({ chest: { items, name, description, ...chest }, bagItems, ...pr
 			{generateMetatags({
 				title: `PWS - ${name}`,
 				url: '/chest',
-				description: `${name} - ${description}`
+				description: `${name} - ${description || ' - Simulador de drops de báus para Perfect World'}`
 			})}
 		</Helmet>
 		<Bag
@@ -24,11 +24,11 @@ const Chests = ({ chest: { items, name, description, ...chest }, bagItems, ...pr
 			{...chest}
 			{...props}
 		/>
-		<GoogleAds
+		<GoogleAd
 			client="ca-pub-9211196233969408"
-			slot="8764876118"
+			slot="9728627230"
 			format="auto"
-			className="google-ad"
+			style={{ marginBottom: 30, display: 'block' }}
 		/>
 		<DropList items={items} />
 	</Wrapper>

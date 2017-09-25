@@ -13,7 +13,7 @@ import { setDefaults } from 'helpers/apiRequest'
 
 const REDIS_EXPIRE_AT = 5 * 60
 const client = redis.createClient({
-	prefix: 'iq-static'
+	prefix: 'pws-static-'
 })
 
 client.on('error', function (err) {

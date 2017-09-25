@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet'
-import GoogleAds from 'react-google-ads'
+import GoogleAd from 'react-google-ad'
 
 // Components
 import Links from 'components/home/Links'
@@ -18,10 +18,11 @@ const Home = ({ posts }) => (
 			})}
 		</Helmet>
 		<Links />
-		<GoogleAds
+		<GoogleAd
 			client="ca-pub-9211196233969408"
-			slot="8764876118"
+			slot="9728627230"
 			format="auto"
+			style={{ marginBottom: 30, display: 'block' }}
 		/>
 		<Disclaimer />
 	</div>

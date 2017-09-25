@@ -2,7 +2,7 @@ const redis = require('redis')
 const pmongo = require('promised-mongo')
 
 const client = redis.createClient({
-	prefix: 'pws-chest'
+	prefix: 'pws-static-'
 })
 
 const DB_URL = 'mongodb://127.0.0.1:27017/pws'

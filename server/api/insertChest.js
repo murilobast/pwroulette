@@ -9,7 +9,7 @@ const DROPS_URL = `${URL_BASE}/br/quest/`
 const DB_URL = 'mongodb://127.0.0.1:27017/pws'
 
 const client = redis.createClient({
-	prefix: 'pws-chest'
+	prefix: 'pws-static-'
 })
 
 // const { chests } = pmongo(DB_URL, ['chests'])
@@ -103,7 +103,15 @@ const insertChest = async (req, res, next) => {
 			{ url, id }
 		)
 		await chests.insert(chest)
+		if (chest.items && chest.items.length < 2) {
+			res.send({
+				error: true,
+				message: 'Not enough items'
+			})
+			return
+		}
 		client.del('chest-all')
+		client.del('/chests/')
 		res.send({
 			error: false,
 			message: 'Chest inserted!',
