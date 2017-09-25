@@ -4,11 +4,10 @@ import { compose, withState, withHandlers } from 'recompose'
 // Components
 import AddModal from 'components/chests/AddModal'
 
-let currentUrl = '/'
-if (process.browser) {
-	const { protocol, hostname } = location
-	currentUrl = `${protocol}//${hostname}:8081/api`
-}
+// Helpers
+import getApiUrl from 'helpers/getApiUrl'
+
+const currentUrl = getApiUrl()
 
 export default compose(
 	withState('modalOpen', 'setModalOpen', false),
