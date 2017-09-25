@@ -13,7 +13,7 @@ const Chests = ({ chests, filterChests }) => (
 		<Helmet>
 			{generateMetatags({
 				title: 'Abrir Baús',
-				url: '/chest',
+				url: 'chest',
 				description: 'Simule drops de báus para Perfect World com apenas um simples click!'
 			})}
 		</Helmet>

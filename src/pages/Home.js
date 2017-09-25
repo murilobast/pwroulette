@@ -13,7 +13,7 @@ const Home = ({ posts }) => (
 		<Helmet>
 			{generateMetatags({
 				title: 'Home',
-				url: '/',
+				url: '',
 				description: 'PW Simulator é uma ferramente para simular Drops de Báus e Reforja de Equipamentos em Perfect World'
 			})}
 		</Helmet>

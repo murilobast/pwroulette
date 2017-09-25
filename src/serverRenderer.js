@@ -42,7 +42,12 @@ const renderer = (req, res, next) => {
 					markup = renderApp(store, renderProps)
 
 				// Getting seo markup
-				const seo = Helmet.renderStatic()
+				const { title, meta, link } = Helmet.renderStatic()
+				const seo = {
+					title: title.toString(),
+					meta: meta.toString(),
+					link: link.toString()
+				}
 
 				res.render('index', {
 					markup,
@@ -77,6 +82,11 @@ const renderApp = (store, renderProps) => renderToString(
 )
 
 const rendererWithCache = (req, res, next) => {
+	if (req.query.cache && req.query.cache === 'false') {
+		console.log('without cache', req.url)
+		return renderer(req, res, next)
+	}
+
 	client.get(req.url, (err, result) => {
 		if (result) {
 			console.log('with cache', req.url)

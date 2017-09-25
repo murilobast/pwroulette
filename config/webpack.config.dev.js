@@ -113,7 +113,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: paths.appHtml,
-			title: 'dev',
+			title: '<title>PWS DEV</title>',
 			favicon: '../src/assets/favicon.png'
 		}),
 		new OfflinePlugin({

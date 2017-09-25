@@ -75,7 +75,9 @@ module.exports = {
 			template: paths.appHtml,
 			filename: 'index.ejs',
 			markup: '<%- markup %>',
-			title: '<%- seo.title.toString() %>',
+			title: '<%- seo.title %>',
+			meta: '<%- seo.meta %>',
+			link: '<%- seo.link %>',
 			preloadedState: '<%- preloadedState %>',
 			favicon: '../src/assets/favicon.png',
 			minify: {
