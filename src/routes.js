@@ -53,6 +53,14 @@ const routes = (
 			}}
 		/>
 		<Route
+			path={'/trivia'}
+			getComponent={(location, cb) => {
+				System.import('./containers/routes/Trivia')
+					.then(loadRoute(cb, null))
+					.catch(errorOnLoadingRoute)
+			}}
+		/>
+		<Route
 			path={'/*'}
 			getComponent={(location, cb) => {
 				System.import('./containers/routes/Home')

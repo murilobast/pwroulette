@@ -161,7 +161,7 @@
         "answer":"3",
         "answerNumber":3
       }
-    ]
+    ],
   },
   {
     "name":"20-29",
@@ -442,10 +442,10 @@
       },
       {
         "question":"Para quanto a Pedra de Expansão aumenta o limite de missões?",
-        "answer":"30 | 2ª opção",
-        "answerNumber":null
+        "answer":"30 ",
+        "answerNumber":2
       }
-    ]
+    ],
   },
   {
     "name":"30-39",
@@ -712,9 +712,9 @@
       {
         "question":"Qual o número máximo de membros que uma equipe pode ter?",
         "answer":"10",
-        "answerNumber":null
+        "answerNumber":2
       }
-    ]
+    ],
   },
   {
     "name":"40-49",
@@ -736,7 +736,7 @@
       {
         "question":"Qual das seguintes habilidades do Mago não está no mesmo nível de Cultivo Espiritual?",
         "answer":"Explosão da Terra",
-        "answerNumber":null
+        "answerNumber":1
       },
       {
         "question":"Qual das seguintes habilidades do Guerreiro não está no mesmo nível de Cultivo Espiritual?",
@@ -940,8 +940,8 @@
       },
       {
         "question":"Em que são baseados os requisitos para aprender habilidades?",
-        "answer":"Força de vontade| 3ª opção",
-        "answerNumber":null
+        "answer":"Força de vontade",
+        "answerNumber":3
       },
       {
         "question":"Como monstros com Sangrar Vida em Ataque Súbito se comparam com monstros sem atributos de bônus?",
@@ -983,7 +983,7 @@
         "answer":"Maldição do Espírito",
         "answerNumber":3
       }
-    ]
+    ],
   },
   {
     "name":"50-59",
@@ -1170,7 +1170,7 @@
       {
         "question":"Quantas moedas podem ser carregadas em uma bolsa?",
         "answer":"200000000",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"Dos chefes da instância Cidade das Plumas, qual usa estritamente ataques de projéteis?",
@@ -1199,8 +1199,8 @@
       },
       {
         "question":"Qual item é necessário na instância para desbloquear o Modo Lacre de Deus?",
-        "answer":"Pergaminho Nova Divindade | 1ª opção",
-        "answerNumber":null
+        "answer":"Pergaminho Nova Divindade ",
+        "answerNumber":1
       },
       {
         "question":"Qual tecla de atalho pode esconder todas as interfaces?",
@@ -1232,7 +1232,7 @@
         "answer":"Morrer uma Vez",
         "answerNumber":1
       }
-    ]
+    ],
   },
   {
     "name":"60-69",
@@ -1259,7 +1259,7 @@
       {
         "question":"Qual das seguintes patentes não faz parte de um clã?",
         "answer":"Conselheiro",
-        "answerNumber":null
+        "answerNumber":1
       },
       {
         "question":"Quantas Pedras Imortais são consumidas durante o refino de um Equipamento? (60-69)",
@@ -1319,17 +1319,17 @@
       {
         "question":"Qual o limite máximo de pessoas em um grupo para uma Instância comum, exemplo Vale dos Desastres?",
         "answer":"6",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"Qual o NPC responsável por trocar joias misteriosas por vários outros tipos de itens?",
         "answer":"Místico da Lua",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"Qual habilidade da Daimon permite ao jogador ficar imune por 5.0 segundos?",
         "answer":"Terreno Absoluto",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"Qual é o primeiro título adquirido, após falar com Regen Kjord?",
@@ -1364,12 +1364,12 @@
       {
         "question":"O Vinculo Perfeito pode ser usado para:",
         "answer":"Conhecer pessoas",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"O evento Torneio Marcial acontece que dia da semana?",
         "answer":"Quinta-feira",
-        "answerNumber":null
+        "answerNumber":1
       },
       {
         "question":"Quantas partes a moda de Perfect World possui?",
@@ -1384,7 +1384,7 @@
       {
         "question":"De sua respiração nasceu o vento e sua voz originou o trovão. Seu olho direito é a lua, seu olho esquerdo o sol. Seu sangue formou os rios, seu corpo as montanhas, sua barba é agora o mar de estrelas, sua pele deu origem à vegetação.",
         "answer":"Pan Gu",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"Onde vive o Sentinela do Olho Mortal?",
@@ -1399,17 +1399,17 @@
       {
         "question":"Qual a forma de adquirir a Montaria Abismo Negro?",
         "answer":"Trocando por 400 cartões da Presença",
-        "answerNumber":null
+        "answerNumber":1
       },
       {
         "question":"Ticket de Dados é o item que se deve ser usado em qual instância?",
         "answer":"Cubo do Destino",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"Para completar a missão de Presença Diária é necessário ficar quanto tempo Online?",
         "answer":"1 hora",
-        "answerNumber":null
+        "answerNumber":2
       },
       {
         "question":"Qual item é utilizado para se casar-se na Capela Perfeita em Perfect World?",
@@ -1444,7 +1444,7 @@
       {
         "question":"Para completar a missão da Pedra Doida é necessário ficar quanto tempo Online?",
         "answer":"10 minutos",
-        "answerNumber":null
+        "answerNumber":3
       },
       {
         "question":"Que cidade flutua sobre os céus de Pan Gu?",
@@ -1454,7 +1454,7 @@
       {
         "question":"No seu grupo, a feiticeira da \"Ferir\" e o bárbaro...",
         "answer":"Morde",
-        "answerNumber":null
+        "answerNumber":1
       },
       {
         "question":"Qual a quantidade mínima de jogadores para abrir um Capitulo (modo grupo), no Palácio do Crepúsculo?",
@@ -1479,14 +1479,14 @@
       {
         "question":"A partir de qual nível de Boticário é possível criar Revirador de Folha Nova?",
         "answer":"Nível 5",
-        "answerNumber":null
+        "answerNumber":3
       },
       {
         "question":"A destruição de itens forjados no Palácio do Crepúsculo concede:",
         "answer":"Alma do equipamento",
         "answerNumber":3
       }
-    ]
+    ],
   },
   {
     "name":"70-79",
@@ -1750,7 +1750,7 @@
         "answer":"Fragrância dos Céus",
         "answerNumber":3
       }
-    ]
+    ],
   },
   {
     "name":"80-89",
@@ -1762,7 +1762,7 @@
       {
         "question":"Qual desses itens faz parte do evento dos Tigres Celestiais",
         "answer":"Erva de Espírito de Tigre",
-        "answerNumber":null
+        "answerNumber":3
       },
       {
         "question":"As Armas Visuais só podem ser adquiridas pela loja de GOLD?",
@@ -1801,8 +1801,8 @@
       },
       {
         "question":"Qual status é oferecido ao adquirir o combo da Coroa Insanidade e Capa da Ascensão?",
-        "answer":"Nível de Ataque +9 |3ª opção",
-        "answerNumber":null
+        "answer":"Nível de Ataque +9",
+        "answerNumber":3
       },
       {
         "question":"Quantas Nações faz parte da Guerra da Dinastia?",
@@ -2059,7 +2059,7 @@
         "answer":"Coroa da Insanidade",
         "answerNumber":1
       }
-    ]
+    ],
   },
   {
     "name":"90-105",
@@ -2266,12 +2266,12 @@
       {
         "question":"Qual destas opções não era um chefe do Covil do Dragão?",
         "answer":"Profundeza",
-        "answerNumber":null
+        "answerNumber":1
       },
       {
         "question":"No Purgatório Celeste, qual é o nome do item que pode deixar você e os membros do grupo imunes a todos os danos por um curto período?",
         "answer":"Cristal de Requiem",
-        "answerNumber":null
+        "answerNumber":3
       },
       {
         "question":"Qual dos seguintes voos não pode ser dropado na instância Covil do Dragão?",
@@ -2301,7 +2301,7 @@
       {
         "question":"Quanto tempo tem que se esperar para que o Soldado de Pelúcia desapareça e solte um ovo de Soldado de pelúcia?",
         "answer":"5 minutos",
-        "answerNumber":null
+        "answerNumber":3
       },
       {
         "question":"Qual item pode fazer as Montarias Voadoras se movimentarem mais rápido?",
@@ -2338,6 +2338,6 @@
         "answer":"Tem o atributo bônus de Estilhaçar",
         "answerNumber":2
       }
-    ]
+    ],
   }
 ]
