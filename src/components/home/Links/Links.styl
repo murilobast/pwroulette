@@ -1,9 +1,13 @@
 .links
-	padding 86px 0 40px
+	padding 20px 0 20px
 	text-align center
 
-	+above($breakpoint-mobile)
-		padding-top 120px
+	&__items
+		+above($breakpoint-mobile)
+			display flex
+			align-items center
+			justify-content space-between
+
 
 	&__link
 		color #fff
@@ -15,13 +19,13 @@
 		box-shadow $depth-1
 		border-radius 3px
 		transition all .3s ease-in-out
+		margin-bottom 20px
 
 		&:active
 			box-shadow $depth-2
 
 		+above($breakpoint-mobile)
-			width 50%
-			display inline-block
+			width 48%
 
 	&__anchor
 		display block

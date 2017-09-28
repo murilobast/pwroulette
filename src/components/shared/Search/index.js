@@ -1,20 +1,25 @@
+import classNames from 'classnames'
+
 // Components
 import Wrapper from 'components/shared/Wrapper'
 
 // Styles
 import './Search.styl'
 
-const Search = ({ filterChests }) => (
-	<section className="search">
+const Search = ({ fixed, filter, label }) => (
+	<section className={classNames(
+		'search',
+		{ 'is--fixed': fixed }
+	)}>
 		<Wrapper>
 			<label className="search__title">
-				Selecione um baú
+				{label}
 			</label>
 			<input
 				type="text"
 				placeholder="Buscar..."
 				className="search__input"
-				onKeyUp={(e) => filterChests(e.target.value)}
+				onKeyUp={(e) => filter(e.target.value)}
 			/>
 		</Wrapper>
 	</section>

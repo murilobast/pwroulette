@@ -24,9 +24,9 @@ const Window = ({ question, ...props }) => {
 		<section className="window">
 			<span className="window__close" role="button" />
 			<div className="window__content">
-				<h3 className="window__title">
+				<h2 className="window__title">
 					{question}
-				</h3>
+				</h2>
 			</div>
 			<ul className="window__options">
 				{answers.map(({ name, highlight }, i) => (
@@ -37,11 +37,11 @@ const Window = ({ question, ...props }) => {
 							{ 'is--highlight': highlight }
 						)}
 					>
-						{name}
+						<h4 className="window__name">{name}</h4>
 					</li>
 				))}
 			</ul>
-			<h2 className="window__title">Resposta: {props.answer}</h2>
+			<h3 className="window__title">Resposta: {props.answer}</h3>
 		</section>
 	)
 }

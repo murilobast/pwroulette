@@ -13,9 +13,17 @@ const Links = () => (
 				<li className="links__link">
 					<Link
 						className="links__anchor"
-						to="chests/"
+						to="/chests/"
 					>
 						Abrir Baús
+					</Link>
+				</li>
+				<li className="links__link">
+					<Link
+						className="links__anchor"
+						to="/trivia/"
+					>
+						Trivia
 					</Link>
 				</li>
 			</ul>

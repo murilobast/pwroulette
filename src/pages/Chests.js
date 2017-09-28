@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 // Components
 import List from 'components/chests/List'
 import AddModal from 'containers/AddModal'
-import Search from 'components/chests/Search'
+import Search from 'components/shared/Search'
 
 // Helpers
 import generateMetatags from 'helpers/generateMetatags'
@@ -18,7 +18,9 @@ const Chests = ({ chests, filterChests }) => (
 			})}
 		</Helmet>
 		<Search
-			filterChests={filterChests}
+			filter={filterChests}
+			label="Selecione um baú"
+			fixed
 		/>
 		<List
 			chests={chests}

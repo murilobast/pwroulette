@@ -1,0 +1,51 @@
+.trivia-categories
+	color #fff
+	margin-bottom 30px
+
+	&__categories, &__category
+		background-color $color-transparent
+		padding 16px 12px
+		border-radius 2px
+		box-shadow $depth-2
+
+	&__categories
+		display flex
+		// align-items center
+		justify-content space-between
+		flex-wrap wrap
+		padding-bottom 0
+
+		+above($breakpoint-mobile)
+			padding-bottom 4px
+
+	&__category
+		padding 0
+		flex-shrink 0
+		background-color $color-light-transparent
+		opacity .8
+		cursor pointer
+		box-sizing border-box
+		transition all .3s ease-in-out
+		width 100%
+		margin-bottom 8px
+
+		&.is--question
+			flex-shrink 0
+
+			+above($breakpoint-mobile)
+				width 49%
+
+		+above($breakpoint-mobile)
+			width 32%
+			margin-bottom 1.3%
+
+			&:hover
+				opacity 1
+				box-shadow $depth-3
+
+	&__name
+		padding 12px
+		font-size 18px
+		font-weight normal
+
+

@@ -14,6 +14,7 @@ const Bag = ({
 	amount,
 	opened,
 	openChest,
+	description,
 	stopOpening,
 	updateAmount,
 	resetChests
@@ -28,6 +29,9 @@ const Bag = ({
 			<h1 className="bag__title">
 				{name}({opened})
 			</h1>
+			<h2 className="bag__description">
+				{description || 'Teste sua sorte ;D'}
+			</h2>
 			<Link
 				className="bag__back"
 				to="/chests/"

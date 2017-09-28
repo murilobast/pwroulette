@@ -4,7 +4,7 @@
 	padding 12px 8px
 	width 291px
 	box-sizing border-box
-	margin 87px auto 30px
+	margin 20px auto 30px
 	border-radius 3px
 
 	+above($breakpoint-mobile)
@@ -15,9 +15,8 @@
 		padding-bottom 6px
 		border-bottom 1px solid $color-light-transparent
 		position relative
-		height 38px
+		min-height 38px
 		box-sizing border-box
-		padding-left 38px
 
 	&__image
 		position absolute
@@ -30,11 +29,20 @@
 		line-height 32px
 		font-size 16px
 		color #fff
+		padding-left 38px
 		font-weight normal
-		padding-right 24px
 		text-overflow ellipsis
 		overflow hidden
 		white-space nowrap
+		width calc(100% - 66px)
+		box-sizing border-box
+
+	&__description
+		line-height 16px
+		font-size 14px
+		color #fff
+		font-weight 300
+		margin 8px 0
 
 	&__back
 		font-size 12px

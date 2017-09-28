@@ -2,7 +2,8 @@ import { Link } from 'react-router'
 
 const menuLinks = [
 	{ title: 'Home', href: '/' },
-	{ title: 'Baús', href: '/chests/' }
+	{ title: 'Baús', href: '/chests/' },
+	{ title: 'Trivia', href: '/trivia/' }
 ]
 
 const Menu = ({ onMenuClick }) =>  (

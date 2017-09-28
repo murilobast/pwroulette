@@ -13,7 +13,7 @@ const Chests = ({ chest: { items, name, description, ...chest }, bagItems, ...pr
 	<Wrapper>
 		<Helmet>
 			{generateMetatags({
-				title: `PWS - ${name}`,
+				title: `${name}`,
 				url: 'chest',
 				description: `${name} - ${description || ' - Simulador de drops de báus para Perfect World'}`
 			})}
@@ -21,6 +21,7 @@ const Chests = ({ chest: { items, name, description, ...chest }, bagItems, ...pr
 		<Bag
 			name={name}
 			items={bagItems}
+			description={description}
 			{...chest}
 			{...props}
 		/>

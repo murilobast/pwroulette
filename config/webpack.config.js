@@ -16,8 +16,8 @@ module.exports = {
 	entry: [paths.appIndexJs, paths.appStyle],
 	output: {
 		path: paths.appBuild,
-		filename: 'static/js/[name].bundle.js',
-		chunkFilename: 'static/js/bundle.[name].js',
+		filename: 'static/js/[name]-[chunkHash].bundle.js',
+		chunkFilename: 'static/js/bundle.[name]-[chunkHash].js',
 		publicPath: '/'
 	},
 	module: {
@@ -134,35 +134,18 @@ module.exports = {
 		new OfflinePlugin({
 			version: 'sw_[hash]',
 			events: true,
+			cacheMaps: [{
+				match: function(requestUrl) {
+					return new URL('/', location);
+				},
+				requestTypes: ['navigate']
+			}],
+			externals: routeConfig,
 			safeToUseOptionalCaches: true,
-			responseStrategy: 'cache-first',
-			excludes: [
-				'index.ejs'
-			],
-			cacheAll: true,
-			// cacheMaps: [
-			// 	{
-			// 		match: function (requestUrl) {
-			// 			return new URL('/', location)
-			// 		},
-			// 		requestTypes: ['navigate']
-			// 	}
-			// ],
-			externals: [
-				'/'
-			],
-			// externals: routeConfig.map(route => route.path),
-			ServiceWorker: {
-				events: true,
-				navigateFallbackURL: '/',
-				output: 'sw.js'
-			},
-			AppChache: {
-				caches: ['main', 'additional'],
-				FALLBACK: {
-					'/': '/'
-				}
-			}
+			disableInstall: true,
+			excludes: ['**/.*', '**/*.map', '**/*.ejs', '**/manifest.json'],
+			responseStrategy: "network-first",
+			ServiceWorker: false
 		})
 	].concat(commonPlugins),
 	resolve: commonResolve

@@ -61,6 +61,22 @@ const routes = (
 			}}
 		/>
 		<Route
+			path={'/trivia/:category'}
+			getComponent={(location, cb) => {
+				System.import('./containers/routes/TriviaCategory')
+					.then(loadRoute(cb, null))
+					.catch(errorOnLoadingRoute)
+			}}
+		/>
+		<Route
+			path={'/trivia/:category/:question'}
+			getComponent={(location, cb) => {
+				System.import('./containers/routes/TriviaQuestion')
+					.then(loadRoute(cb, null))
+					.catch(errorOnLoadingRoute)
+			}}
+		/>
+		<Route
 			path={'/*'}
 			getComponent={(location, cb) => {
 				System.import('./containers/routes/Home')
