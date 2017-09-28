@@ -23,7 +23,7 @@ const TriviaCategory = ({
 			})}
 		</Helmet>
 		<Heading
-			title={`Trivia: ${category !== 'sem-categoria' ? 'Perguntas de nível ' : ''}${name}`}
+			title={`Trivia: ${category !== 'uncategorized' ? 'Perguntas de nível ' : ''}${name}`}
 			category={category}
 		/>
 		<GoogleAd

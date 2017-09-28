@@ -1,7 +1,8 @@
-const slugify = string => string.toLowerCase()
+import S from 'string'
+
+const slugify = string => S(string).latinise().s
+	.toLowerCase()
+	.replace(/[^A-Za-z0-9 ]/g, '')
 	.replace(/ /g, '-')
-	.replace(/\%/, '')
-	.replace(/\//, '')
-	.replace(/\\/, '')
 
 export default slugify

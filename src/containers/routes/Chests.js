@@ -1,5 +1,10 @@
 import { connect } from 'react-redux'
-import { compose, lifecycle } from 'recompose'
+import {
+	branch,
+	compose,
+	lifecycle,
+	renderNothing
+} from 'recompose'
 
 // Ducks
 import { getChestList, filterChests } from 'ducks/api'
@@ -24,5 +29,6 @@ export default compose(
 			const { getChestList, pending } = this.props
 			if (pending) getChestList()
 		}
-	})
+	}),
+	branch(props => props.pending, renderNothing)
 )(ChestsPage)

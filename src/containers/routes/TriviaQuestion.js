@@ -8,7 +8,6 @@ import trivia from 'config/trivia'
 
 const getCurrentQuestion = ({ category, question }) => {
 	const index = question.match(/^[0-9]+/)[0]
-	console.log(index)
 	return trivia
 		.find(({ slug }) => slug === category)
 		.questions[index]

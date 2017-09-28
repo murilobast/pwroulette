@@ -64,8 +64,7 @@ export default compose(
 	lifecycle({
 		componentWillMount() {
 			const { getSingleChest, pending, params: { id } } = this.props
-			if (pending)
-				getSingleChest(id)
+			if (pending) getSingleChest(id)
 		}
 	}),
 	branch(props => props.pending, renderNothing)
