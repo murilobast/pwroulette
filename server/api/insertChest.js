@@ -38,10 +38,10 @@ const getItems = $items => $items
 		return { id, name, weight, amount, image }
 	})
 
-const getNameAndDrops = body => {
+const getDrops = body => {
 	const $ = cheerio.load(body)
 	const $content = $('#content table').first().find('tbody tr')
-	const name = $content.find('span').first().text()
+	// const name = $content.find('span').first().text()
 	const $columns = $content.last().find('td')
 	const $elements = $columns.first().find('p')
 	const $filtered = $elements
@@ -53,7 +53,7 @@ const getNameAndDrops = body => {
 			.attr('href')
 			.replace('items/', '')
 	)
-	return { _id: itemId, itemId , name, items }
+	return { _id: itemId, itemId , items }
 }
 
 const getAditionalInformation = async id => {
@@ -69,7 +69,9 @@ const getAditionalInformation = async id => {
 			.find('.iteminfo span')
 		$descriptionBlock.find('br').replaceWith(' ')
 		const description = $descriptionBlock.text()
-		return { image, description }
+		$('.itemHeader a').remove()
+		const name = $('.itemHeader').text().trim()
+		return { name, image, description }
 	}
 	return {}
 }
@@ -93,7 +95,7 @@ const insertChest = async (req, res, next) => {
 	const response = await fetch(url)
 	if (response.status === 200) {
 		const body = await response.text()
-		const nameAndDrops = getNameAndDrops(body)
+		const nameAndDrops = getDrops(body)
 		const adtionalInformation = await getAditionalInformation(nameAndDrops.itemId)
 		const chest = Object.assign(
 			chestStructure,
