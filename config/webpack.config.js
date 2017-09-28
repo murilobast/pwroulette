@@ -104,12 +104,12 @@ module.exports = {
 		// 	include: 'asyncChunks'
 		// }),
 		new ExtractTextPlugin({
-			filename: 'static/css/[name].css',
+			filename: 'static/css/[name]-[chunkHash].css',
 			allChunks: true
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
-			filename: 'static/js/vendor.js',
+			filename: 'static/js/[name]-[chunkHash].js',
 			minChunks: m => m.resource && m.resource.includes('node_modules')
 		}),
 		new webpack.DefinePlugin({

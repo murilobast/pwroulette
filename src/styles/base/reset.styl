@@ -40,8 +40,10 @@ object
 	display flex
 	justify-content center
 	overflow hidden
-	margin-bottom 30px
 	text-align center
+
+	+above($breakpoint-mobile)
+		margin-bottom 30px
 
 	ins
 		max-width: 100vw
