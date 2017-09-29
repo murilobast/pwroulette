@@ -18,7 +18,7 @@ const fetchChestFromDb = id => {
 	const fields = id === 'all' ? queryFields.all : queryFields.single
 	const query = id === 'all' ? {} : { id: Number(id) }
 	if (id === 'all')
-		return chests.find(query, fields)
+		return chests.find(query, fields).sort({ name: 1 })
 	return chests.findOne(query, fields)
 }
 
