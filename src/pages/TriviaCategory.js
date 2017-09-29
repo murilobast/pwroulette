@@ -24,7 +24,7 @@ const TriviaCategory = ({
 			{generateMetatags({
 				title: `${getTitlePrefix(name)}Trivia`,
 				url: 'trivia',
-				description: `Trivia - Simulador de drops de báus para Perfect World'}`
+				description: `Perguntas ${name} - Descubra as respostas para as perguntas do evento de Trivia em Perfect World - PW Simulator`
 			})}
 		</Helmet>
 		<Heading
