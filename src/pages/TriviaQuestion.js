@@ -17,7 +17,7 @@ const TriviaCategory = ({
 	<Wrapper>
 		<Helmet>
 			{generateMetatags({
-				title: `${question} - Trivia`,
+				title: `${question} - Trivia Perfect World`,
 				url: `trivia/${category}/${questionParam}`,
 				description: `Trivia - Resposta para: ${question} - Perguntas ${name}. Perfect World - PW Simulator`
 			})}

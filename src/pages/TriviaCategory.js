@@ -10,9 +10,6 @@ import Search from 'components/shared/Search'
 // Helpers
 import generateMetatags from 'helpers/generateMetatags'
 
-const getTitlePrefix = name =>
-	`Perguntas ${name} - `
-
 const TriviaCategory = ({
 	questions,
 	filterQuestions,
@@ -22,7 +19,7 @@ const TriviaCategory = ({
 	<Wrapper>
 		<Helmet>
 			{generateMetatags({
-				title: `${getTitlePrefix(name)}Trivia`,
+				title: `Perguntas ${name} - Trivia Perfect World`,
 				url: 'trivia',
 				description: `Perguntas ${name} - Descubra as respostas para as perguntas do evento de Trivia em Perfect World - PW Simulator`
 			})}
