@@ -15,7 +15,7 @@ const Chests = ({ chest: { items, name, description, ...chest }, bagItems, ...pr
 			{generateMetatags({
 				title: `${name}`,
 				url: 'chest',
-				description: `${name} - ${description || ' - Simulador de drops de báus para Perfect World'}`
+				description: `${name}${(!!description && name !== description) ? ` - ${description}` : ''} - Simulador de drops de báus para Perfect World`
 			})}
 		</Helmet>
 		<Bag
