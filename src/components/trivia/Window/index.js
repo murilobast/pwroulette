@@ -17,8 +17,32 @@ const generateAnswers = ({ answer, answerNumber }) => {
 	})
 }
 
+const generateScholarlyAnswers = ({ answer, answerNumber }) => {
+	const letters = ['A', 'B', 'C', 'D']
+	const answers = [
+		{ name: 'Opção', highlight: false },
+		{ name: 'Opção', highlight: false },
+		{ name: 'Opção', highlight: false }
+	]
+	answers.splice(answerNumber - 1, 0, { name: `${answer}`, highlight: true })
+	return answers.map((answer, i) => {
+		const letter = `• ${letters[i]}`
+		return {
+			...answer,
+			name: answer.highlight ?
+				`${letter}: ${answer.name}` :
+				`${letter}: ${answer.name} ${i + 1}...`
+		}
+	})
+}
+
+const checkQuestionType = ({ type = 'trivia', ...props }) =>
+	type === 'trivia' ?
+		generateAnswers(props) :
+		generateScholarlyAnswers(props)
+
 const Window = ({ question, ...props }) => {
-	const answers = generateAnswers(props)
+	const answers = checkQuestionType(props)
 
 	return (
 		<section className="window">

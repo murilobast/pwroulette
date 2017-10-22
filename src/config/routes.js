@@ -3,7 +3,8 @@ const triviaData = require('./trivia')
 const routes = [
 	'/',
 	'/chests',
-	'/trivia'
+	'/trivia',
+	'/desafio-do-conhecimento'
 ]
 
 // const slugify = string => string.toLowerCase()

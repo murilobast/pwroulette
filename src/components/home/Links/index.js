@@ -10,6 +10,7 @@ const Links = () => (
 	<section className="links">
 		<Wrapper>
 			<ul className="links__items">
+
 				<li className="links__link">
 					<Link
 						className="links__anchor"
@@ -18,12 +19,22 @@ const Links = () => (
 						Abrir Baús
 					</Link>
 				</li>
+
 				<li className="links__link">
 					<Link
 						className="links__anchor"
 						to="/trivia/"
 					>
 						Trivia
+					</Link>
+				</li>
+
+				<li className="links__link">
+					<Link
+						className="links__anchor"
+						to="/desafio-do-conhecimento/"
+					>
+						Desafio do Conhecimento
 					</Link>
 				</li>
 			</ul>

@@ -7,6 +7,7 @@
 			display flex
 			align-items center
 			justify-content space-between
+			flex-wrap wrap
 
 
 	&__link
@@ -21,11 +22,15 @@
 		transition all .3s ease-in-out
 		margin-bottom 20px
 
+
 		&:active
 			box-shadow $depth-2
 
 		+above($breakpoint-mobile)
 			width 48%
+
+			&:last-of-type
+				width 100%
 
 	&__anchor
 		display block

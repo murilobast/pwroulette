@@ -3,7 +3,8 @@ import { Link } from 'react-router'
 const menuLinks = [
 	{ title: 'Home', href: '/' },
 	{ title: 'Baús', href: '/chests/' },
-	{ title: 'Trivia', href: '/trivia/' }
+	{ title: 'Trivia', href: '/trivia/' },
+	{ title: 'Desafio do Conhecimento', href: '/desafio-do-conhecimento/' }
 ]
 
 const Menu = ({ onMenuClick }) =>  (

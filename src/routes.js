@@ -53,6 +53,14 @@ const routes = (
 			}}
 		/>
 		<Route
+			path={'/refinner'}
+			getComponent={(location, cb) => {
+				System.import('./containers/routes/Refinner')
+					.then(loadRoute(cb, null))
+					.catch(errorOnLoadingRoute)
+			}}
+		/>
+		<Route
 			path={'/trivia'}
 			getComponent={(location, cb) => {
 				System.import('./containers/routes/Trivia')
@@ -72,6 +80,22 @@ const routes = (
 			path={'/trivia/:category/:question'}
 			getComponent={(location, cb) => {
 				System.import('./containers/routes/TriviaQuestion')
+					.then(loadRoute(cb, null))
+					.catch(errorOnLoadingRoute)
+			}}
+		/>
+		<Route
+			path={'/desafio-do-conhecimento'}
+			getComponent={(location, cb) => {
+				System.import('./containers/routes/ScholarlyChallenge')
+					.then(loadRoute(cb, null))
+					.catch(errorOnLoadingRoute)
+			}}
+		/>
+		<Route
+			path={'/desafio-do-conhecimento/:question'}
+			getComponent={(location, cb) => {
+				System.import('./containers/routes/ScholarlyQuestion')
 					.then(loadRoute(cb, null))
 					.catch(errorOnLoadingRoute)
 			}}
