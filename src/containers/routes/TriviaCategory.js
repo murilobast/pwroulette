@@ -7,14 +7,23 @@ import TriviaCategoryPage from 'pages/TriviaCategory'
 // Data
 import trivia from 'config/trivia'
 
-const getCurrentCategory = ({ category }) =>
-	trivia.find(({ slug }) => slug === category)
+const getCurrentCategory = ({ category }) => {
+	const updatedCatecory = trivia.find(({ slug }) => slug === category)
+	updatedCatecory.questions = [...updatedCatecory.questions]
+		.map((question, i) => ({
+			...question,
+			index: i
+		}))
+	return updatedCatecory
+}
 
 export default compose(
 	withState('currentCategory', '_', ({ params }) =>
-		getCurrentCategory(params)),
+		getCurrentCategory(params)
+	),
 	withState('questions', 'setQuestions', ({ params }) =>
-		getCurrentCategory(params).questions),
+		getCurrentCategory(params).questions
+	),
 	withHandlers({
 		filterQuestions: ({ currentCategory, setQuestions }) => query => {
 			const questions = [...currentCategory.questions]

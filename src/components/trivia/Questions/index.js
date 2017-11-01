@@ -9,12 +9,15 @@ import slugify from 'helpers/slugify'
 const Questions = ({ questions, slug = '', trivia = true }) => (
 	<section className="trivia-categories">
 		<ul className="trivia-categories__categories">
-			{questions.map(({ question }, i) => (
-				<li key={`qst${i}`} className="trivia-categories__category is--question">
+			{questions.map(({ question, index }, i) => (
+				<li
+					key={`qst${index}`}
+					className="trivia-categories__category is--question"
+				>
 					<Link
 						to={trivia ?
-							`/trivia/${slug}/${i}-${slugify(question)}` :
-							`/desafio-do-conhecimento/${i}-${slugify(question)}`
+							`/trivia/${slug}/${index}-${slugify(question)}` :
+							`/desafio-do-conhecimento/${index}-${slugify(question)}`
 						}
 					>
 						<h2 className="trivia-categories__name">
