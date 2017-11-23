@@ -1,0 +1,98 @@
+$color-main = rgba(63,47,30,.88)
+
+$outter-box-url = 'http://anixsub.com/pw/resource/common/images/box.png'
+$inner-box-url = 'http://anixsub.com/pw/resource/common/images/box2.png'
+$vertical-bar-url = 'http://anixsub.com/pw/resource/common/images/box_v.png'
+$horizontal-bar-url = 'http://anixsub.com/pw/resource/common/images/box_h.png'
+$header-box-url = 'http://anixsub.com/pw/resource/common/images/top_1_big.png'
+$inner-vertical-bar-url = 'http://anixsub.com/pw/resource/common/images/box2_v.png'
+$inner-horizontal-bar-url = 'http://anixsub.com/pw/resource/common/images/box2_h.png'
+
+.window
+	position relative
+	width 300px
+	min-height 200px
+	padding 40px 20px
+
+	&__top,
+	&__bottom,
+	&__content,
+	&__background
+		position absolute
+
+		&:before, &:after
+			content ''
+			position absolute
+
+	&__top
+		top 0
+		left 50px
+		right 50px
+		height 20px
+		z-index 1
+		background-image url($vertical-bar-url)
+
+		&:before, &:after
+			top 0
+			height 20px
+			width 50px
+			overflow hidden
+			background-image url($outter-box-url)
+
+		&:before
+			left -50px
+
+		&:after
+			right -50px
+			background-position -70px 0
+
+	&__bottom
+		bottom 0
+		left 50px
+		right 50px
+		height 20px
+		background-position 0 -100px
+		background-image url($vertical-bar-url)
+
+		&:before, &:after
+			bottom 0
+			width 50px
+			height 20px
+			overflow hidden
+			background-image url($outter-box-url)
+
+		&:before
+			left -50px
+			background-position 0 -100px
+
+		&:after
+			right -50px
+			background-position -70px -100px
+
+	&__content
+		top 20px
+		bottom 20px
+		right 20px
+		left 20px
+		z-index 1
+
+	&__background
+		background-color $color-main
+		top 0
+		bottom 0
+		left 20px
+		right 20px
+		z-index -1
+
+		&:before, &:after
+			top 20px
+			width 50px
+			bottom 20px
+			background-image url($horizontal-bar-url)
+
+		&:before
+			left -20px
+
+		&:after
+			right -20px
+			background-position -70px 0
